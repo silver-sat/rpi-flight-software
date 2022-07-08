@@ -1,0 +1,1 @@
+serial  MYCALL-8      115200   440     10       Serial interface
