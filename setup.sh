@@ -19,7 +19,7 @@ cd /home/pi
 # we execute as the "pi" user, use sudo as needed...
 if [ `whoami` != "pi" ]; then
   echo "Execute as user pi"
-	exit 1
+  exit 1
 fi  
 
 # Clone rpi-flight-software repository (this pulls down all configurations)!
