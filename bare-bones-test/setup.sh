@@ -1,20 +1,11 @@
 #!/bin/sh
 
-BASEURL="https://raw.githubusercontent.com/silver-sat/rpi-flight-software/master/"
+# ntpdate is needed in network-startup.sh
+sudo apt-get install -y ntpdate
 
-COMMONSCRIPTS="$BASEURL/common/scripts"
-
-# /etc/rc.local startup hook
-wget -O - -q "$COMMONSCRIPTS/rc.local.startup-hook.sh" | sh
-
-# linux packages to install
-wget -O - -q "$COMMONSCRIPTS/apt-get-install.satellite.sh" | sh
-
-# /etc/axports modification
-wget -O - -q "$COMMONSCRIPTS/axports.satellite.append.sh" | sh
-
-SCRIPTS="$BASEURL/satellite/scripts/"
-
-# git-code - reference a specific version? use main branch
-https://codeload.github.com/silver-sat/rpi-flight-software/zip/refs/heads/main
-
+for f in startup.sh network-startup.sh; do
+  rm -f /home/pi/$f
+	ln -s $BASE/$f /home/pi/.$f
+for d in photo tweet action shutdown; do
+  rm -f /home/pi/$d
+  ln -s $BASE/$d /home/pi/$d

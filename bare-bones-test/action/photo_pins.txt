@@ -1,0 +1,4 @@
+#BCN Pin numbers!
+16 LOW
+20 LOW
+21 LOW

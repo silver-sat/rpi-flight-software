@@ -1,0 +1,4 @@
+#BCN Pin numbers!
+16 HIGH
+20 HIGH
+21 HIGH
