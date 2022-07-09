@@ -3,11 +3,8 @@
 # ntpdate is needed in network-startup.sh
 sudo apt-get install -y ntpdate
 
-for f in startup.sh network-startup.sh; do
-  rm -f /home/pi/$f
-  ln -s $BASE/$f /home/pi/.$f
-done
-for d in photo tweet action shutdown; do
-  rm -f /home/pi/$d
-  ln -s $BASE/$d /home/pi/$d
-done
+rm -f /home/pi/payload
+ln -s $BASE /home/pi/payload
+
+rm -f /home/pi/.startup.sh
+ln -s /home/pi/payload/.startup.sh /home/pi/.startup.sh
