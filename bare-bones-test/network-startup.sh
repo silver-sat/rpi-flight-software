@@ -2,4 +2,6 @@
 
 # Network startup stuff...(no ground station, this just sets the time)...
 
-ntpdate
+set -x
+
+ntpdate -u 0.debian.pool.ntp.org

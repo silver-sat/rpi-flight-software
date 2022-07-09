@@ -1,22 +1,24 @@
 #!/bin/sh
 
+set -x
+
 ASPI="runuser -u pi"
 cd /home/pi
 
 # Set the SHUTDOWN pins
-$ASPI ./payload/shutdown/main.py
+$ASPI python3 ./payload/shutdown/main.py
 
 # Determine what to do...
-MODE=`$ASPI ./payload/mode/main.py`
+MODE=`$ASPI python3 ./payload/mode/main.py`
 
 if [ "$MODE" = "TWEET" ]; then
-  ./payload/network-startup.sh
+  sh ./payload/network-startup.sh
 fi
 
 if [ "$MODE" = "PHOTO" ]; then
-  $ASPI ./payload/photo/main.py
-  shutdown now
+  $ASPI python3 ./payload/photo/main.py
+  echo shutdown now
 elif [ "$MODE" = "TWEET" ]; then
-	$ASPI ./payload/tweet/main.py
-	shutdown now
+  $ASPI python3 ./payload/tweet/main.py
+  echo shutdown now
 fi
