@@ -4,15 +4,15 @@ This repository contains scripts and necessary code to construct specific setups
 
 Different subdirectories, to be determined, will hold setups for different contexts, flight, testing, etc. 
 
-Each subdirectory will contain a script, `setup.sh`, that can be run on a clean raspberry pi from the /home/pi directory as the pi user as as follows:
+Each subdirectory will contain a script, `setup.sh`, that can be run on a clean raspberry pi from the /home/pi directory as the pi user.
+
+Common setup tasks can be found in `common`. A bootstrap script can be used to pull down the repository, carry out common tasks, set some environment variables, and execute the configuration specific setup.sh script. 
 
 ```
-wget -q -O - 'https://raw.githubusercontent.com/silver-sat/rpi-flight-software/master/<CONFIG>/setup.sh' | sh 
+wget 'https://raw.githubusercontent.com/silver-sat/rpi-flight-software/master/setup.sh'
+sh setup.sh <CONFIG>
 ```
 
-where `<CONFIG>` represents the specific setup desired. 
+where `<CONFIG>` represents the specific setup desired. setup.sh does not need to be re-downloaded if it is already in place. 
 
-The other contents of the subdirectory have yet to be determined, but these may contain shell scripts or python code to download, execute, or install. The setup script should install any linux packages missing from the raspberry pi instance (using apt-get) and any python modules required (using pi). 
-
-Code and/or scripts that are used in multiple setups shoiuld be put in the common subdirectory.
 
