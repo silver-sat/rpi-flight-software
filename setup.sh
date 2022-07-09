@@ -23,7 +23,7 @@ if [ `whoami` != "pi" ]; then
 fi  
 
 # Clone rpi-flight-software repository (this pulls down all configurations)!
-if [ ! -d $RFSROOT ]; 
+if [ ! -d $RFSROOT ]; then
   git clone $GITREPO
 else
   ( cd $RFSROOT; git pull )
