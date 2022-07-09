@@ -3,9 +3,9 @@
 # modify /etc/rc.local
 set -x
 
-if [ `fgrep .startup.sh /etc/rc.local | wc -l` != "0" ]; then
-  #Already there, exit peacefully...
-	exit 0
+if fgrep -q .startup.sh /etc/rc.local; then
+  # Already there, exit peacefully...
+  exit 0
 fi
 
 sudo sed -e '$r /dev/stdin' -e '/exit 0/d' -i /etc/rc.local <<EOF
@@ -23,4 +23,4 @@ if [ -x /home/pi/.startup.sh ]; then
 fi
 exit 0
 EOF
-
+chmod a+x /etc/rc.local

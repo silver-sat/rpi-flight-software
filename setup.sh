@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -x
+
 # everything here should be suitable for running multiple times, 
 # on a clean install or after being previously run. It can assume
 # an internet connection (usually WiFi).
@@ -27,10 +29,11 @@ if [ ! -d $RFSROOT ]; then
   git clone $GITREPO
 else
   ( cd $RFSROOT; git pull )
+fi
 
 # Execute any common setup steps...
 export BASE="$RFSROOT/common"
-$BASE/setup.sh
+sh $BASE/setup.sh
 
 # If no specific configuration requested, exit
 if [ "$1" = "" ]; then
@@ -39,4 +42,4 @@ fi
 
 # execute the setup.sh script for the specific configuration
 export BASE="$RFSROOT/$1"
-$BASE/setup.sh"
+sh $BASE/setup.sh

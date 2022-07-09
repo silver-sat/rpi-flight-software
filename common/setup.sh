@@ -9,6 +9,7 @@
 
 set -x
 
-$BASE/apt-get.install.sh
-$BASE/rc.local.startup-hook.sh
-$BASE/ax.ports.append.sh
+sh $BASE/apt-get.install.sh
+sh $BASE/rc.local.startup-hook.sh
+sh $BASE/axports.append.sh
+
