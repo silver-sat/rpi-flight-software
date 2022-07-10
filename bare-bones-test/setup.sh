@@ -12,3 +12,4 @@ ln -s $BASE /home/pi/payload
 
 rm -f /home/pi/.startup.sh
 ln -s /home/pi/payload/startup.sh /home/pi/.startup.sh
+chmod a+x /home/pi/.startup.sh
