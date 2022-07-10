@@ -2,8 +2,8 @@
 import sys, traceback, json
 
 from twittercred import *
-from Twython import Twython as Twitter
-from Twython import TwythonError as TwitterError
+from twython import Twython as Twitter
+from twython import TwythonError as TwitterError
 
 def get_twitter():
     return Twitter(
