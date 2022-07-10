@@ -10,6 +10,6 @@ if not filename:
     message = make_text_status()
     send_text_tweet(message)
 else:
-    message = make_photo_status()
+    message = make_photo_status(filename)
     if send_photo_tweet(message, filename):
         remove_photo(filename)
