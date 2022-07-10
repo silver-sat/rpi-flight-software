@@ -36,10 +36,19 @@ export BASE="$RFSROOT/common"
 sh $BASE/setup.sh
 
 # If no specific configuration requested, exit
-if [ "$1" = "" ]; then
+if [ "$1" = "" -o ! -d "$RFSROOT/$1" ]; then
   exit 0
 fi
+
+rm -f /home/pi/payload
+ln -s $BASE /home/pi/payload
+
+rm -f /home/pi/.startup.sh
+ln -s /home/pi/payload/startup.sh /home/pi/.startup.sh
+chmod a+x /home/pi/.startup.sh
 
 # execute the setup.sh script for the specific configuration
 export BASE="$RFSROOT/$1"
 sh $BASE/setup.sh
+
+
