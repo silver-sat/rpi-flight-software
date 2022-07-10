@@ -1,6 +1,6 @@
 
 import shutil
-import os.path
+import os, os.path, sys
 
 # In same directory as module
 standin_photo = 'overhead.jpg'
