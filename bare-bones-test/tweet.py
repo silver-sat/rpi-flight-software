@@ -8,8 +8,10 @@ from direct_tweet import send_text_tweet, send_photo_tweet
 filename = most_recent_photo()
 if not filename:
     message = make_text_status()
-    send_text_tweet(message)
+    if send_text_tweet(message):
+        print("Success! Text Tweet:",message,file=sys.stderr)
 else:
     message = make_photo_status(filename)
     if send_photo_tweet(message, filename):
+        print("Success! Photo Tweet:",message,file=sys.stderr)
         remove_photo(filename)
