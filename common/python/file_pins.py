@@ -54,5 +54,5 @@ def write_pins(pins,values):
 def read_pins(pins):
     pinstate = get_all_pins()   
     for pin in pins:
-        print("GPIO pin %d read as %s"%(pin,pinstr(pinstate.get(pin)),file=sys.stderr)
+        print("GPIO pin %d read as %s"%(pin,pinstr(pinstate.get(pin))),file=sys.stderr)
     return tuple(map(pinstate.get,pins))
