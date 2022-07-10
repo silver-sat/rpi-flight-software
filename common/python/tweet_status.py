@@ -1,5 +1,5 @@
 
-import datetime
+import datetime, os, os.path
 
 def timestamp(msg):
     return "[%s] %s"%(datetime.datetime.now().ctime(),msg)
