@@ -1,7 +1,11 @@
 #!/bin/sh
 
+set -x
+
 # ntpdate is needed in network-startup.sh
 sudo apt-get install -y ntpdate
+
+sudo pip3 install twython
 
 rm -f /home/pi/payload
 ln -s $BASE /home/pi/payload
