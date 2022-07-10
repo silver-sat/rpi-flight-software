@@ -2,7 +2,7 @@
 import datetime
 
 def timestamp(msg):
-    return "[%s] %s"(datetime.datetime.now().ctime(),msg)
+    return "[%s] %s"%(datetime.datetime.now().ctime(),msg)
 
 def make_text_status():
     return timestamp("Twitter text status!")
