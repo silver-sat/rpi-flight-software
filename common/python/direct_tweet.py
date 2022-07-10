@@ -1,5 +1,5 @@
 
-import sys, traceback
+import sys, traceback, json
 
 from twittercred import *
 from Twython import Twython as Twitter
@@ -31,7 +31,7 @@ def send_photo_tweet(message,photo_filename):
         response = twitter.upload_media(media=photo)
         photo.close()
         if 'media_id' not in response:
-            print("Twitter upload_media reponse missing media_id:\n"+json.dumps(response,indent=2)),file=sys.stderr)
+            print("Twitter upload_media reponse missing media_id:\n"+json.dumps(response,indent=2),file=sys.stderr)
             return False
         else:
             repsonse = twitter.update_status(status=message, media_ids=[response['media_id']])
