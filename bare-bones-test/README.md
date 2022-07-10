@@ -16,10 +16,20 @@ This can be used to test the RPi software logic:
 4. Login by ssh, check logs and set hardware state, etc...
 5. Rinse, repeat...
 
+Note that the startup script does not shutdown the RPi (at this time). 
+
 The file /home/pi/.pins.txt should indicate the state of pins (BCN numbering)
-
+```
 <pin>	HIGH|LOW
-
+```
+For photo mode:
+```
+cp rpi-flight-software/common/etc/photo_pins.txt .pins.txt
+```
+For tweet mode:
+```
+cp rpi-flight-software/common/etc/tweet_pins.txt .pins.txt
+```
 
 
 
