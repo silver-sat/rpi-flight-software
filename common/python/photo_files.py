@@ -6,6 +6,8 @@ photo_prefix = 'photo-'
 photo_extn = '.jpg' # include dot!
 
 def photo_filename():
+    if not os.path.isdir(photo_dir):
+        os.makedirs(photo_dir)
     # closest 1/10 second...
     t = int(round(10*time.time()))
     return "%s/%s%011d%s"%(photo_dir,photo_prefix,t,photo_extn)
