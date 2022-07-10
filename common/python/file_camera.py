@@ -1,5 +1,5 @@
 
-import shutils
+import shutil
 import os.path
 
 # In same directory as module
@@ -10,7 +10,7 @@ def setup_camera():
 
 def take_photo(filename):
     photo = os.path.join(os.path.split(__file__)[0],'..','etc',standin_photo)
-    shutils.copy(photo,filename)
+    shutil.copyfile(photo,filename)
     print("Photo placed in filename:",filename,file=sys.stderr)
 
 
