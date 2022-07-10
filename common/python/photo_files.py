@@ -1,5 +1,5 @@
 
-import os, os.path, sys, time
+import os, os.path, sys, time, glob
 
 photo_dir = '/home/pi/photos'
 photo_prefix = 'photo-'
