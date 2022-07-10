@@ -9,7 +9,8 @@
 
 set -x
 
-sh $BASE/apt-get.install.sh
-sh $BASE/rc.local.startup-hook.sh
-sh $BASE/axports.append.sh
+sh $BASE/setup/apt-get.install.sh
+sh $BASE/setup/pip3.install.sh
+sh $BASE/setup/rc.local.startup-hook.sh
+sh $BASE/setup/axports.append.sh
 
