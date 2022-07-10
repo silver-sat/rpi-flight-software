@@ -1,4 +1,6 @@
 
+import sys
+
 import find_common_modules
 
 from photo_files import most_recent_photo, remove_photo
