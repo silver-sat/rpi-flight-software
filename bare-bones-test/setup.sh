@@ -5,8 +5,6 @@ set -x
 # ntpdate is needed in network-startup.sh
 sudo apt-get install -y ntpdate
 
-sudo pip3 install twython
-
 cat <<EOF
 
 Run the bootup script manually with:
