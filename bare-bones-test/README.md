@@ -22,19 +22,16 @@ The file `/home/pi/.pins.txt` should indicate the state of pins (BCN numbering)
 ```
 <pin>	HIGH|LOW
 ```
-The file-based "camera" uses the photo in the file `/home/pi/.photo.jpg`
+The file-based "camera" uses the image in the file `/home/pi/.photo.jpg`
 
 For photo mode:
 ```
 cp rpi-flight-software/common/etc/photo_pins.txt .pins.txt
+cp rpi-flight-software/common/etc/overhead.jpg .photo.jpg
 ```
 For tweet mode:
 ```
 cp rpi-flight-software/common/etc/tweet_pins.txt .pins.txt
-```
-To place an image for the "photo":
-```
-cp rpi-flight-software/common/etc/overhead.jpg .photo.jpg
 ```
 
 
