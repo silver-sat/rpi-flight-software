@@ -32,7 +32,9 @@ else
 fi
 
 if [ -f /home/pi/.params.sh ]; then
+  set -a
   . /home/pi/.params.sh
+  set +a
 fi
 
 # Execute any common setup steps...
