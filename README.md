@@ -9,7 +9,7 @@ Each subdirectory will contain a script, `setup.sh`, that can be run on a clean 
 Common setup tasks can be found in `common`. A bootstrap script can be used to pull down the repository, carry out common tasks, set some environment variables, and execute the configuration specific setup.sh script. 
 
 ```
-wget https://raw.githubusercontent.com/silver-sat/rpi-flight-software/master/setup.sh
+wget tinyurl.com/silver-sat-rpi/setup.sh
 sh setup.sh <CONFIG>
 ```
 
