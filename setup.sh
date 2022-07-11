@@ -31,6 +31,10 @@ else
   ( cd $RFSROOT; git pull )
 fi
 
+if [ -f /home/pi/.params.sh ]; then
+  . /home/pi/.params.sh
+fi
+
 # Execute any common setup steps...
 export BASE="$RFSROOT/common"
 sh $BASE/setup.sh
