@@ -19,7 +19,11 @@ sudo sed -e '$r /dev/stdin' -e '/exit 0/d' -i /etc/rc.local <<EOF
 rfkill unblock wifi || true
 
 if [ -x /home/pi/.startup.sh ]; then
-   /home/pi/.startup.sh >/home/pi/.startup.log 2>&1 &
+   if [ -f /home/pi/.startup.log ]; then
+	    # put logrotate in here?
+	    mv -f /home/pi/.startup.log /home/pi/.startup.log.old
+	 fi
+   /home/pi/.startup.sh > /home/pi/.startup.log 2>&1 &
 fi
 exit 0
 EOF
