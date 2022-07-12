@@ -46,6 +46,8 @@ if [ "$1" = "" -o ! -d "$RFSROOT/$1" ]; then
   exit 0
 fi
 
+export BASE="$RFSROOT/$1"
+
 rm -f /home/pi/payload
 ln -s $BASE /home/pi/payload
 
@@ -54,7 +56,5 @@ ln -s /home/pi/payload/startup.sh /home/pi/.startup.sh
 chmod a+x /home/pi/.startup.sh
 
 # execute the setup.sh script for the specific configuration
-export BASE="$RFSROOT/$1"
 sh $BASE/setup.sh
-
 
