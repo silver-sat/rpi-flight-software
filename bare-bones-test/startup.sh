@@ -17,8 +17,11 @@ fi
 
 if [ "$MODE" = "PHOTO" ]; then
   $ASPI python3 ./payload/photo.py
-  echo shutdown now
+  mv -f .pins.txt .pins.txt.old
+  rm -f .photo.jpg
+  shutdown now
 elif [ "$MODE" = "TWEET" ]; then
   $ASPI python3 ./payload/tweet.py
-  echo shutdown now
+  mv -f .pins.txt .pins.txt.old
+  shutdown now
 fi
