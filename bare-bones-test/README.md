@@ -1,6 +1,6 @@
 # bare-bones-test setup
 
-This setup is intended for a raspberry pi, attached to the internet by WiFi (usually by the SilverSat SSID) to carry out the basic steps of its mission. Hardware elements (GPIO pins, camera) are simulated by files in /home/pi.
+This setup is intended for a raspberry pi representing the satellite payload attached to the internet by WiFi (usually by the SilverSat SSID) to carry out the basic steps of its mission. Hardware elements (GPIO pins, camera) are simulated by files in /home/pi. This setup also works for a virtual raspberry pi with no hardware connections. This setup provides the basic API all payload functionality should support. 
 
 * It should boot up...
 * It should execute a python script to set the Shutdown pins to LOW.
