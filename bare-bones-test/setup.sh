@@ -14,6 +14,7 @@ Run the bootup script manually with:
 Set photo mode with:
 
   cp rpi-flight-software/common/etc/photo_pins.txt .pins.txt
+  cp rpi-flight-software/common/etc/overhead.jpg .photo.jpg
 	
 Set tweet mode with:
 
