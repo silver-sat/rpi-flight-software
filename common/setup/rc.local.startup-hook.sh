@@ -22,7 +22,7 @@ if [ -f /home/pi/.startup.sh ]; then
    if [ -f /home/pi/.startup.log ]; then
       # put logrotate in here?
       if [ -f /home/pi/.logrotate.sh ]; then
-        sh /home/pi/.logrotate.sh .startup.log
+        sh /home/pi/.logrotate.sh /home/pi/.startup.log
       else
         mv -f /home/pi/.startup.log /home/pi/.startup.log.1
       fi
