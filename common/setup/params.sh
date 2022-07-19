@@ -1,7 +1,5 @@
 
-export PARAMS=home/pi/.params.sh
-
-set -x
+PARAMS=/home/pi/.params.sh
 
 nothasparam() {
   if [ "${$1}" = "" ]; then

@@ -2,6 +2,8 @@
 
 set -x
 
+. .common/setup/params.sh
+
 sudo apt-get install -y ntp stunnel4 socat
 
 echo "restrict 192.168.100.0 mask 255.255.255.0" | \
