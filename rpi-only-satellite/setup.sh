@@ -6,7 +6,7 @@ set -x
 sudo apt-get install -y ntpdate socat
 sudo apt-get remove -y ntp
 
-getparam GROUND_IP "Ground IP:"
+getparam "Ground IP:" GROUND_IP 
 
 setparamifnotset SERIAL_PORT 8000
 setparamifnotset GROUND_CALL MYCALL-8

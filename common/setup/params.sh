@@ -10,18 +10,18 @@ nothasparam() {
 }
 
 getpasswd() {
-  if nothasparam "$1"; then
+  if nothasparam "$2"; then
 	  stty -echo
-    read -p "$2" "VAR"
+    read -p "$1" "VAR"
 	  stty echo
-    setparam "$1" "${VAR}"
+    setparam "$2" "${VAR}"
   fi
 }
 
 getparam() {
-  if nothasparam "$1"; then
-    read -p "$2[$3]:" "VAR"
-    setparam "$1" "${VAR:?$3}"
+  if nothasparam "$2"; then
+    read -p "$1[$3]:" "VAR"
+    setparam "$2" "${VAR:?$3}"
   fi
 }
 
