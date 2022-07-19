@@ -2,7 +2,7 @@
 PARAMS=/home/pi/.params.sh
 
 nothasparam() {
-  if [ "${$1}" = "" ]; then
+  if [ "${!1}" = "" ]; then
 	  true
 	else
 	  false
