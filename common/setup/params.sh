@@ -26,7 +26,7 @@ getparam() {
 }
 
 setparam() {
-  grep "^$1=" $PARAMS > $PARAMS.tmp
+  grep -v "^$1=" $PARAMS > $PARAMS.tmp
 	mv -f $PARAMS.tmp $PARAMS
   echo "$1='$2'" >> $PARAMS
 	readparams
