@@ -2,6 +2,8 @@
 
 set -x
 
+. .common/setup/params.sh
+
 # ntpdate is needed in network-startup.sh
 sudo apt-get install -y ntpdate socat
 sudo apt-get remove -y ntp
