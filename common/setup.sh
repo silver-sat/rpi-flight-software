@@ -10,9 +10,9 @@
 
 set -x
 
-sh $BASE/setup/apt-get.install.sh
-sh $BASE/setup/pip3.install.sh
-sh $BASE/setup/rc.local.startup-hook.sh
-sh $BASE/setup/axports.append.sh
-sh $BASE/setup/decrypt-creds.sh
+sh $COMMON/setup/apt-get.install.sh
+sh $COMMON/setup/pip3.install.sh
+sh $COMMON/setup/rc.local.startup-hook.sh
+sh $COMMON/setup/axports.append.sh
+sh $COMMON/setup/decrypt-creds.sh
 

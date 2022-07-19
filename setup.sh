@@ -32,16 +32,18 @@ else
 fi
 
 # Execute any common setup steps...
-export BASE="$RFSROOT/common"
+export COMMON="$RFSROOT/common"
 
-. $BASE/setup/params.sh
+. $COMMON/setup/params.sh
 
-sh $BASE/setup.sh
+sh $COMMON/setup.sh
 
 # If no specific configuration requested, exit
 if [ "$1" = "" -o ! -d "$RFSROOT/$1" ]; then
   exit 0
 fi
+
+export BASE="$RFSROOT/$1"
 
 rm -f /home/pi/payload
 ln -s $BASE /home/pi/payload

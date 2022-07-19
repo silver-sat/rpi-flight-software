@@ -2,7 +2,7 @@
 
 set -x
 
-if [ -f $BASE/python/twittercred.py.gpg -a ! -s $BASE/python/twittercred.py ]; then
+if [ -f $COMMON/python/twittercred.py.gpg -a ! -s $COMMON/python/twittercred.py ]; then
   getpasswd "Encryption password for secret data? " PASSWORD
-  gpg --no-symkey-cache --passphrase "$PASSWORD" --batch -d $BASE/python/twittercred.py.gpg > $BASE/python/twittercred.py
+  gpg --no-symkey-cache --passphrase "$PASSWORD" --batch -d $COMMON/python/twittercred.py.gpg > $COMMON/python/twittercred.py
 fi
