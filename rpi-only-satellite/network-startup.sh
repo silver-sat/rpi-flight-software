@@ -23,7 +23,7 @@ ifconfig ax0 txqueuelen 3
 ifconfig ax0 -arp
 arp -H ax25 -s 192.168.100.101 ${GROUND_CALL}
 
-sh logrotate.sh .ax0.log
+sh .logrotate.sh .ax0.log
 axlisten ax0 -a -r -t >/home/pi/.ax0.log 2>&1 &
 
 route del default || true
@@ -32,10 +32,10 @@ route add default gw 192.168.100.101 ax0
 ntpdate -u 192.168.100.101
 
 rm -f .auxstartup.sh .auxstartup.log 
-.minifs/dl.sh 192.168.100.101 5001 auxstartup.sh .auxstartup.sh
+sh .minifs/dl.sh 192.168.100.101 5001 auxstartup.sh .auxstartup.sh
 if [ -f .auxstartup.sh ]; then
   sh .logrotate.sh .auxstartup.log
   sh .auxstartup.sh > .auxstartup.log 2>&1
-  .minifs/ul.sh 192.168.100.101 5001 .auxstartup.log
+  sh .minifs/ul.sh 192.168.100.101 5001 .auxstartup.log
 fi
 
