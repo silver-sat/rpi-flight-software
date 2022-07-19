@@ -1,7 +1,6 @@
 
 from twittercred import *
 from twitterproxy import Twitter
-from twython import TwythonError as TwitterError
 
 def get_twitter():
     return Twitter(
@@ -12,5 +11,3 @@ def get_twitter():
                httpsproxy={'api.twitter.com': '192.168.100.101:8383',
                            'upload.twitter.com': '192.168.100.101:8484'}
            )
-
-from send_tweet import send_text_tweet, send_photo_tweet
