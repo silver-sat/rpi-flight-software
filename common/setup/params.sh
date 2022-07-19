@@ -26,9 +26,9 @@ getparam() {
 }
 
 setparam() {
-  grep "^$1=" /home/pi/.params.sh > /home/pi/.params.sh.tmp
-	mv -f /home/pi/.params.sh.tmp /home/pi/.params.sh
-  echo "$1='$2'" >> /home/pi/.params.sh
+  grep "^$1=" $PARAMS > $PARAMS.tmp
+	mv -f $PARAMS.tmp $PARAMS
+  echo "$1='$2'" >> $PARAMS
 	readparams
 }
 
@@ -40,18 +40,11 @@ setparamifnotset() {
 }
 
 readparams() {
-  if [ -f /home/pi/.params.sh ]; then
+  if [ -f $PARAMS ]; then
     set -a
-    . /home/pi/.params.sh
+    . $PARAMS
     set +a
   fi
 }
-
-export nothasparam
-export readparams
-export setparam
-export setparamifnotset
-export getparam
-export getpasswd
 
 readparams
