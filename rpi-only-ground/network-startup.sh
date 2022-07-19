@@ -2,7 +2,7 @@
 
 set -x
 
-. .params.sh
+. /home/pi/.params.sh
 
 socat pty,link=/dev/serial0,rawer tcp-listen:${SERIAL_PORT},fork,reuseaddr &
 sleep 10
