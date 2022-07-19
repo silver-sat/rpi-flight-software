@@ -47,11 +47,11 @@ readparams() {
   fi
 }
 
-export -f nothasparam
-export -f readparams
-export -f setparam
-export -f setparamifnotset
-export -f getparam
-export -f getpasswd
+export nothasparam
+export readparams
+export setparam
+export setparamifnotset
+export getparam
+export getpasswd
 
 readparams
