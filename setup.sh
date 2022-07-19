@@ -43,14 +43,14 @@ if [ "$1" = "" -o ! -d "$RFSROOT/$1" ]; then
   exit 0
 fi
 
-rm -f /home/pi/.payload
-ln -s $BASE /home/pi/.payload
+rm -f /home/pi/payload
+ln -s $BASE /home/pi/payload
 
 rm -f /home/pi/.common
 ln -s $COMMON /home/pi/.common
 
 rm -f /home/pi/.startup.sh
-ln -s /home/pi/.payload/startup.sh /home/pi/.startup.sh
+ln -s /home/pi/payload/startup.sh /home/pi/.startup.sh
 
 # execute the setup.sh script for the specific configuration
 sh $BASE/setup.sh
