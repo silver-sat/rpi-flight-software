@@ -2,7 +2,7 @@
 
 set -x
 
-. .params.sh
+. /home/pi/.params.sh
 
 # Wait until we can ping the GROUND_IP address
 until ping -n -c 1 ${GROUND_IP} >/dev/null 2>&1; do

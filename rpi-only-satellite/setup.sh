@@ -35,6 +35,6 @@ Set photo mode with:
 	
 Set tweet mode with:
 
-  cp rpi-flight-software/common/etc/photo_pins.txt .pins.txt
+  cp rpi-flight-software/common/etc/tweet_pins.txt .pins.txt
 
 EOF
