@@ -18,6 +18,12 @@ sudo sed -i "s/MYCALL-0/${GROUND_CALL}/" /etc/ax25/axports
 
 rm -f .minifs
 ln -s ".common/minifs" .minifs
+rm -f uploads
+ln -s ".minifs/uploads" uploads
+rm -f downloads
+ln -s ".minifs/uploads" downloads
+rm -f .minifs.log
+ln -s ".minifs/app.log" .minifs.log
 rm -f .logrotate.sh
 ln -s ".common/scripts/logrotate.sh" .logrotate.sh
 
