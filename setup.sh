@@ -31,14 +31,11 @@ else
   ( cd $RFSROOT; git pull )
 fi
 
-if [ -f /home/pi/.params.sh ]; then
-  set -a
-  . /home/pi/.params.sh
-  set +a
-fi
-
 # Execute any common setup steps...
 export BASE="$RFSROOT/common"
+
+. $BASE/setup/params.sh
+
 sh $BASE/setup.sh
 
 # If no specific configuration requested, exit
@@ -46,14 +43,14 @@ if [ "$1" = "" -o ! -d "$RFSROOT/$1" ]; then
   exit 0
 fi
 
-export BASE="$RFSROOT/$1"
+rm -f /home/pi/.payload
+ln -s $BASE /home/pi/.payload
 
-rm -f /home/pi/payload
-ln -s $BASE /home/pi/payload
+rm -f /home/pi/.common
+ln -s $COMMON /home/pi/.common
 
 rm -f /home/pi/.startup.sh
-ln -s /home/pi/payload/startup.sh /home/pi/.startup.sh
-chmod a+x /home/pi/.startup.sh
+ln -s /home/pi/.payload/startup.sh /home/pi/.startup.sh
 
 # execute the setup.sh script for the specific configuration
 sh $BASE/setup.sh
