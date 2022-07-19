@@ -1,4 +1,4 @@
 set -x
-find rpi-flight-software -type f | fgrep -v '/.git/' | md5sum 
-sh ./.minifs/ul.sh .startup.log
-sh ./.minifs/ul.sh .startup.log.1
+find rpi-flight-software -type f | fgrep -v '/.git/' | xargs -n 10 md5sum 
+sh ./.minifs/ul.sh 192.168.100.101 5001 .startup.log
+sh ./.minifs/ul.sh 192.168.100.101 5001 .startup.log.1
