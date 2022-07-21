@@ -4,7 +4,9 @@ import os, os.path, sys
 
 pins_file = "/home/pi/.pins.txt"
 
-def init_pins():
+from pins import pinstr
+
+def init_pins(inpins=[],outpins=[]):
     pass
 
 def get_all_pins():
@@ -26,14 +28,6 @@ def get_all_pins():
                 # print("GPIO pin %d read as %s"%(pin,"HIGH" if value else "LOW",))
     return pinstate
 
-def pinstr(v):
-    if v == True:
-        return "HIGH"
-    if v == False:
-        return "LOW"
-    if v == None:
-        return "???"
-
 def write_all_pins(pinstate):
     wh = open(pins_file,'w')
     for p,v in sorted(pinstate.items()):
@@ -44,12 +38,12 @@ def write_all_pins(pinstate):
 
 def write_pins(pins,values):
     pinstate = get_all_pins()
+    if values in (True,False):
+        values = [values]*len(pins)
     for p,v in sorted(zip(pins,values)):
         pinstate[p] = v
         print("GPIO pin %d set to %s"%(p,pinstr(v)),file=sys.stderr)
     write_all_pins(pinstate)
-
-
 
 def read_pins(pins):
     pinstate = get_all_pins()   

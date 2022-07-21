@@ -6,7 +6,7 @@ from pins import STATES
 from vote import voting
 
 # initialize pins
-init_pins()
+init_pins(inpins=STATES)
 
 # read STATES pins
 pins = read_pins(STATES)

@@ -15,3 +15,12 @@ DPIN2 = 27
 DPIN3 = 22
 
 SHUTDOWN = [ DPIN1, DPIN2, DPIN3 ]
+
+def pinstr(v):
+    if v == True:
+        return "HIGH"
+    if v == False:
+        return "LOW"
+    if v == None:
+        return "???"
+

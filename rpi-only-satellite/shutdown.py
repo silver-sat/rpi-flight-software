@@ -5,8 +5,8 @@ from file_pins import init_pins, write_pins
 from pins import SHUTDOWN
 
 # Set up pins
-init_pins()
+init_pins(outpins=SHUTDOWN)
 
 # Set SHUTDOWN pins to LOW
-write_pins(SHUTDOWN,(False,False,False))
+write_pins(SHUTDOWN,False)
 
