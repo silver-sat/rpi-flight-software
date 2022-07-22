@@ -10,7 +10,7 @@ fi
 if [ -f "$FILE.$MAXN" ]; then
   rm -f "$FILE.$MAXN"
 fi
-N1="$MAXN"
+N1=`expr $MAXN - 1`
 N0=`expr $N1 - 1`
 while [ $N0 -ge 1 ]; do
   if [ -f "$FILE.$N0" ]; then
