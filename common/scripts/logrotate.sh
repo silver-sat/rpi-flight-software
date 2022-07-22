@@ -1,7 +1,7 @@
 #!/bin/sh
 
 FILE="$1"
-MAXN="${2:-10}"
+MAXN="${2:-9}"
 
 if [ "$FILE" = "" ]; then
   exit 1
@@ -10,7 +10,7 @@ fi
 if [ -f "$FILE.$MAXN" ]; then
   rm -f "$FILE.$MAXN"
 fi
-N1=`expr $MAXN - 1`
+N1="$MAXN"
 N0=`expr $N1 - 1`
 while [ $N0 -ge 1 ]; do
   if [ -f "$FILE.$N0" ]; then
