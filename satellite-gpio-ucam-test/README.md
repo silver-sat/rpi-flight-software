@@ -1,38 +1,26 @@
-# bare-bones-test setup
+# satellite-gpio-ucam-test setup
 
-This setup is intended for a raspberry pi representing the satellite payload attached to the internet by WiFi (usually by the SilverSat SSID) to carry out the basic steps of its mission. Hardware elements (GPIO pins, camera) are simulated by files in /home/pi. This setup also works for a virtual raspberry pi with no hardware connections. This setup provides the basic API all payload functionality should support. 
+This setup is intended for a (hardware) raspberry pi representing the satellite payload attached to the internet by WiFi (usually by the SilverSat SSID) to carry out the basic steps of its mission. Hardware elements on the board (GPIO pins, camera) are used. No serial connection for network is required, here, we assume there is a network connection by WiFi.
 
 * It should boot up...
 * It should execute a python script to set the Shutdown pins to LOW.
-* Execute a python script to determine if it should tweet or take a photo. If none stop without shutting down
+* Execute a python script to determine if it should tweet or take a photo. Since GPIO pins are always HIGH or LOW, one or the other WILL be done. 
 * If tweet, it should execute a python script to tweet a photo from its photo directory
-* If photo, it should copy a fixed image (later, this should interact with the camera) to the photo directory
-* It should shutdown
+* If photo, it should interact with the camera and save a photo to the to the photos directory
+* It should shutdown, but currently does not so that tester can login and check the state of the rpi. 
 
-This can be used to test the RPi software logic:
-1. Login by ssh, set the hardware state (photo or tweet)
-2. Shutdown
-3. Start RPi, it should do as directed, and shutdown
-4. Login by ssh, check logs and set hardware state, etc...
+This can be used to test the payload hardware:
+1. Set the GPIO pins for photo (all three are LOW)
+2. Startup (apply power)
+2. Login by ssh, check the .startup.log file etc. check the photos directory
+3. Check the (output) shutdown pins (or other wires are LOW). 
+4. sudo shutdown now
+5. Set the GPIO pins for tweet (all three are HIGH)
+6. Startup (apply power)
+2. Login by ssh, check the .startup.log file etc. check the photos directory
+1. Check the tweet happened. 
 5. Rinse, repeat...
 
 Note that the startup script does not shutdown the RPi (at this time). 
-
-The file `/home/pi/.pins.txt` should indicate the state of pins (BCN numbering)
-```
-<pin>	HIGH|LOW
-```
-The file-based "camera" uses the image in the file `/home/pi/.photo.jpg`
-
-For photo mode:
-```
-cp rpi-flight-software/common/etc/photo_pins.txt .pins.txt
-cp rpi-flight-software/common/etc/overhead.jpg .photo.jpg
-```
-For tweet mode:
-```
-cp rpi-flight-software/common/etc/tweet_pins.txt .pins.txt
-```
-
 
 
