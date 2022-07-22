@@ -1,6 +1,7 @@
 
 import traceback
 import sys
+import time
 
 def take_photo(camera, filename):
     attempt = 0
