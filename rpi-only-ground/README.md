@@ -6,6 +6,7 @@ This setup is intended for a raspberry pi representing the ground station attach
 * It should bridge its network connect to the AX25 interface
 * It should run an NTP daemon for the satellite to set its time with
 * It should run the minifs file-server 
+* It hsould run stunnel for the http -> https proxy for the Twitter API
 
 
 
