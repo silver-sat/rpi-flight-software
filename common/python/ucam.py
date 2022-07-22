@@ -70,7 +70,7 @@ class uCAM_III(object):
         verify=kw.get('verify',False)
         expectedLen = kw.get('expectedLen',1)
         if verbose:
-            print("Write:",len(bytes),":"," ".join(map(lambda b: "%02X"%b,bytes)))
+            print("Write:",len(bytes),":"," ".join(map(lambda b: "%02X"%b,bytes)),file=sys.stderr)
         self.write(bytes)
         time.sleep(responseDelay)
         timeout = time.time()+responseTimeout
@@ -78,7 +78,7 @@ class uCAM_III(object):
         while wait and len(retval) < expectedLen and time.time()<timeout:
             retval += self.read()
         if verbose:
-            print("Read: ",len(retval),":"," ".join(map(lambda b: "%02X"%b,retval)))
+            print("Read: ",len(retval),":"," ".join(map(lambda b: "%02X"%b,retval)),file=sys.stderr)
         if verify:
             self.check_ack(retval,bytes[1])
         return retval
@@ -106,12 +106,12 @@ class uCAM_III(object):
         if len(reply) != 12 or not self.check_sync_ack(reply[:6]):
             # Didn't work
             if self.verbose:
-                print("Sync didn't work. Sent %d tries" % currentTry)
+                print("Sync didn't work. Sent %d tries" % currentTry,file=sys.stderr)
             return False
 
         # it did work
         if self.verbose:
-            print("Camera replied", " ".join(map(lambda b: "%02X"%b,reply)), "attempts:",currentTry)
+            print("Camera replied", " ".join(map(lambda b: "%02X"%b,reply)), "attempts:",currentTry,file=sys.stderr)
         
         # send the ACK back to camera        
         self.sendack(reply[6:][1])
@@ -120,7 +120,7 @@ class uCAM_III(object):
     def sendack(self,cmd):
         bytes = self.ACK+(cmd,0x00,0x00,0x00)
         if self.verbose:
-            print("Write:",len(bytes),":"," ".join(map(lambda b: "%02X"%b,bytes)))
+            print("Write:",len(bytes),":"," ".join(map(lambda b: "%02X"%b,bytes)),file=sys.stderr)
         self.write(bytes)
 
     def check_sync(self):
@@ -165,7 +165,7 @@ class uCAM_III(object):
 
     def getPictureSize(self):
         response = self.command(self.GETPICTURE)
-        print("Wrote GETPICTURE. Camera replied",response)
+        print("Wrote GETPICTURE. Camera replied",response,file=sys.stderr)
         return response[-1]*256*256+response[-2]*256+response[-3]
 
     def getPicture(self):
@@ -205,7 +205,7 @@ class uCAM_III(object):
                     if pictureArray[indx] == b"":
                         pictureArray[indx] = self.retrieveDataFromPkg(pkg)
                         goodpkg += 1
-                        print("Received package %3d (%3d/%3d): %6.2f%% (pass %d)" % (indx+1,goodpkg,numPackages,100.0*goodpkg/numPackages,attempt+1))
+                        print("Received package %3d (%3d/%3d): %6.2f%% (pass %d)" % (indx+1,goodpkg,numPackages,100.0*goodpkg/numPackages,attempt+1),file=sys.stderr)
                         if goodpkg == numPackages:
                             break
                 else:
