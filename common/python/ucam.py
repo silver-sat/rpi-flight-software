@@ -176,11 +176,15 @@ class uCAM_III(object):
         for attempt in range(0,10):
             camReply = self.command(self.GETPICTURE)
             # print("Wrote GETPICTURE. Camera replied",camReply)
-            while len(camReply) < 12: # ACK + DATA command response
+            i = 0
+            while len(camReply) < 12 and i < 5: # ACK + DATA command response
                 camReply += self.read()
+                i += 1
             if self.verbose:
                 print("Read: ",len(camReply),":"," ".join(map(lambda b: "%02X"%b,camReply)),file=sys.stderr)
-
+            if len(camReply) < 12:
+                continue
+                
             if imageSize == None:
                 replyLen=len(camReply)
                 imageSize = camReply[replyLen-1]*256*256+camReply[replyLen-2]*256+camReply[replyLen-3]
