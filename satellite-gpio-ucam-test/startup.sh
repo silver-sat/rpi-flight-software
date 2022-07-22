@@ -16,6 +16,7 @@ if [ "$MODE" = "TWEET" ]; then
 fi
 
 if [ "$MODE" = "PHOTO" ]; then
+  sleep 120
   $ASPI python3 ./payload/photo.py
   echo shutdown now
 elif [ "$MODE" = "TWEET" ]; then

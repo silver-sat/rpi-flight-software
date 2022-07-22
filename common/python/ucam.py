@@ -183,6 +183,7 @@ class uCAM_III(object):
             if self.verbose:
                 print("Read: ",len(camReply),":"," ".join(map(lambda b: "%02X"%b,camReply)),file=sys.stderr)
             if len(camReply) < 12:
+                time.sleep(5)
                 continue
                 
             if imageSize == None:
