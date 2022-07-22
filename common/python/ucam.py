@@ -2,7 +2,7 @@
 # Based on code by Dave Copeland and Xander Hostler
 
 import serial
-import time, os, os.path, math
+import time, os, os.path, math, sys
 import RPi.GPIO as GPIO
 
 class uCAM_III(object):
