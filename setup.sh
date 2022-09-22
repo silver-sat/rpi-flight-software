@@ -38,22 +38,30 @@ export COMMON="$RFSROOT/common"
 
 sh $COMMON/setup.sh
 
+rm -f /home/pi/.common
+ln -s $COMMON /home/pi/.common
+
+rm -f .logrotate.sh
+ln -s ".common/scripts/logrotate.sh" .logrotate.sh
+
+rm -f /home/pi/payload
+rm -f /home/pi/.startup.sh
+
 # If no specific configuration requested, exit
 if [ "$1" = "" -o ! -d "$RFSROOT/$1" ]; then
+  echo "Available setups...."
+	for d in $RFSROOT/*; do
+	  if [ -f $d/setup.sh -a ! $d == "common" ]; then
+		  echo "  $d"
+		fi
   exit 0
 fi
 
 export BASE="$RFSROOT/$1"
 
-rm -f /home/pi/payload
 ln -s $BASE /home/pi/payload
-
-rm -f /home/pi/.common
-ln -s $COMMON /home/pi/.common
-
-rm -f /home/pi/.startup.sh
 ln -s /home/pi/payload/startup.sh /home/pi/.startup.sh
 
 # execute the setup.sh script for the specific configuration
-sh $BASE/setup.sh
+sh payload/setup.sh
 
