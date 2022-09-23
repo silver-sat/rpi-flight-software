@@ -49,7 +49,7 @@ rm -f /home/pi/.startup.sh
 
 # If no specific configuration requested, exit
 if [ "$1" = "" -o ! -d "$RFSROOT/$1" ]; then
-  set -x
+  set +x
   echo "Available setups...."
 	for d in $RFSROOT/*; do
 	  if [ -f $d/setup.sh -a $d != "common" ]; then
