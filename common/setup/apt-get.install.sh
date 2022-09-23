@@ -5,7 +5,7 @@
 
 sudo apt-get install -y git ax25-tools ax25-apps gpg
 
-# sudo apt autoremove
+sudo apt autoremove
 
 sudo systemctl stop packagekit
 sudo systemctl disable packagekit
