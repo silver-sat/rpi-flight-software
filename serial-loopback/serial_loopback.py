@@ -40,7 +40,10 @@ start = time.time()
 str = ser.read(length).decode('utf8')
 
 # print length and hash
-print("%4d characters (%s) received (serial) in %f seconds"%(len(str),hashlib.md5(str.encode('utf8')).hexdigest().lower(),time.time()-start))
+prstr = str
+if len(prstr) > 10:
+    prstr = str[:4]+".."+str[-4:]
+print("%4d characters (%sm%s) received (serial) in %f seconds"%(len(str),prstr,hashlib.md5(str.encode('utf8')).hexdigest().lower(),time.time()-start))
 
 # close serial 
 ser.close()
