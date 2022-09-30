@@ -48,14 +48,20 @@ def serial_thread(baud,length,delay):
     ser.reset_output_buffer()
     ser.reset_input_buffer()
     str = "".join(chr(ord('A')+random.randint(0,25)) for i in range(0,length))
-    print("%4d characters (%s) to send (serial,%d baud)"%(len(str),hashlib.md5(str.encode('utf8')).hexdigest().lower(),baud))
+    prstr = str
+    if len(prstr) > 10:
+        prstr = str[:4]+".."+str[-4:]
+    print("%4d characters (%s,%s) to send (serial,%d baud)"%(len(str),prstr,hashlib.md5(str.encode('utf8')).hexdigest().lower(),baud))
     ser.write(str.encode('utf8'))
     time.sleep(0.1)
     while ser.in_waiting == 0:
         pass
     start = time.time()
     str = ser.read(length).decode('utf8')
-    print("%4d characters (%s) received (serial) in %f seconds"%(len(str),hashlib.md5(str.encode('utf8')).hexdigest().lower(),time.time()-start))
+    prstr = str
+    if len(prstr) > 10:
+        prstr = str[:4]+".."+str[-4:]
+    print("%4d characters (%s,%s) received (serial) in %f seconds"%(len(str),prstr,hashlib.md5(str.encode('utf8')).hexdigest().lower(),time.time()-start))
     time.sleep(1)
     while True:
         bytes = ser.read(6)

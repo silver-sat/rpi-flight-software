@@ -43,7 +43,7 @@ str = ser.read(length).decode('utf8')
 prstr = str
 if len(prstr) > 10:
     prstr = str[:4]+".."+str[-4:]
-print("%4d characters (%sm%s) received (serial) in %f seconds"%(len(str),prstr,hashlib.md5(str.encode('utf8')).hexdigest().lower(),time.time()-start))
+print("%4d characters (%s,%s) received (serial) in %f seconds"%(len(str),prstr,hashlib.md5(str.encode('utf8')).hexdigest().lower(),time.time()-start))
 
 # close serial 
 ser.close()
