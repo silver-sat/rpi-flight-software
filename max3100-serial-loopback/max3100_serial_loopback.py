@@ -14,7 +14,7 @@ import find_common_modules
 from max3100 import MAX3100
 
 # MAX3100 Loop-back via Serial Port test...
-
+# Or separate programs on different rPIs....
 from multiprocessing import Process
 
 def max3100_thread(baud,length):
@@ -42,8 +42,8 @@ def max3100_thread(baud,length):
         time.sleep(1)
 
 
-def serial_thread(baud,length):
-    time.sleep(1)
+def serial_thread(baud,length,delay):
+    time.sleep(delay)
     ser = serial.Serial('/dev/serial0',baud)
     ser.reset_output_buffer()
     ser.reset_input_buffer()
@@ -67,12 +67,18 @@ def serial_thread(baud,length):
 serial_baud = 38400
 length = 1024
 
-p1 = Process(target=serial_thread,args=(serial_baud,length))
-p1.start()
+if sys.argv[1] == "serial":
+    serial_thread(serial_baud,length,5)
+elif sys.argv[1] == "max3100":
+    max3100_thread(serial_baud,length)
+elif sys.argv[1] == "both":
+    p1 = Process(target=serial_thread,args=(serial_baud,length,1))
+    p1.start()
 
-p2 = Process(target=max3100_thread,args=(serial_baud,length))
-p2.start()
+    p2 = Process(target=max3100_thread,args=(serial_baud,length))
+    p2.start()
 
-p1.join()
-p2.join()
-
+    p1.join()
+    p2.join()
+else:
+    print("Please indicate: \"serial\", \"max3100\", or \"both\".")
