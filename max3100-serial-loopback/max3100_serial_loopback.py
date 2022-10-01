@@ -17,7 +17,7 @@ from max3100 import MAX3100
 # Or separate programs on different rPIs....
 from multiprocessing import Process
 
-def max3100_thread(baud,length):
+def max3100_thread(baud):
     max3100 = MAX3100(baud=baud)
     while True:
         start = time.time()
@@ -70,18 +70,20 @@ def serial_thread(baud,length,delay):
     ser.close()
     time.sleep(1)
 
-serial_baud = 38400
-length = 1024
+# serial_baud = 38400
+serial_baud = 9600
+# length = 1024
+length = 10
 
 if sys.argv[1] == "serial":
     serial_thread(serial_baud,length,5)
 elif sys.argv[1] == "max3100":
-    max3100_thread(serial_baud,length)
+    max3100_thread(serial_baud)
 elif sys.argv[1] == "both":
     p1 = Process(target=serial_thread,args=(serial_baud,length,1))
     p1.start()
 
-    p2 = Process(target=max3100_thread,args=(serial_baud,length))
+    p2 = Process(target=max3100_thread,args=(serial_baud))
     p2.start()
 
     p1.join()
