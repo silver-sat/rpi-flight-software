@@ -71,9 +71,11 @@ def serial_thread(baud,length,delay):
     time.sleep(1)
 
 # serial_baud = 38400
-serial_baud = 9600
+serial_baud = 19200
+# serial_baud = 9600
 # length = 1024
-length = 10
+length = 256
+# length = 10
 
 if sys.argv[1] == "serial":
     serial_thread(serial_baud,length,5)
@@ -83,7 +85,7 @@ elif sys.argv[1] == "both":
     p1 = Process(target=serial_thread,args=(serial_baud,length,1))
     p1.start()
 
-    p2 = Process(target=max3100_thread,args=(serial_baud))
+    p2 = Process(target=max3100_thread,args=(serial_baud,))
     p2.start()
 
     p1.join()
