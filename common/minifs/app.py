@@ -55,7 +55,7 @@ import find_common_modules
 from direct_tweet import get_twitter
 from send_tweet import send_photo_tweet, send_text_tweet
 
-@app.route('/tweet', methods = ['POST'])
+@app.route('/tweet', methods = ['GET','POST'])
 def tweet():
     
     twitter = get_twitter()
