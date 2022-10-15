@@ -53,7 +53,7 @@ def list():
 
 import find_common_modules
 from direct_tweet import get_twitter
-from send_tweet import send_photo_tweet
+from send_tweet import send_photo_tweet, send_text_tweet
 
 @app.route('/tweet', methods = ['POST'])
 def tweet():
@@ -61,15 +61,22 @@ def tweet():
     twitter = get_twitter()
     
     message = request.args['msg']
-    f = request.files['photo']
-    if f.filename == "" or secure_filename(f.filename) == "":
-          return "Bad filename\n",400
+    if 'photo' in request.files:
+        f = request.files['photo']
+        if f.filename == "" or secure_filename(f.filename) == "":
+            return "Bad filename\n",400
 
-    if not send_photo_tweet(twitter,message,f.stream):
-        print("something went wrong!")
-        return "Bad tweet error?",400
-        
-    print("Tweeted: %s with image %s" % (message, f.filename))
+        if not send_photo_tweet(twitter,message,f.stream):
+            print("something went wrong!")
+            return "Bad tweet error?",400
+        print("Tweeted: %s with image %s" % (message, f.filename))
+            
+    else:
+        if not send_text_tweet(twitter,message):
+            print("something went wrong!")
+            return "Bad tweet error?",400   
+        print("Tweeted: %s without image" % (message,))
+    
     return "Successfull tweet", 200
 
 if __name__ == '__main__':
