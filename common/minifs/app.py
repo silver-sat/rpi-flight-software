@@ -5,7 +5,6 @@ import os, os.path, sys, glob, time
 from hashlib import md5
 from flask import Flask, request, send_file
 from werkzeug.utils import secure_filename
-from twython import Twython
 
 # initialising the flask app
 app = Flask("minifs")
