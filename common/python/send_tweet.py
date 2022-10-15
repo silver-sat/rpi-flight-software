@@ -13,9 +13,12 @@ def send_text_tweet(twitter,message):
         traceback.print_exc()
     return False
     
-def send_photo_tweet(twitter,message,photo_filename):
+def send_photo_tweet(twitter,message,photo_file):
     try:
-        photo = open(photo_filename, 'rb')
+        if isinstance(photo_file,str):
+            photo = open(photo_file, 'rb')
+        else:
+            photo = photo_file
         response = twitter.upload_media(media=photo)
         photo.close()
         if 'media_id' not in response:

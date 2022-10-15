@@ -5,6 +5,7 @@ import os, os.path, sys, glob, time
 from hashlib import md5
 from flask import Flask, request, send_file
 from werkzeug.utils import secure_filename
+from twython import Twython
 
 # initialising the flask app
 app = Flask("minifs")
@@ -50,6 +51,27 @@ def list():
         filelist.append("\t".join([filename,size,md5hash]))
     filelist.sort()
     return "\n".join(filelist)+'\n'
+
+import find_common_modules
+from direct_tweet import get_twitter
+from send_tweet import send_photo_tweet
+
+@app.route('/tweet', methods = ['POST'])
+def tweet():
+    
+    twitter = get_twitter()
+    
+    message = request.args['msg']
+    f = request.files['photo']
+    if f.filename == "" or secure_filename(f.filename) == "":
+          return "Bad filename\n",400
+
+    if not send_photo_tweet(twitter,message,f.stream):
+        print("something went wrong!")
+        return "Bad tweet error?",400
+        
+    print("Tweeted: %s with image %s" % (message, f.filename))
+    return "Successfull tweet", 200
 
 if __name__ == '__main__':
    # app.run(host='127.0.0.1',port=5001) # running the flask app
