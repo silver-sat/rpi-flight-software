@@ -22,6 +22,7 @@ def send_photo_tweet(twitter,message,photo_file):
             photodata = photo_file.read()
         url = 'http://%s:%d/tweet'%twitter
         data = urllib.parse.urlencode({'msg': message, 'photo': photodata}).encode()
+        # this does not work!
         response = urllib.request.urlopen(url,data=data).read()
         # check response    
         return True
