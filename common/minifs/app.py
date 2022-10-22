@@ -60,7 +60,7 @@ def tweet():
     
     twitter = get_twitter()
     
-    message = request.args['msg']
+    message = request.values['msg']
     if 'photo' in request.files:
         f = request.files['photo']
         if f.filename == "" or secure_filename(f.filename) == "":
