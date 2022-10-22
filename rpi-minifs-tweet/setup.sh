@@ -12,6 +12,6 @@ Run the minifs webservice in one window:
 In another window, tweet:
 
   cd payload
-	tweet.py
+  python3 tweet.py
 
 EOF
