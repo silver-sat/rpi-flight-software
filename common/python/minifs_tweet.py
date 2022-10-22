@@ -1,4 +1,4 @@
-import sys
+import os
 
 def get_twitter():
-    return (sys.environ['GROUND_IP'],5001) 
+    return (os.environ['GROUND_IP'],5001) 
