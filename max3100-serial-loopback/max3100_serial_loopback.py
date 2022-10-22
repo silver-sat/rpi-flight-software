@@ -65,6 +65,7 @@ def serial_thread(baud,length,delay):
     time.sleep(1)
     while True:
         bytes = ser.read(6)
+        print("%4d characters (%s) to echo (Serial)"%(len(bytes),bytes))
         ser.write(bytes)
 
     ser.close()
@@ -73,7 +74,6 @@ def serial_thread(baud,length,delay):
 # serial_baud = 38400
 serial_baud = 19200
 # serial_baud = 9600
-# length = 1024
 length = 256
 # length = 10
 
