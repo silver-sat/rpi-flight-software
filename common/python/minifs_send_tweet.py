@@ -2,6 +2,8 @@
 import urllib.request
 import urllib.parse
 import traceback
+
+# from https://pymotw.com/3/urllib.request/
 import multipartform
 
 def send_text_tweet(twitter,message):

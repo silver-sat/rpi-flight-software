@@ -1,3 +1,6 @@
+
+# from https://pymotw.com/3/urllib.request/
+
 import io
 import mimetypes
 from urllib import request
