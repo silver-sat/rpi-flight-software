@@ -16,14 +16,18 @@ def send_text_tweet(twitter,message):
     
 def send_photo_tweet(twitter,message,photo_file):
     try:
-        if isinstance(photo_file,str):
-            photodata = open(photo_file, 'rb').read()
-        else:
-            photodata = photo_file.read()
+        # use old fashioned post upload format...
+        form = multipartform.MultiPartForm()
+        form.add_field('msg', message)
+        form.add_file('photo',photo_file,open(photo_file,'rb'))
+        data = bytes(form)
+        
         url = 'http://%s:%d/tweet'%twitter
-        data = urllib.parse.urlencode({'msg': message, 'photo': photodata}).encode()
-        # this does not work!
-        response = urllib.request.urlopen(url,data=data).read()
+        req = urllib.request.Request(url, data=data)
+        req.add_header('Content-type', form.get_content_type())
+        req.add_header('Content-length', len(data))
+        
+        response = urllib.request.urlopen(req).read()
         # check response    
         return True
     except:
