@@ -2,6 +2,7 @@
 import urllib.request
 import urllib.parse
 import traceback
+import multipartform
 
 def send_text_tweet(twitter,message):
     try:
