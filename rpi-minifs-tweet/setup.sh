@@ -12,7 +12,7 @@ Run the minifs webservice in one window:
 In another window, tweet:
 
   cd payload
-  export GROUND_ID=127.0.0.1
+  export GROUND_IP=127.0.0.1
   python3 tweet.py
 
 EOF
