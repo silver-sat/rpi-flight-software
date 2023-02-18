@@ -265,7 +265,7 @@ class uCAM_III_Serial(uCAM_III):
     def write(self,bytes):
         self.serialPort.write(bytes)
 
-import max3100
+import pymax3100
 
 class uCAM_III_MAX3100(uCAM_III):
     # Constants
