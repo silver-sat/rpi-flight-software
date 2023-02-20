@@ -265,7 +265,8 @@ class uCAM_III_Serial(uCAM_III):
     def write(self,bytes):
         self.serialPort.write(bytes)
 
-import pymax3100
+from pymax3100 import MAX3100
+# from max3100 import MAX3100
 
 class uCAM_III_MAX3100(uCAM_III):
     # Constants
@@ -276,9 +277,9 @@ class uCAM_III_MAX3100(uCAM_III):
     def __init__(self,spiDevice,**kw):
         self.baudRate = kw.get('baudRate',self.default_baudRate)
         # other MAX3100 parameters are set to default values
-        self.max3100 = max3100.MAX3100(spiif=spiDevice[0],
-                                       spiselect=spiDevice[1],
-                                       baud=self.baudRate)
+        self.max3100 = MAX3100(spiDevice[0],
+                               spiDevice[1],
+                               baud=self.baudRate)
         super(uCAM_III_MAX3100,self).__init__(**kw)
 
     def read(self):
