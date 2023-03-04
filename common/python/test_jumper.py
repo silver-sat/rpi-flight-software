@@ -16,7 +16,7 @@ def test_jumper(pins):
 
     GPIO.setup(pins[1], GPIO.IN, GPIO.PUD_DOWN)
     v2 = GPIO.input(pins[0])
-		
+
     return (v1 == 1) and (v2 == 0)
 
 if __name__ == "__main__":
@@ -24,6 +24,6 @@ if __name__ == "__main__":
     import pins
 
     if test_jumper(pins.JUMPER):
-	print "TRUE"
+        print("TRUE")
     else:
-        print "FALSE"
+        print("FALSE")

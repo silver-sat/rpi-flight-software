@@ -2,6 +2,7 @@
 import find_common_modules
 
 from gpio_pins import init_pins, read_pins
+# from file_pins import init_pins, read_pins
 from pins import STATES
 from vote import voting
 

@@ -20,7 +20,7 @@ SHUTDOWN = [ DPIN1, DPIN2, DPIN3 ]
 JPIN1 = 19
 JPIN2 = 26
 
-JUMPER = [ JPIN1 JPIN2 ]
+JUMPER = [ JPIN1, JPIN2 ]
 
 def pinstr(v):
     if v == True:
