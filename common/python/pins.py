@@ -17,10 +17,12 @@ DPIN3 = 22
 SHUTDOWN = [ DPIN1, DPIN2, DPIN3 ]
 
 # BCN numbers JUMPER pins
+JPIN3 = 6
+JPIN2 = 13
 JPIN1 = 19
-JPIN2 = 26
+JPIN0 = 26
 
-JUMPER = [ JPIN1, JPIN2 ]
+JUMPERS = [ JPIN0, JPIN1, JPIN2, JPIN3 ]
 
 def pinstr(v):
     if v == True:
