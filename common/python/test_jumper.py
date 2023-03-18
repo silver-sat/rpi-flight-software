@@ -19,11 +19,28 @@ def test_jumper(pins):
 
     return (v1 == 1) and (v2 == 0)
 
+def test_jumpers(pins):
+
+    GPIO.setwarnings(False)
+    GPIO.setmode(GPIO.BCM)
+
+    # floating pins 1,2,3
+    for p in pins[1:]:
+        GPIO.setup(p, GPIO.IN)
+        
+    GPIO.setup(pins[0], GPIO.IN, GPIO.PUD_UP)
+    v1 = [ GPIO.input(p) for p in pins[1:] ]
+    
+    GPIO.setup(pins[0], GPIO.IN, GPIO.PUD_DOWN)
+    v2 = [ GPIO.input(p) for p in pins[1:] ]
+
+    values = [ ((v1i == 1) and (v2i == 0)) for v1i,v2i in zip(v1,v2) ]
+    if True in values:
+        return (values.index(True) + 1)
+    return 0        
+
 if __name__ == "__main__":
 
     import pins
 
-    if test_jumper(pins.JUMPER):
-        print("TRUE")
-    else:
-        print("FALSE")
+    print test_jumpers(pins.JUMPERS)
