@@ -4,7 +4,7 @@ import os, os.path, sys
 import RPi.GPIO as GPIO
 
 from pins import JUMPERS, pinstr
-from test_jumper import test_jumper
+from test_jumper import test_jumpers
 
 def init_pins(inpins=[],outpins=[]):
 
@@ -29,12 +29,15 @@ def write_pins(pins,values):
     return
 
 def read_pins(pins):
-    j = test_jumpers(JUMPERS):
+    j = test_jumpers(JUMPERS)
     if j == 1:
+        print("GPIO JUMPERS 1 (None)",file=sys.stderr)
         return  [ None ] * len(pins)
     elif j == 2:
+        print("GPIO JUMPERS 2 (False)",file=sys.stderr)
         return  [ False ] * len(pins)
     elif j == 3:
+        print("GPIO JUMPERS 2 (True)",file=sys.stderr)
         return  [ True ] * len(pins)
     out = []
     for pin in pins:

@@ -43,4 +43,4 @@ if __name__ == "__main__":
 
     import pins
 
-    print test_jumpers(pins.JUMPERS)
+    print(test_jumpers(pins.JUMPERS))
