@@ -4,8 +4,16 @@
 
 set -x
 
-until ping -n -c 1 0.debian.pool.ntp.org >/dev/null 2>&1; do
-  sleep 5
+GOOD=0
+for i in 1 2 3 4 5 6 7 8 9 10; do
+  if ping -n -c 1 0.debian.pool.ntp.org >/dev/null 2>&1; then
+	  GOOD=1
+	  break
+	fi
+	sleep 5
 done
 
+if [ $GOOD -eq 0 ]; then
+  exit 1;
+fi
 ntpdate -u 0.debian.pool.ntp.org
