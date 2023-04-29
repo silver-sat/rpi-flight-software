@@ -1,16 +1,33 @@
 
 import os, os.path, sys, time, glob
 
-photo_dir = '/home/pi/photos'
+# photo_dir = '/home/pi/photos'
 photo_prefix = 'photo-'
 photo_extn = '.jpg' # include dot!
 
+# def photo_filename():
+# if not os.path.isdir(photo_dir):
+# os.makedirs(photo_dir)
+# # closest 1/10 second...
+# t = int(round(10*time.time()))
+# return "%s/%s%011d%s"%(photo_dir,photo_prefix,t,photo_extn)
+    
+last_photo_index_filename = photo_dir+"/last_photo_index.txt"
+
 def photo_filename():
-    if not os.path.isdir(photo_dir):
-        os.makedirs(photo_dir)
-    # closest 1/10 second...
-    t = int(round(10*time.time()))
-    return "%s/%s%011d%s"%(photo_dir,photo_prefix,t,photo_extn)
+    globstr = photo_dir+"/" + photo_prefix + "*" + photo_extn
+    if len(list(glob.glob(globstr))) > 20:
+        return None
+    if os.path.exists(last_photo_index_filename):
+        last_photo_index = int(open(last_photo_index_filename).read())  
+    else:
+        last_photo_index = 0
+    last_photo_index += 1
+    filename = "%s/%s%06d%s"%(photo_dir,photo_prefix,last_photo_index,photo_extn)
+    wh = open(last_photo_index_filename,'w')
+    wh.write(str(last_photo_index)+"\n")
+    wh.close()
+    return filename
 
 def photo_sort_key(filename):
     # remove path
