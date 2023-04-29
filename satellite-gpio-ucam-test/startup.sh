@@ -2,7 +2,7 @@
 
 set -x
 
-ASPI="runuser -u pi"
+ASPI="runuser -u pi -- "
 cd /home/pi
 
 gpio readall
@@ -19,12 +19,12 @@ fi
 
 if [ "$MODE" = "PHOTO" ]; then
   sleep 120
-  $ASPI python3 ./payload/photo.py
+  time -p $ASPI python3 -u ./payload/photo.py
   $ASPI python3 ./payload/shutdown.py FINISHED
   gpio readall
   shutdown -h now
 elif [ "$MODE" = "TWEET" ]; then
-  $ASPI python3 ./payload/tweet.py
+  time -p $ASPI python3 -u ./payload/tweet.py
   $ASPI python3 ./payload/shutdown.py FINISHED
   gpio readall
   shutdown -h now
