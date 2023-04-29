@@ -16,4 +16,4 @@ done
 if [ $GOOD -eq 0 ]; then
   exit 1;
 fi
-ntpdate -u 0.debian.pool.ntp.org
+ntpdate -u 0.debian.pool.ntp.org || exit 1;
