@@ -12,7 +12,27 @@ In addition to the payload baord, this testing procedure requires an internet co
 
 1. In Windows 11, under Settings, Network & Internet select "Mobile hotspot". Configure the hotspot to use the SSID "SilverSat",  password "silversat", and the "2.4GHz" band. Turn off "Power saving". Turn the hotspot to "on". Note that the Windows 11 computer must be connected to the internet, generally by its own WiFi connection. 
 
-2. 
+### Observation during testing
+
+1. Once the raspberry pi has turned on, wait for it to connect to the SilverSat SSID - this will show up in the "Devices connected" section of the "Mobile hotspot" configuration. Make a note of the IP address it is assigned. It will likely keep this IP address for the whole session.
+
+2. Open the Windows 11 Terminal - type `cmd` in the Windows 11 Search and select the "Command Prompt App".
+
+3. At the prompt, enter the following command `ssh pi@<IP>` where `<IP>` is the IP address noted in step 1.
+
+4. Use the password `silversat` to log into the running raspberry pi.
+
+5. Check the contents of the `.startup.log` file in the home directory of the `pi` user: `tail -f .startup.log`
+
+6. Old startup logs are at `.startup.log.1`, `.startup.log.2`, etc. so you can see what happened during previous payload bootups. The last 10 log files are retained.
+
+7. The raspberry pi will shutdown as soon as the tweet or photo mode program has run. To stop this from happening, kill the .startup.sh process: pkill -9 -f .startup.sh
+
+## Testing configuration: Raspberry Pi without Payload board using WiFi for internet connection
+
+1. Use a micro-USB cable from the laptop or use another source of +5V and GND to power the raspberry pi (pins 2 and 6). 
+
+2. In the absence of the payload board and triple voted STATES lines, the `satellite-gpio-ucam-test` setup will monitor the GPIO pins 31, 33, 35, 37 to check which of 31, 33, 35 is connected by a jumper wire to pin 37. If pin 31 is connected to pin 37, the rapberry pi will execute the tweet mode code and shutdown, if pin 33 is connected to pin 37, it will execute the photo mode code and shutdown, if pin 35 is connected to pin 37, it will boot up and not shutdown. The last option makes it possible to ssh into the raspberry pi without it shuting down unexpectedly.
 
 
 
