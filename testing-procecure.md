@@ -28,13 +28,19 @@ In addition to the payload baord, this testing procedure requires an internet co
 
 7. The raspberry pi will shutdown as soon as the tweet or photo mode program has run. To stop this from happening, kill the .startup.sh process: pkill -9 -f .startup.sh
 
+8. To execute the tweet or photo mode scripts on a raspberry pi outside the the bootup procedure change directory to the payload directory and execute `python3 photo.py` or `python3 tweet.py`.
+
 ## Testing configuration: Raspberry Pi without Payload board using WiFi for internet connection
 
 1. Use a micro-USB cable from the laptop or use another source of +5V and GND to power the raspberry pi (pins 2 and 6). 
 
-2. In the absence of the payload board and triple voted STATES lines, the `satellite-gpio-ucam-test` setup will monitor the GPIO pins 31, 33, 35, 37 to check which of 31, 33, 35 is connected by a jumper wire to pin 37. If pin 31 is connected to pin 37, the rapberry pi will execute the tweet mode code and shutdown, if pin 33 is connected to pin 37, it will execute the photo mode code and shutdown, if pin 35 is connected to pin 37, it will boot up and not shutdown. The last option makes it possible to ssh into the raspberry pi without it shuting down unexpectedly.
+2. In the absence of the payload board and triple voted STATES lines, the `satellite-gpio-ucam-test` setup will monitor the GPIO pins 31, 33, 35, 37 to check which of 31, 33, 35 is connected by a jumper wire to pin 37.
+  * If pin 31 is connected to pin 37, the rapberry pi will execute the tweet mode code and shutdown;
+  * If pin 33 is connected to pin 37, it will execute the photo mode code and shutdown;
+  * If pin 35 is connected to pin 37, it will boot up and not shutdown. 
+The last option makes it possible to ssh into the raspberry pi without it shuting down unexpectedly.
 
-
+3. To execute the tweet or photo mode scripts on a raspberry pi outside the the bootup procedure change directory to the payload directory and execute `python3 photo.py` or `python3 tweet.py`.
 
 
 
