@@ -37,7 +37,7 @@ def read_pins(pins):
         print("GPIO JUMPERS 2 (False)",file=sys.stderr)
         return  [ False ] * len(pins)
     elif j == 3:
-        print("GPIO JUMPERS 2 (True)",file=sys.stderr)
+        print("GPIO JUMPERS 3 (True)",file=sys.stderr)
         return  [ True ] * len(pins)
     out = []
     for pin in pins:
