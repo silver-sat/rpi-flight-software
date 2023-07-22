@@ -22,7 +22,8 @@ dtparam=i2c_arm=on
 dtparam=spi=on
 ```
 and uncomment for spi and i2c.
-2. At the end of the file, add
+
+3. At the end of the file, add
 ```
 enable_uart=1
 ```
