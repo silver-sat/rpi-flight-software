@@ -10,7 +10,11 @@ In addition to the payload baord, this testing procedure requires an internet co
 
 ### Preparation for testing 
 
-1. In Windows 11, under Settings, Network & Internet select "Mobile hotspot". Configure the hotspot to use the SSID "SilverSat",  password "silversat", and the "2.4GHz" band. Turn off "Power saving". Turn the hotspot to "on". Note that the Windows 11 computer must be connected to the internet, generally by its own WiFi connection. 
+1. In Windows 11, under Settings, Network & Internet select "Mobile hotspot". Configure the hotspot to use the SSID "SilverSat",  password "silversat", and the "2.4GHz" band. Turn off "Power saving". Turn the hotspot to "on". Note that the Windows 11 computer must be connected to the internet, generally by its own WiFi connection.
+
+### Observation of Tweets
+
+1. Go to the URL: [NathanE15158060](https://twitter.com/NathanE15158060)
 
 ### Observation during testing
 
