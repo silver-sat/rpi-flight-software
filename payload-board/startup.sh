@@ -17,10 +17,10 @@ if [ "$MODE" = "TWEET" ]; then
   if ! sh ./payload/network-startup.sh; then
 	  $ASPI python3 ./payload/shutdown.py FINISHED
     gpio readall
-    if [ ! -f .noshutdown ] then
-		  shutdown -h now
-	  fi
-	fi
+    if [ ! -f .noshutdown ]; then
+      shutdown -h now
+    fi
+  fi
 fi
 
 if [ "$MODE" = "PHOTO" ]; then
@@ -28,14 +28,14 @@ if [ "$MODE" = "PHOTO" ]; then
   time -p $ASPI python3 -u ./payload/photo.py
   $ASPI python3 ./payload/shutdown.py FINISHED
   python3 .gpioreadall.py
-  if [ ! -f .noshutdown ] then
-		shutdown -h now
-	fi
+  if [ ! -f .noshutdown ]; then
+    shutdown -h now
+  fi
 elif [ "$MODE" = "TWEET" ]; then
   time -p $ASPI python3 -u ./payload/tweet.py
   $ASPI python3 ./payload/shutdown.py FINISHED
   python3 .gpioreadall.py
-  if [ ! -f .noshutdown ] then
-		shutdown -h now
-	fi
+  if [ ! -f .noshutdown ]; then
+    shutdown -h now
+  fi
 fi
