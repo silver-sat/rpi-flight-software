@@ -23,6 +23,8 @@ ln -s ".common/scripts/logrotate.sh" .logrotate.sh
 rm -f .gpioreadall.py
 ln -s ".common/python/gpioreadall.py" .gpioreadall.py
 
+mkdir photos
+
 cat <<EOF
 
 Run the bootup script manually with:
