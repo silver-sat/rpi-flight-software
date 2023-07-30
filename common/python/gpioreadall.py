@@ -111,15 +111,15 @@ def print_gpio(pin_state):
         if(type(hh)==type(1)):
             print('|{0:4} | {1[0]:<10}| {1[1]:<4} | {1[2]} |{2:3} '.format(hh, pin_state(hh), h), end='|| ')
         else:
-#            print('|        {:18}  | {:2}'.format(hh, h), end=' || ')    # non-coloured output
-          print('|        {}{:18}  | {:2}{}'.format(COL[hh], hh, h, RESET), end=' || ')    # coloured output
+          print('|        {:18}  | {:2}'.format(hh, h), end=' || ')    # non-coloured output
+#           print('|        {}{:18}  | {:2}{}'.format(COL[hh], hh, h, RESET), end=' || ')    # coloured output
     # even pin
         hh = HEADER[h]
         if(type(hh)==type(1)):
             print('{0:2} | {1[2]:<2}| {1[1]:<5}| {1[0]:<10}|{2:4} |'.format(h+1, pin_state(hh), hh))
         else:
-#             print('{:2} |             {:9}      |'.format(h+1, hh))    # non-coloured output
-            print('{}{:2} |             {:9}{}      |'.format(COL[hh], h+1, hh, RESET))    # coloured output
+            print('{:2} |             {:9}      |'.format(h+1, hh))    # non-coloured output
+#             print('{}{:2} |             {:9}{}      |'.format(COL[hh], h+1, hh, RESET))    # coloured output
     print(DIV)
     print(HEAD)
     print('+{:-^28}+{:^10}+{:-^28}+'.format(LIBNAME, Model, PROGNAME) )

@@ -18,6 +18,8 @@ rm -f .minifs
 ln -s ".common/minifs" .minifs
 rm -f .logrotate.sh
 ln -s ".common/scripts/logrotate.sh" .logrotate.sh
+rm -f .gpioreadall.py
+ln -s ".common/python/gpioreadall.py" .gpioreadall.py
 
 cat <<EOF
 
