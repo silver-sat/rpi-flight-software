@@ -7,6 +7,8 @@ set -x
 # ntpdate is needed in network-startup.sh
 sudo apt-get install -y ntpdate socat
 sudo apt-get remove -y ntp
+sudo systemctl stop systemd-timesyncd.service
+sudo systemctl disable systemd-timesyncd.service
 
 setparamifnotset GROUND_CALL MYCALL-8
 setparamifnotset SATELLITE_CALL MYCALL-9
