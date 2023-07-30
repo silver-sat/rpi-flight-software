@@ -3,7 +3,7 @@
 # sudo apt-get update -y
 # sudo apt-get dist-upgrade -y
 
-sudo apt-get install -y git ax25-tools ax25-apps gpg wiringpi time
+sudo apt-get install -y git ax25-tools ax25-apps gpg raspi-gpio time
 
 sudo apt -y autoremove
 
