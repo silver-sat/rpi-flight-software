@@ -4,7 +4,7 @@ set -x
 
 . .common/setup/params.sh
 
-sudo apt-get install -y ntp stunnel4 socat
+sudo apt-get install -y ntp stunnel4 socat iptables
 
 echo "restrict 192.168.100.0 mask 255.255.255.0" | \
   sudo sed -e '/#restrict 192.168.123.0/r /dev/stdin' -i /etc/ntp.conf
