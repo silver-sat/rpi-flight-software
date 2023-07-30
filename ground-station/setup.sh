@@ -26,10 +26,12 @@ ln -s ".minifs/app.log" .minifs.log
 rm -f .logrotate.sh
 ln -s ".common/scripts/logrotate.sh" .logrotate.sh
 
+rm -f .startup.sh
+
 cat <<EOF
 
-Run the bootup script manually with:
+Run the folowing command from /home/pi to bridge the payload board
 
-  sudo runuser -u root sh .startup.sh
+  sudo sh payload/network-startup.sh
 
 EOF
