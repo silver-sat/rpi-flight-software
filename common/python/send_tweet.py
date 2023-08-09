@@ -3,9 +3,12 @@ import sys, traceback, json
 
 from twython import TwythonError as TwitterError
 
+def update_status(twitter,**params):
+    return twitter.post('https://api.twitter.com/2/tweets', params=params, version='2',json_encoded=True)
+
 def send_text_tweet(twitter,message):
     try:
-        repsonse = twitter.update_status(status=message)
+        repsonse = update_status(twitter,text=message)
         return True
     except TwitterError:
         traceback.print_exc()
@@ -25,7 +28,7 @@ def send_photo_tweet(twitter,message,photo_file):
             print("Twitter upload_media reponse missing media_id:\n"+json.dumps(response,indent=2),file=sys.stderr)
             return False
         else:
-            repsonse = twitter.update_status(status=message, media_ids=[response['media_id']])
+            repsonse = update_status(twitter,text=message, media=dict(media_ids=[str(response['media_id'])]))
             return True
     except TwitterError:
         traceback.print_exc()
