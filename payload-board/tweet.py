@@ -8,8 +8,8 @@ import find_common_modules
 # the ground station rpi is running the ssltunnel daemon to
 # turn HTTP twitter API use into HTTPS.
 #
-from direct_tweet import get_twitter
-# from proxy_tweet import get_twitter
+# from direct_tweet import get_twitter
+from proxy_tweet import get_twitter
 
 from photo_files import most_recent_photo, remove_photo
 from tweet_status import make_text_status, make_photo_status
