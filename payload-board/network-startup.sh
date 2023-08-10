@@ -19,10 +19,11 @@ sh .logrotate.sh .tnc0.log
 /home/pi/.tncattach \
      /dev/serial0 115200 \
      -m ${KISS_MTU} --noipv6 \
-     --ipv4 192.168.100.102/24 \
+     --noup \
      --id ${SATELLITE_CALL} \
-		 --interval 600 \
-		 -v -e > .tnc0.log 2>&1 &
+		 --interval 600
+		 > .tnc0.log 2>&1 &
+ifconfig tnc0 192.168.100.102 pointopoint 192.168.100.101
 
 GOOD=0
 for i in 1 2 3 4 5 6 7 8 9 10; do
