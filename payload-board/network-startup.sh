@@ -22,7 +22,7 @@ sh .logrotate.sh .tnc0.log
      --ipv4 192.168.100.102/24 \
      --id ${SATELLITE_CALL} \
 		 --interval 600 \
-		 -v > .tnc0.log 2>&1 &
+		 -v -e > .tnc0.log 2>&1 &
 
 GOOD=0
 for i in 1 2 3 4 5 6 7 8 9 10; do

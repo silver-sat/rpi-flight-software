@@ -20,7 +20,7 @@ sh .logrotate.sh .tnc0.log
      --ipv4 192.168.100.101/24 \
      --id ${GROUND_CALL} \
 		 --interval 600 \
-		 -v > .tnc0.log 2>&1 &
+		 -v -e > .tnc0.log 2>&1 &
 
 # iptables -A FORWARD -i ax0 -j ACCEPT
 iptables -A FORWARD -i tnc0 -j ACCEPT
