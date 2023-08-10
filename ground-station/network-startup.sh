@@ -4,17 +4,28 @@ set -x
 
 . /home/pi/.params.sh
 
-kissattach -m ${KISS_MTU} -l /dev/serial0 serial 192.168.100.101
-ifconfig ax0 txqueuelen 3
-ifconfig ax0 -arp
-arp -H ax25 -s 192.168.100.102 ${SATELLITE_CALL} 
+# kissattach -m ${KISS_MTU} -l /dev/serial0 serial 192.168.100.101
+# ifconfig ax0 txqueuelen 3
+# ifconfig ax0 -arp
+# arp -H ax25 -s 192.168.100.102 ${SATELLITE_CALL} 
 
-sh .logrotate.sh .ax0.log
-axlisten ax0 -a -r -t >/home/pi/.ax0.log 2>&1 &
+# sh .logrotate.sh .ax0.log
+# axlisten ax0 -a -r -t >/home/pi/.ax0.log 2>&1 &
 
-iptables -A FORWARD -i ax0 -j ACCEPT
+# use tncattach
+sh .logrotate.sh .tnc0.log
+/home/pi/.tncattach \
+     /dev/serial0 115200 \
+     -m ${KISS_MTU} --noipv6 \
+     --ipv4 192.168.100.101/24 \
+     --id ${GROUND_CALL} \
+		 --interval 600 \
+		 -v > .tnc0.log 2>&1 &
+
+# iptables -A FORWARD -i ax0 -j ACCEPT
+iptables -A FORWARD -i tnc0 -j ACCEPT
 iptables --flush -t nat
-iptables -t nat -I POSTROUTING -o eth0 -j MASQUERADE
+iptables -t nat -I POSTROUTING -o wlan0 -j MASQUERADE
 
 echo 1 > /proc/sys/net/ipv4/ip_forward
 
