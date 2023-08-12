@@ -9,8 +9,7 @@ sudo apt-get install -y ntpdate socat
 sudo apt-get remove -y ntp
 sudo systemctl stop systemd-timesyncd.service
 sudo systemctl disable systemd-timesyncd.service
-sudo systemctl stop dhcpcd.service
-sudo systemctl disable dhcpcd.service
+sudo systemctl restart dhcpcd.service
 
 setparamifnotset GROUND_CALL MYCALL-8
 setparamifnotset SATELLITE_CALL MYCALL-9
