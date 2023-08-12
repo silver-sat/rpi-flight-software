@@ -9,12 +9,15 @@ sudo apt-get install -y ntpdate socat
 sudo apt-get remove -y ntp
 sudo systemctl stop systemd-timesyncd.service
 sudo systemctl disable systemd-timesyncd.service
+sudo systemctl stop dhcpcd.service
+sudo systemctl disable dhcpcd.service
 
 setparamifnotset GROUND_CALL MYCALL-8
 setparamifnotset SATELLITE_CALL MYCALL-9
 setparamifnotset KISS_MTU 240
 
-sudo sed -i "s/MYCALL-0/${SATELLITE_CALL}/" /etc/ax25/axports
+# Don't need ax25 if using tncattach
+# sudo sed -i "s/MYCALL-0/${SATELLITE_CALL}/" /etc/ax25/axports
 
 rm -f .minifs
 ln -s ".common/minifs" .minifs

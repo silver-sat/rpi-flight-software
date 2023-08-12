@@ -15,5 +15,6 @@ sh $COMMON/setup/tncattach.install.sh
 sh $COMMON/setup/pip3.install.sh
 sh $COMMON/setup/rc.local.startup-hook.sh
 sh $COMMON/setup/axports.append.sh
+sh $COMMON/setup/dhcpcd.append.sh
 sh $COMMON/setup/decrypt-creds.sh
 sh $COMMON/setup/git-config.sh
