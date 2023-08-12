@@ -21,7 +21,7 @@ sh .logrotate.sh .tnc0.log
      -m ${KISS_MTU} --noipv6 \
      --noup \
      --id ${SATELLITE_CALL} \
-		 --interval 600
+		 --interval 600 \
 		 > .tnc0.log 2>&1 &
 sleep 5
 ifconfig tnc0 192.168.100.102 pointopoint 192.168.100.101
