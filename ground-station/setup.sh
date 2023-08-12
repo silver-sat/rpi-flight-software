@@ -16,6 +16,9 @@ setparamifnotset KISS_MTU 240
 # don't need if using tncattach
 #sudo sed -i "s/MYCALL-0/${GROUND_CALL}/" /etc/ax25/axports
 
+# global setup altered the dhcpcd.conf file...
+sudo systemctl restart dhcpcd
+
 rm -f .minifs
 ln -s ".common/minifs" .minifs
 rm -f uploads
