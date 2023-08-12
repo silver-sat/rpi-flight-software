@@ -13,7 +13,8 @@ setparamifnotset GROUND_CALL MYCALL-8
 setparamifnotset SATELLITE_CALL MYCALL-9
 setparamifnotset KISS_MTU 240
 
-sudo sed -i "s/MYCALL-0/${GROUND_CALL}/" /etc/ax25/axports
+# don't need if using tncattach
+#sudo sed -i "s/MYCALL-0/${GROUND_CALL}/" /etc/ax25/axports
 
 rm -f .minifs
 ln -s ".common/minifs" .minifs
