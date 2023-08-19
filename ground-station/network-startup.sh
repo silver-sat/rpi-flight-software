@@ -15,13 +15,15 @@ set -x
 # use tncattach
 sh .logrotate.sh .tnc0.log
 /home/pi/.tncattach \
-     /dev/serial0 115200 \
-     -m ${KISS_MTU} --noipv6 \
+     /dev/serial0 \
+	 115200 \
+     -m ${KISS_MTU} \
+	 --noipv6 \
      --noup \
      --id ${GROUND_CALL} \
-		 --interval 600 \
-		 -v > .tnc0.log 2>&1 &
-sleep 5
+     --interval 600 \
+	 -v > .tnc0.log 2>&1 &
+sleep 2
 ifconfig tnc0 192.168.100.101 pointopoint 192.168.100.102
 
 # iptables -A FORWARD -i ax0 -j ACCEPT

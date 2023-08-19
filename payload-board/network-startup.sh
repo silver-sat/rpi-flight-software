@@ -17,30 +17,29 @@ set -x
 # use tncattach
 sh .logrotate.sh .tnc0.log
 /home/pi/.tncattach \
-     /dev/serial0 115200 \
-     -m ${KISS_MTU} --noipv6 \
+     /dev/serial0 \
+	 115200 \
+     -m ${KISS_MTU} \
+	 --noipv6 \
      --noup \
      --id ${SATELLITE_CALL} \
-		 --interval 600 \
-		 > .tnc0.log 2>&1 &
-sleep 5
+     --interval 600 \
+	 -v > .tnc0.log 2>&1 &
+sleep 2
 ifconfig tnc0 192.168.100.102 pointopoint 192.168.100.101
 
 GOOD=0
 for i in 1 2 3 4 5 6 7 8 9 10; do
   route del default
-	sleep 2
+  sleep 2
   if [ `route | fgrep default | wc -l` -eq 0 ]; then
     GOOD=1
-		break
-	fi
+	break
+  fi
 done
 if [ $GOOD -eq 0 ]; then
   exit 1;
 fi
-
-# route add default gw 192.168.100.101 ax0
-route add default gw 192.168.100.101 tnc0
 
 GOOD=0
 for i in 1 2 3 4 5 6 7 8 9 10; do
@@ -54,6 +53,9 @@ done
 if [ $GOOD -eq 0 ]; then
   exit 1;
 fi
+
+# route add default gw 192.168.100.101 ax0
+route add default gw 192.168.100.101 tnc0
 
 ntpdate -u 192.168.100.101
 
