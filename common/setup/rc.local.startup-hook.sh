@@ -16,7 +16,7 @@ sudo sed -e '$r /dev/stdin' -e '/exit 0/d' -i /etc/rc.local <<EOF
 #
 
 # Ensure wifi is turned on
-rfkill unblock wifi || true
+# rfkill unblock wifi || true
 
 if [ -f /home/pi/.startup.sh ]; then
    if [ -f /home/pi/.startup.log ]; then

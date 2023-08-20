@@ -4,6 +4,8 @@ set -x
 
 . /home/pi/.params.sh
 
+rfkill unblock wifi
+
 # kissattach -m ${KISS_MTU} -l /dev/serial0 serial 192.168.100.101
 # ifconfig ax0 txqueuelen 3
 # ifconfig ax0 -arp
