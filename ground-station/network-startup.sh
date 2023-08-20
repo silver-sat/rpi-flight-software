@@ -41,9 +41,9 @@ echo 1 > /proc/sys/net/ipv4/ip_forward
 sh .logrotate.sh .stunnel.log
 stunnel .common/etc/stunnel.conf > .stunnel.log 2>&1 &
 
+sh .logrotate.sh .minifs.log
 ( cd .minifs; \
-  sh /home/pi/.logrotate.sh app.log; \
-	runuser -u pi python app.py ${GROUND_IP} > app.log 2>&1 ) &
+  unuser -u pi python app.py ${GROUND_IP} > /home/pi/.minifs.log 2>&1 ) &
 
 sh .logrotate.sh .tcpdump.log
 tcpdump -i tnc0 -l -A > .tcpdump.log 2>&1 &
