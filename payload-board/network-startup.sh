@@ -45,7 +45,9 @@ GOOD=0
 for i in 1 2 3 4 5 6 7 8 9 10; do
   route del default
   sleep 2
-  if [ `route | fgrep default | wc -l` -eq 0 ]; then
+  route -n
+  route -n | awk '$1 == "0.0.0.0"' | wc -l
+  if [ `route -n | awk '$1 == "0.0.0.0"' | wc -l` -eq 0 ]; then
     GOOD=1
 	break
   fi

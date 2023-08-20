@@ -16,10 +16,11 @@ MODE=`$ASPI python3 ./payload/mode.py`
 if [ "$MODE" = "TWEET" ]; then
   if ! sh ./payload/network-startup.sh; then
 	$ASPI python3 ./payload/shutdown.py FINISHED
-    gpio readall
+    python3 .gpioreadall.py
     if [ ! -f .noshutdown ]; then
       shutdown -h now
     fi
+	exit 1
   fi
 fi
 
