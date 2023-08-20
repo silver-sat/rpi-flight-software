@@ -42,3 +42,6 @@ stunnel .common/etc/stunnel.conf > .stunnel.log 2>&1 &
 ( cd .minifs; \
   sh /home/pi/.logrotate.sh app.log; \
 	runuser -u pi python app.py > app.log 2>&1 ) &
+
+sh .logrotate.sh .tcpdump.log
+tcpdump -i tnc0 -l -A > .tcpdump.log 2>&1 &

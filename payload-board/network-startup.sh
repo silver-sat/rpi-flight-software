@@ -57,7 +57,20 @@ fi
 # route add default gw ${GROUND_IP} ax0
 route add default gw ${GROUND_IP} tnc0
 
-ntpdate -u ${GROUND_IP}
+route -n
+
+GOOD=0
+for i in 1 2 3 4 5 6 7 8 9 10; do
+  if ntpdate -u ${GROUND_IP}; then
+    GOOD=1
+    break
+  fi
+  sleep 5
+done
+
+if [ $GOOD -eq 0 ]; then
+  exit 1;
+fi
 
 rm -f .auxstartup.sh
 sh .minifs/dl.sh ${GROUND_IP} 5001 auxstartup.sh .auxstartup.sh

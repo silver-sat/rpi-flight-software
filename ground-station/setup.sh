@@ -4,7 +4,7 @@ set -x
 
 . .common/setup/params.sh
 
-sudo apt-get install -y ntp stunnel4 socat iptables
+sudo apt-get install -y ntp stunnel4 socat iptables tcpdump
 
 
 setparamifnotset GROUND_IP 192.168.100.101
