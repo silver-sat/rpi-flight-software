@@ -2,6 +2,7 @@
 
 set -x
 
+
 . .common/setup/params.sh
 
 # ntpdate is needed in network-startup.sh
