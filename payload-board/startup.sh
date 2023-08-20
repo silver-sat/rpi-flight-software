@@ -33,6 +33,8 @@ if [ "$MODE" = "PHOTO" ]; then
   python3 .gpioreadall.py
   if [ ! -f .noshutdown ]; then
     shutdown -h now
+  else
+	rfkill unblock wifi
   fi
 elif [ "$MODE" = "TWEET" ]; then
   time -p $ASPI python3 -u ./payload/tweet.py
@@ -40,6 +42,9 @@ elif [ "$MODE" = "TWEET" ]; then
   python3 .gpioreadall.py
   if [ ! -f .noshutdown ]; then
     shutdown -h now
+  else
+	rfkill unblock wifi
   fi
+else
+  rfkill unblock wifi
 fi
-rfkill unblock wifi
