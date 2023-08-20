@@ -5,11 +5,11 @@ set -x
 . /home/pi/.params.sh
 
 # kissattach to run TCP/IP over serial port
-# kissattach -m ${KISS_MTU} -l /dev/serial0 serial 192.168.100.102
+# kissattach -m ${KISS_MTU} -l /dev/serial0 serial ${SATELLITE_IP}
 
 # ifconfig ax0 txqueuelen 3
 # ifconfig ax0 -arp
-# arp -H ax25 -s 192.168.100.101 ${GROUND_CALL}
+# arp -H ax25 -s ${GROUND_IP} ${GROUND_CALL}
 
 # sh .logrotate.sh .ax0.log
 # axlisten ax0 -a -r -t >/home/pi/.ax0.log 2>&1 &
@@ -54,7 +54,7 @@ if [ $GOOD -eq 0 ]; then
   exit 1;
 fi
 
-# route add default gw 192.168.100.101 ax0
+# route add default gw ${GROUND_IP} ax0
 route add default gw ${GROUND_IP} tnc0
 
 ntpdate -u ${GROUND_IP}
