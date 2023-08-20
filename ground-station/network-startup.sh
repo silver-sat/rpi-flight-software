@@ -24,7 +24,7 @@ sh .logrotate.sh .tnc0.log
      --interval 600 \
 	 -v > .tnc0.log 2>&1 &
 sleep 2
-ifconfig tnc0 192.168.100.101 pointopoint 192.168.100.102
+ifconfig tnc0 ${GROUND_IP} pointopoint ${SATELLITE_IP}
 
 # iptables -A FORWARD -i ax0 -j ACCEPT
 iptables -A FORWARD -i tnc0 -j ACCEPT
