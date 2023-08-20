@@ -30,19 +30,6 @@ ifconfig tnc0 ${SATELLITE_IP} pointopoint ${GROUND_IP}
 
 GOOD=0
 for i in 1 2 3 4 5 6 7 8 9 10; do
-  route del default
-  sleep 2
-  if [ `route | fgrep default | wc -l` -eq 0 ]; then
-    GOOD=1
-	break
-  fi
-done
-if [ $GOOD -eq 0 ]; then
-  exit 1;
-fi
-
-GOOD=0
-for i in 1 2 3 4 5 6 7 8 9 10; do
   if ping -n -c 1 ${GROUND_IP} >/dev/null 2>&1; then
     GOOD=1
     break
@@ -50,6 +37,19 @@ for i in 1 2 3 4 5 6 7 8 9 10; do
   sleep 5
 done
 
+if [ $GOOD -eq 0 ]; then
+  exit 1;
+fi
+
+GOOD=0
+for i in 1 2 3 4 5 6 7 8 9 10; do
+  route del default
+  sleep 2
+  if [ `route | fgrep default | wc -l` -eq 0 ]; then
+    GOOD=1
+	break
+  fi
+done
 if [ $GOOD -eq 0 ]; then
   exit 1;
 fi
