@@ -20,7 +20,7 @@ if [ "$MODE" = "TWEET" ]; then
     if [ ! -f .noshutdown ]; then
       shutdown -h now
     fi
-	exit 1
+	exit
   fi
 fi
 

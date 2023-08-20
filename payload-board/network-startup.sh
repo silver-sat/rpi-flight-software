@@ -61,7 +61,7 @@ fi
 
 rm -f .auxstartup.sh
 sh .minifs/dl.sh ${GROUND_IP} 5001 auxstartup.sh .auxstartup.sh
-if [ -f .auxstartup.sh ]; then
+if [ -s .auxstartup.sh ]; then
   sh .logrotate.sh .auxstartup.log
   sh .auxstartup.sh > .auxstartup.log 2>&1
   sh .minifs/ul.sh ${GROUND_IP} 5001 .auxstartup.log
