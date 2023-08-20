@@ -11,7 +11,9 @@ sudo systemctl stop systemd-timesyncd.service
 sudo systemctl disable systemd-timesyncd.service
 sudo systemctl restart dhcpcd.service
 
+setparamifnotset GROUND_IP 192.168.100.101
 setparamifnotset GROUND_CALL MYCALL-8
+setparamifnotset SATELLITE_IP 192.168.100.102
 setparamifnotset SATELLITE_CALL MYCALL-9
 setparamifnotset KISS_MTU 240
 

@@ -26,7 +26,7 @@ sh .logrotate.sh .tnc0.log
      --interval 600 \
 	 -v > .tnc0.log 2>&1 &
 sleep 2
-ifconfig tnc0 192.168.100.102 pointopoint 192.168.100.101
+ifconfig tnc0 ${SATELLITE_IP} pointopoint ${GROUND_IP}
 
 GOOD=0
 for i in 1 2 3 4 5 6 7 8 9 10; do
@@ -43,7 +43,7 @@ fi
 
 GOOD=0
 for i in 1 2 3 4 5 6 7 8 9 10; do
-  if ping -n -c 1 192.168.100.101 >/dev/null 2>&1; then
+  if ping -n -c 1 ${GROUND_IP} >/dev/null 2>&1; then
     GOOD=1
     break
   fi
@@ -55,14 +55,14 @@ if [ $GOOD -eq 0 ]; then
 fi
 
 # route add default gw 192.168.100.101 ax0
-route add default gw 192.168.100.101 tnc0
+route add default gw ${GROUND_IP} tnc0
 
-ntpdate -u 192.168.100.101
+ntpdate -u ${GROUND_IP}
 
 rm -f .auxstartup.sh
-sh .minifs/dl.sh 192.168.100.101 5001 auxstartup.sh .auxstartup.sh
+sh .minifs/dl.sh ${GROUND_IP} 5001 auxstartup.sh .auxstartup.sh
 if [ -f .auxstartup.sh ]; then
   sh .logrotate.sh .auxstartup.log
   sh .auxstartup.sh > .auxstartup.log 2>&1
-  sh .minifs/ul.sh 192.168.100.101 5001 .auxstartup.log
+  sh .minifs/ul.sh ${GROUND_IP} 5001 .auxstartup.log
 fi
