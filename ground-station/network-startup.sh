@@ -33,8 +33,8 @@ iptables -t nat -I POSTROUTING -o wlan0 -j MASQUERADE
 
 echo 1 > /proc/sys/net/ipv4/ip_forward
 
-/etc/init.d/ntp stop
-/etc/init.d/ntp start
+# /etc/init.d/ntp stop
+# /etc/init.d/ntp start
 
 sh .logrotate.sh .stunnel.log
 stunnel .common/etc/stunnel.conf > .stunnel.log 2>&1 &
