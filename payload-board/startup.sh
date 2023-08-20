@@ -40,3 +40,4 @@ elif [ "$MODE" = "TWEET" ]; then
     shutdown -h now
   fi
 fi
+rfkill unblock wifi

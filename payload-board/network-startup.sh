@@ -44,6 +44,8 @@ fi
 # route add default gw ${GROUND_IP} ax0
 route add default gw ${GROUND_IP} tnc0
 
+rfkill block wifi
+
 GOOD=0
 for i in 1 2 3 4 5 6 7 8 9 10; do
   if ntpdate -u ${GROUND_IP}; then
