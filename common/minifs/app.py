@@ -80,7 +80,7 @@ def tweet():
     return "Successfull tweet", 200
 
 if __name__ == '__main__':
-   app.run(host='127.0.0.1',port=5001) # running the flask app
-   # app.run(host='192.168.100.101',port=5001) # running the flask app
+   # app.run(host='127.0.0.1',port=5001) # running the flask app
+   app.run(host=os.env['GROUND_IP'],port=5001) # running the flask app
 
  
