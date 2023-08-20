@@ -19,6 +19,8 @@ if [ "$MODE" = "TWEET" ]; then
     python3 .gpioreadall.py
     if [ ! -f .noshutdown ]; then
       shutdown -h now
+	else
+	  rfkill unblock wifi
     fi
 	exit
   fi

@@ -6,15 +6,19 @@ set -x
 
 sudo apt-get install -y ntp stunnel4 socat iptables tcpdump
 
-
 setparamifnotset GROUND_IP 192.168.100.101
 setparamifnotset GROUND_CALL MYCALL-8
 setparamifnotset SATELLITE_IP 192.168.100.102
 setparamifnotset SATELLITE_CALL MYCALL-9
 setparamifnotset KISS_MTU 240
 
-echo "restrict ${SATELLITE_IP} mask 255.255.255.255" | \
-  sudo sed -e '/#restrict 192.168.123.0/r /dev/stdin' -i /etc/ntp.conf
+
+if [ `fgrep ${SATELLITE_IP} /etc/ntp.conf | wc -l` -eq 0 ]; then
+
+  echo "restrict ${SATELLITE_IP} mask 255.255.255.255" | \
+    sudo sed -e '/#restrict 192.168.123.0/r /dev/stdin' -i /etc/ntp.conf
+
+fi
 
 # don't need if using tncattach
 #sudo sed -i "s/MYCALL-0/${GROUND_CALL}/" /etc/ax25/axports
