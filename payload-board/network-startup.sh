@@ -44,7 +44,8 @@ fi
 # route add default gw ${GROUND_IP} ax0
 route add default gw ${GROUND_IP} tnc0
 
-rfkill block wifi
+rfkill block wlan
+rfkill list
 
 GOOD=0
 for i in 1 2 3 4 5 6 7 8 9 10; do
