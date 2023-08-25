@@ -18,7 +18,7 @@ set -x
 sh .logrotate.sh .tnc0.log
 /home/pi/.tncattach \
      /dev/serial0 \
-	 115200 \
+	 ${BAUD} \
      -m ${KISS_MTU} \
 	 --noipv6 \
      --noup \
@@ -43,9 +43,6 @@ fi
 
 # route add default gw ${GROUND_IP} ax0
 route add default gw ${GROUND_IP} tnc0
-
-rfkill block wlan
-rfkill list
 
 GOOD=0
 for i in 1 2 3 4 5 6 7 8 9 10; do

@@ -18,7 +18,7 @@ rfkill unblock wifi
 sh .logrotate.sh .tnc0.log
 /home/pi/.tncattach \
      /dev/serial0 \
-	 115200 \
+	 ${BAUD} \
      -m ${KISS_MTU} \
 	 --noipv6 \
      --noup \
