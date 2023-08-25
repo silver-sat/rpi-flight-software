@@ -24,7 +24,7 @@ fi
 #sudo sed -i "s/MYCALL-0/${GROUND_CALL}/" /etc/ax25/axports
 
 # global setup altered the dhcpcd.conf file...
-sudo systemctl restart dhcpcd.service
+# sudo systemctl restart dhcpcd.service
 
 rm -f .minifs
 ln -s ".common/minifs" .minifs

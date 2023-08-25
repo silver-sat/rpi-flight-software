@@ -10,7 +10,7 @@ sudo apt-get install -y ntpdate socat
 sudo apt-get remove -y ntp
 sudo systemctl stop systemd-timesyncd.service
 sudo systemctl disable systemd-timesyncd.service
-sudo systemctl restart dhcpcd.service
+# sudo systemctl restart dhcpcd.service
 
 setparamifnotset GROUND_IP 192.168.100.101
 setparamifnotset GROUND_CALL MYCALL-8
