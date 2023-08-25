@@ -20,7 +20,7 @@ if [ "$MODE" = "TWEET" ]; then
     if [ ! -f .noshutdown ]; then
       shutdown -h now
 	else
-	  rfkill unblock wlan
+	  true # rfkill unblock wlan
     fi
 	exit
   fi
@@ -34,7 +34,7 @@ if [ "$MODE" = "PHOTO" ]; then
   if [ ! -f .noshutdown ]; then
     shutdown -h now
   else
-	rfkill unblock wlan
+	true # rfkill unblock wlan
   fi
 elif [ "$MODE" = "TWEET" ]; then
   time -p $ASPI python3 -u ./payload/tweet.py
@@ -43,8 +43,8 @@ elif [ "$MODE" = "TWEET" ]; then
   if [ ! -f .noshutdown ]; then
     shutdown -h now
   else
-	rfkill unblock wlan
+	true # rfkill unblock wlan
   fi
 else
-  rfkill unblock wlan
+  true # rfkill unblock wlan
 fi
