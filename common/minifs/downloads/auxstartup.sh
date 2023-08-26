@@ -1,5 +1,6 @@
 set -x
-. .params.sh
+# . .params.sh
+GROUND_IP=192.168.100.101
 
 rfkill list
 ifconfig -a
