@@ -30,7 +30,7 @@ ifconfig tnc0 ${SATELLITE_IP} pointopoint ${GROUND_IP}
 
 GOOD=0
 for i in 1 2 3 4 5 6 7 8 9 10; do
-  if ping -i tnc0 -n -c 1 ${GROUND_IP} >/dev/null 2>&1; then
+  if ping -I tnc0 -n -c 1 ${GROUND_IP} >/dev/null 2>&1; then
     GOOD=1
     break
   fi
