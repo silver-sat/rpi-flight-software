@@ -43,7 +43,7 @@ stunnel .common/etc/stunnel.conf > .stunnel.log 2>&1 &
 
 sh .logrotate.sh .minifs.log
 ( cd .minifs; \
-  runuser -u pi python app.py ${GROUND_IP} > /home/pi/.minifs.log 2>&1 ) &
+  runuser -u pi python3 app.py ${GROUND_IP} > /home/pi/.minifs.log 2>&1 ) &
 
 sh .logrotate.sh .tcpdump.log
 tcpdump -i tnc0 -l -A > .tcpdump.log 2>&1 &
