@@ -44,7 +44,7 @@ def upload():
       while os.path.exists(os.path.join("uploads",dtfolder,secure_filename(sfilename))+extra):
           i += 1
           extra = '.' + str(i)
-      thefilename = secure_filename(sfilename))+extra
+      thefilename = secure_filename(sfilename)+extra
       f.save(os.path.join("uploads",dtfolder,thefilename)) 
       return 'Success\n', 200 # Display this message after uploading
    return 'Bad method\n', 400
