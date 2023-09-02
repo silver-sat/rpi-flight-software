@@ -26,8 +26,15 @@ def upload():
       # All files are placed in a time-stamped folder
       sfilename = os.path.split(secure_filename(f.filename))[1]
       dtfolder = time.strftime("%Y%m%d-%H%M")
-      if not os.path.exists(os.path.join("uploads/",dtfolder)):
-          os.makedirs(os.path.join("uploads/",dtfolder))
+      if not os.path.exists(os.path.join("uploads",dtfolder)):
+          lastfolder = sorted(os.listdir("uploads"))[-1]
+          t0 = datetime.strptime("%Y%m%d-%H%M",lastfolder)
+          t1 = datetime.strptime("%Y%m%d-%H%M",dtfolder)
+          # print(t0,t1)
+          if (t1-t0) > datetime.datetime(sec=600):
+              os.makedirs(os.path.join("uploads",dtfolder))
+          else:
+              dtfolder = lastfolder
       f.save(os.path.join("uploads",dtfolder,secure_filename(sfilename))) # this will secure the file
       return 'Success\n', 200 # Display thsi message after uploading
    return 'Bad method\n', 400
