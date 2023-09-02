@@ -17,14 +17,14 @@ rfkill unblock wifi
 # use tncattach
 sh .logrotate.sh .tnc0.log
 /home/pi/.tncattach \
-     /dev/serial0 \
-	 ${BAUD} \
-     -m ${KISS_MTU} \
-	 --noipv6 \
-     --noup \
-     --id ${GROUND_CALL} \
-     --interval 600 \
-	 -v > .tnc0.log 2>&1 &
+  /dev/serial0 \
+	${BAUD} \
+  -m ${KISS_MTU} \
+	--noipv6 \
+  --noup \
+  --id ${GROUND_CALL} \
+  --interval 600 \
+	-v > .tnc0.log 2>&1 &
 sleep 2
 ifconfig tnc0 ${GROUND_IP} pointopoint ${SATELLITE_IP}
 

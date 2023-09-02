@@ -17,14 +17,14 @@ set -x
 # use tncattach
 sh .logrotate.sh .tnc0.log
 /home/pi/.tncattach \
-     /dev/serial0 \
-	 ${BAUD} \
-     -m ${KISS_MTU} \
-	 --noipv6 \
-     --noup \
-     --id ${SATELLITE_CALL} \
-     --interval 600 \
-	 -v > .tnc0.log 2>&1 &
+  /dev/serial0 \
+	${BAUD} \
+  -m ${KISS_MTU} \
+	--noipv6 \
+  --noup \
+  --id ${SATELLITE_CALL} \
+  --interval 600 \
+	-v > .tnc0.log 2>&1 &
 sleep 2
 ifconfig tnc0 ${SATELLITE_IP} pointopoint ${GROUND_IP}
 
