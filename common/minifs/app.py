@@ -25,18 +25,28 @@ def upload():
       # All files are cleaned up, we retain the filename
       # All files are placed in a time-stamped folder
       sfilename = os.path.split(secure_filename(f.filename))[1]
-      dtfolder = time.strftime("%Y%m%d-%H%M")
+      dtfolder = time.strftime("%Y%m%d-%H%M%S")
       if not os.path.exists(os.path.join("uploads",dtfolder)):
-          lastfolder = sorted(os.listdir("uploads"))[-1]
-          t0 = datetime.datetime.strptime(lastfolder,"%Y%m%d-%H%M")
-          t1 = datetime.datetime.strptime(dtfolder,"%Y%m%d-%H%M")
-          if (t1-t0) > datetime.timedelta(minutes=10) or \
-             os.path.exists(os.path.join("uploads",lastfolder,secure_filename(sfilename))):
-              os.makedirs(os.path.join("uploads",dtfolder))
+          try:
+              lastfolder = sorted(os.listdir("uploads"))[-1]
+          except IndexError:
+              lastfolder = None
+          if lastfolder:
+              t0 = datetime.datetime.strptime(lastfolder,"%Y%m%d-%H%M%S")
+              t1 = datetime.datetime.strptime(dtfolder,"%Y%m%d-%H%M%S")
+              if (t1-t0) < datetime.timedelta(minutes=5):
+                  dtfolder = lastfolder
+              else:
+                  os.makedirs(os.path.join("uploads",dtfolder))
           else:
-              dtfolder = lastfolder
-      f.save(os.path.join("uploads",dtfolder,secure_filename(sfilename))) # this will secure the file
-      return 'Success\n', 200 # Display thsi message after uploading
+              os.makedirs(os.path.join("uploads",dtfolder))
+      i = 0; extra = ""
+      while os.path.exists(os.path.join("uploads",dtfolder,secure_filename(sfilename))+extra):
+          i += 1
+          extra = '.' + str(i)
+      thefilename = secure_filename(sfilename))+extra
+      f.save(os.path.join("uploads",dtfolder,thefilename)) 
+      return 'Success\n', 200 # Display this message after uploading
    return 'Bad method\n', 400
 
 @app.route('/download')
