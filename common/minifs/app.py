@@ -1,7 +1,7 @@
 #!/bin/env python3
 
 # importing the required libraries
-import os, os.path, sys, glob, time
+import os, os.path, sys, glob, time, datetime
 from hashlib import md5
 from flask import Flask, request, send_file
 from werkzeug.utils import secure_filename
@@ -28,10 +28,10 @@ def upload():
       dtfolder = time.strftime("%Y%m%d-%H%M")
       if not os.path.exists(os.path.join("uploads",dtfolder)):
           lastfolder = sorted(os.listdir("uploads"))[-1]
-          t0 = datetime.strptime("%Y%m%d-%H%M",lastfolder)
-          t1 = datetime.strptime("%Y%m%d-%H%M",dtfolder)
-          # print(t0,t1)
-          if (t1-t0) > datetime.datetime(sec=600):
+          t0 = datetime.datetime.strptime(lastfolder,"%Y%m%d-%H%M")
+          t1 = datetime.datetime.strptime(dtfolder,"%Y%m%d-%H%M")
+          if (t1-t0) > datetime.timedelta(minutes=10) or \
+             os.path.exists(os.path.join("uploads",lastfolder,secure_filename(sfilename))):
               os.makedirs(os.path.join("uploads",dtfolder))
           else:
               dtfolder = lastfolder
