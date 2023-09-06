@@ -16,8 +16,8 @@ setparamifnotset GROUND_IP 192.168.100.101
 setparamifnotset GROUND_CALL MYCALL-8
 setparamifnotset SATELLITE_IP 192.168.100.102
 setparamifnotset SATELLITE_CALL MYCALL-9
-setparamifnotset KISS_MTU 240
-setparamifnotset BAUD 56700
+setparamifnotset KISS_MTU 200
+setparamifnotset BAUD 19200
 
 # Don't need ax25 if using tncattach
 # sudo sed -i "s/MYCALL-0/${SATELLITE_CALL}/" /etc/ax25/axports
