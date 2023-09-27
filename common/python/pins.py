@@ -2,14 +2,14 @@
 # Adapted from code written by Jalin
 # https://github.com/silver-sat/payload2/blob/main/vote.py
 
-# BCN numbers of STATES pins
+# BCM numbers of STATES pins
 SPIN1 = 16 # physical pin 36
 SPIN2 = 20 # physical pin 38
 SPIN3 = 21 # physical pin 40
 
 STATES = [ SPIN1, SPIN2, SPIN3 ]
 
-# BCN numbers of SHUTDOWN pins
+# BCM numbers of SHUTDOWN pins
 DPIN1 = 17 # physical pin 11
 DPIN2 = 27 # phyiscal pin 13
 DPIN3 = 22 # phyiscal pin 15
