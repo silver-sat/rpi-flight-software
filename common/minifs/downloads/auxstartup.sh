@@ -6,6 +6,8 @@ rfkill list
 ifconfig -a
 route -n
 
+# cp rpi-flight-software/common/etc/overhead.jpg photos/photo-100.jpg
+
 # find rpi-flight-software -type f | fgrep -v '/.git/' | xargs -n 10 md5sum 
 # find photos -type f | xargs -n 10 md5sum 
 ls -l photos
