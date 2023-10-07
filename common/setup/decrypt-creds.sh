@@ -11,7 +11,7 @@ set -x
 . $COMMON/setup/params.sh
 
 for enccredfile in $COMMON/python/*.gpg; do
-  credfile=`basename $enccredfile .gpg`
+  credfile=`echo "$enccredfile" | sed 's/\.gpg$//'`
   if [ ! -s "$credfile" ]; then
     getpasswd "Encryption password for secret data? " PASSWORD
     gpg --no-symkey-cache --passphrase "$PASSWORD" --batch -d "$enccredfile" > "$credfile"
