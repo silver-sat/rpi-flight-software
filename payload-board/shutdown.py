@@ -16,6 +16,6 @@ if len(sys.argv) >= 2:
 # Set up pins
 init_pins(outpins=SHUTDOWN)
 
-# Set SHUTDOWN pins to LOW
+# Set SHUTDOWN pins
 write_pins(SHUTDOWN,setvalue)
 

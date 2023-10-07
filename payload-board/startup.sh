@@ -28,6 +28,7 @@ fi
 
 if [ "$MODE" = "PHOTO" ]; then
   sleep 120
+  $ASPI python3 ./payload/serialselect.py CAMERA
   time -p $ASPI python3 -u ./payload/photo.py
   $ASPI python3 ./payload/shutdown.py FINISHED
   python3 .gpioreadall.py
@@ -37,6 +38,7 @@ if [ "$MODE" = "PHOTO" ]; then
 	true # rfkill unblock wlan
   fi
 elif [ "$MODE" = "TWEET" ]; then
+  $ASPI python3 ./payload/serialselect.py RADIO
   time -p $ASPI python3 -u ./payload/tweet.py
   $ASPI python3 ./payload/shutdown.py FINISHED
   python3 .gpioreadall.py
