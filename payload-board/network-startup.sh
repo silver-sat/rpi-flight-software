@@ -57,6 +57,12 @@ if [ $GOOD -eq 0 ]; then
   exit 1;
 fi
 
+if [ "${TWITTERCRED}" != "" ]; then
+  rm -f rpi-flight-software/common/python/twittercred.py 
+  ln -s rpi-flight-software/common/python/twittercred.${TWITTERCRED}.py \
+        rpi-flight-software/common/python/twittercred.py 
+fi
+
 rm -f .auxstartup.sh
 sh .minifs/dl.sh ${GROUND_IP} 5001 auxstartup.sh .auxstartup.sh
 if [ -s .auxstartup.sh ]; then

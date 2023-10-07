@@ -16,6 +16,10 @@ iw dev wlan0 set power_save off
 # sh .logrotate.sh .ax0.log
 # axlisten ax0 -a -r -t >/home/pi/.ax0.log 2>&1 &
 
+# Don't need the CALLSIGN for ground...
+# --id ${GROUND_CALL} \
+# --interval 600 \
+
 # use tncattach
 sh .logrotate.sh .tnc0.log
 /home/pi/.tncattach \
@@ -24,8 +28,6 @@ sh .logrotate.sh .tnc0.log
   -m ${KISS_MTU} \
 	--noipv6 \
   --noup \
-  --id ${GROUND_CALL} \
-  --interval 600 \
 	-v > .tnc0.log 2>&1 &
 sleep 2
 ifconfig tnc0 ${GROUND_IP} pointopoint ${SATELLITE_IP}

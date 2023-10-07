@@ -2,13 +2,18 @@
 
 set -x
 
+#
+# To encrypt a new cred file use the following command:
+#
+#    gpg --no-symkey-cache --passphrase "<password>" --batch -c creds.py
+#
+
 . $COMMON/setup/params.sh
 
-if [ -f $COMMON/python/twittercred.py.gpg -a ! -s $COMMON/python/twittercred.py ]; then
-  getpasswd "Encryption password for secret data? " PASSWORD
-  gpg --no-symkey-cache --passphrase "$PASSWORD" --batch -d $COMMON/python/twittercred.py.gpg > $COMMON/python/twittercred.py
-fi
-if [ -f $COMMON/python/redditcred.py.gpg -a ! -s $COMMON/python/redditcred.py ]; then
-  getpasswd "Encryption password for secret data? " PASSWORD
-  gpg --no-symkey-cache --passphrase "$PASSWORD" --batch -d $COMMON/python/redditcred.py.gpg > $COMMON/python/redditcred.py
-fi
+for enccredfile in $COMMON/python/*.gpg; do
+  credfile=`basename $enccredfile .gpg`
+  if [ ! -s "$credfile" ]; then
+    getpasswd "Encryption password for secret data? " PASSWORD
+    gpg --no-symkey-cache --passphrase "$PASSWORD" --batch -d "$enccredfile" > "$credfile"
+  fi
+done
