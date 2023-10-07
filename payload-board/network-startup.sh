@@ -58,9 +58,9 @@ if [ $GOOD -eq 0 ]; then
 fi
 
 if [ "${TWITTERCRED}" != "" ]; then
-  rm -f rpi-flight-software/common/python/twittercred.py 
-  ln -s rpi-flight-software/common/python/twittercred.${TWITTERCRED}.py \
-        rpi-flight-software/common/python/twittercred.py 
+  ( cd /home/pi/rpi-flight-software/common/python;
+    rm -f twittercred.py; 
+    ln -s twittercred.${TWITTERCRED}.py twittercred.py )
 fi
 
 rm -f .auxstartup.sh
