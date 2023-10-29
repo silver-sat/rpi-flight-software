@@ -2,4 +2,4 @@
 
 set -x
 
-sudo pip3 install pyserial==3.5 flask==2.2.3 twython==3.9.1 praw==7.7.1
+sudo pip3 install pyserial==3.5 flask==2.3.3 twython==3.9.1 praw==7.7.1
