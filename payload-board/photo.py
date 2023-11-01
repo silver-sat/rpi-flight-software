@@ -9,8 +9,8 @@ from photo_files import photo_filename
 # Choose the camera module for file, ucam_max3100, or ucam_serial
 #
 # from file_camera import setup_camera
-from ucam_max3100_camera import setup_camera
-# from ucam_serial_camera import setup_camera
+# from ucam_max3100_camera import setup_camera
+from ucam_serial_camera import setup_camera
 
 #
 # Match the take_photo module with the above
