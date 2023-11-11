@@ -1,8 +1,9 @@
 ## Initial Image
 1. Startup the Raspberry Pi Imager
-2. Choose "Raspberry Pi OS (32-bit)"
-3. Choose drive "D:\" for SD card
-4. Click "Cog" for settings:
+2. Select RPi OS (Other)
+3. Choose "Raspberry Pi OS (legacy) lite (Bullseye, No desktop, 32-Bit)"
+4. Choose drive "D:\" for SD card
+5. Click "Cog" for settings:
    1.  Set image customization options: to always use
    2.  Set hostname to: "satellite" or "ground"
    3.  Enable SSH: use password authentication
@@ -10,7 +11,7 @@
    5.  Configure wireless LAN to automatically join: SSID, password
    6.  Set locale to US/New York, keyboard us
    5. Save  
-6. Click "WRITE", OK
+6. Click "WRITE", YES
 
 ## Config
 1. Open up the config.txt on the SD card filesystem
