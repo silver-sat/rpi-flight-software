@@ -38,10 +38,10 @@ In addition to the payload baord, this testing procedure requires an internet co
 
 1. Use a micro-USB cable from the laptop or use another source of +5V and GND to power the raspberry pi (pins 2 and 6). 
 
-2. In the absence of the payload board and triple voted STATES lines, the `satellite-gpio-ucam-test` setup will monitor the GPIO pins 31, 33, 35, 37 to check which of 31, 33, 35 is connected by a jumper wire to pin 37.
-  * If pin 31 is connected to pin 37, the rapberry pi will execute the tweet mode code and shutdown;
-  * If pin 33 is connected to pin 37, it will execute the photo mode code and shutdown;
-  * If pin 35 is connected to pin 37, it will boot up and not shutdown. 
+2. In the absence of the payload board and triple voted STATES lines, the `satellite-gpio-ucam-test` setup will monitor the GPIO pins 29, 31, 33, 35 to check which of 29, 31, 33 is connected by a jumper wire to pin 35.
+  * If pin 29 is connected to pin 35, the rapberry pi will execute the tweet mode code and shutdown;
+  * If pin 31 is connected to pin 35, it will execute the photo mode code and shutdown;
+  * If pin 33 is connected to pin 35, it will boot up and not shutdown. 
 The last option makes it possible to ssh into the raspberry pi without it shuting down unexpectedly.
 
 3. To execute the tweet or photo mode scripts on a raspberry pi outside the the bootup procedure change directory to the payload directory and execute `python3 photo.py` or `python3 tweet.py`.
