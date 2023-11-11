@@ -17,13 +17,13 @@ DPIN3 = 22 # phyiscal pin 15
 SHUTDOWN = [ DPIN1, DPIN2, DPIN3 ]
 
 # BCM number serial switch pin
-SERIALPIN = 5 # physical pin 29
-
+SERIALPIN = 26 # physical pin 37 
+  
 # BCM numbers JUMPER pins
-JPIN3 = 6  # physical pin 31
-JPIN2 = 13 # physical pin 33
-JPIN1 = 19 # physical pin 35
-JPIN0 = 26 # physical pin 37
+JPIN3 = 5  # physical pin 29
+JPIN2 = 6  # physical pin 31
+JPIN1 = 13 # physical pin 33
+JPIN0 = 19 # physical pin 35
 
 JUMPERS = [ JPIN0, JPIN1, JPIN2, JPIN3 ]
 
