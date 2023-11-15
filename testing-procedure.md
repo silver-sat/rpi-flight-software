@@ -12,6 +12,8 @@ In addition to the payload baord, this testing procedure requires an internet co
 
 1. In Windows 11, under Settings, Network & Internet select "Mobile hotspot". Configure the hotspot to use the SSID "SilverSat",  password "silversat", and the "2.4GHz" band. Turn off "Power saving". Turn the hotspot to "on". Note that the Windows 11 computer must be connected to the internet, generally by its own WiFi connection.
 
+2. If photo mode is desired on the payload board, connect the jumper header pins 3,4,5 (states) to GND to pull them low to indicate photo mode.
+
 ### Observation of Tweets
 
 1. Go to the URL: [NathanE15158060](https://twitter.com/NathanE15158060)
@@ -26,17 +28,19 @@ In addition to the payload baord, this testing procedure requires an internet co
 
 4. Use the password `silversat` to log into the running raspberry pi.
 
-5. Check the contents of the `.startup.log` file in the home directory of the `pi` user: `tail -f .startup.log`
+5. Note that the time will likely be wrong. use `sudo ntpdate -u 0.pool.ntp.org' to set the time. 
 
-6. Old startup logs are at `.startup.log.1`, `.startup.log.2`, etc. so you can see what happened during previous payload bootups. The last 10 log files are retained.
+6. Check the contents of the `.startup.log` file in the home directory of the `pi` user: `tail -f .startup.log`
 
-7. The raspberry pi will shutdown as soon as the tweet or photo mode program has run. To stop this from happening, kill the .startup.sh process: `sudo pkill -9 -f .startup.sh`
+7. Old startup logs are at `.startup.log.1`, `.startup.log.2`, etc. so you can see what happened during previous payload bootups. The last 10 log files are retained.
 
-8. To stop the raspberry pi from shutting down, create a `.noshutdown` file in the home directory. For example: `touch .noshutdown`
+8. The raspberry pi will shutdown as soon as the tweet or photo mode program has run. To stop this from happening, kill the .startup.sh process: sudo pkill -9 -f .startup.sh
 
-9. To ensure the payload board takes a photo (with 120 second wait after boot), connect the three states pins on the side header (3,4,5) to GND (8). 
+9. Alternatively, create the file `.noshutdown` in `/home/pi` to stop the RPi startup script shuting down after it attempts the photo (or tweet): `touch ~/.noshutdown`
 
-10. To execute the tweet or photo mode scripts on a raspberry pi outside the the bootup procedure change directory to the payload directory and execute `python3 photo.py` or `python3 tweet.py`.
+10. Check the directory `~/photos` for evidence of a photo.
+
+11. To execute the tweet or photo mode scripts on a raspberry pi outside the the bootup procedure change directory to the payload directory and execute `python3 photo.py` or `python3 tweet.py`.
 
 ## Testing configuration: Raspberry Pi without Payload board using WiFi for internet connection
 
