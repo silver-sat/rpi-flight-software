@@ -30,9 +30,13 @@ In addition to the payload baord, this testing procedure requires an internet co
 
 6. Old startup logs are at `.startup.log.1`, `.startup.log.2`, etc. so you can see what happened during previous payload bootups. The last 10 log files are retained.
 
-7. The raspberry pi will shutdown as soon as the tweet or photo mode program has run. To stop this from happening, kill the .startup.sh process: pkill -9 -f .startup.sh
+7. The raspberry pi will shutdown as soon as the tweet or photo mode program has run. To stop this from happening, kill the .startup.sh process: `sudo pkill -9 -f .startup.sh`
 
-8. To execute the tweet or photo mode scripts on a raspberry pi outside the the bootup procedure change directory to the payload directory and execute `python3 photo.py` or `python3 tweet.py`.
+8. To stop the raspberry pi from shutting down, create a `.noshutdown` file in the home directory. For example: `touch .noshutdown`
+
+9. To ensure the payload board takes a photo (with 120 second wait after boot), connect the three states pins on the side header (3,4,5) to GND (8). 
+
+10. To execute the tweet or photo mode scripts on a raspberry pi outside the the bootup procedure change directory to the payload directory and execute `python3 photo.py` or `python3 tweet.py`.
 
 ## Testing configuration: Raspberry Pi without Payload board using WiFi for internet connection
 
