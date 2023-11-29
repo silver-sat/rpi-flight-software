@@ -10,11 +10,13 @@ python3 .gpioreadall.py
 # Set the SHUTDOWN pins
 $ASPI python3 ./payload/shutdown.py RUNNING
 
+# Set the serial select to RADIO
+$ASPI python3 ./payload/serialselect.py RADIO
+
 # Determine what to do...
 MODE=`$ASPI python3 ./payload/mode.py`
 
 if [ "$MODE" = "TWEET" ]; then
-  $ASPI python3 ./payload/serialselect.py RADIO
   if ! sh ./payload/network-startup.sh; then
     $ASPI python3 ./payload/shutdown.py FINISHED
     python3 .gpioreadall.py
@@ -39,7 +41,6 @@ if [ "$MODE" = "PHOTO" ]; then
     true # rfkill unblock wlan
   fi
 elif [ "$MODE" = "TWEET" ]; then
-  # $ASPI python3 ./payload/serialselect.py RADIO
   time -p $ASPI python3 -u ./payload/tweet.py
   $ASPI python3 ./payload/shutdown.py FINISHED
   python3 .gpioreadall.py
