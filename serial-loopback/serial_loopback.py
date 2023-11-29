@@ -8,7 +8,7 @@ import itertools
 import hashlib
 import random
 
-serial_baud = 9600
+baud = 9600
 length = 1024
     
 # open serial
