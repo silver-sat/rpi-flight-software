@@ -14,15 +14,16 @@ $ASPI python3 ./payload/shutdown.py RUNNING
 MODE=`$ASPI python3 ./payload/mode.py`
 
 if [ "$MODE" = "TWEET" ]; then
+  $ASPI python3 ./payload/serialselect.py RADIO
   if ! sh ./payload/network-startup.sh; then
-	$ASPI python3 ./payload/shutdown.py FINISHED
+    $ASPI python3 ./payload/shutdown.py FINISHED
     python3 .gpioreadall.py
     if [ ! -f .noshutdown ]; then
       shutdown -h now
-	else
-	  true # rfkill unblock wlan
+    else
+      true # rfkill unblock wlan
     fi
-	exit
+    exit
   fi
 fi
 
@@ -35,17 +36,17 @@ if [ "$MODE" = "PHOTO" ]; then
   if [ ! -f .noshutdown ]; then
     shutdown -h now
   else
-	true # rfkill unblock wlan
+    true # rfkill unblock wlan
   fi
 elif [ "$MODE" = "TWEET" ]; then
-  $ASPI python3 ./payload/serialselect.py RADIO
+  # $ASPI python3 ./payload/serialselect.py RADIO
   time -p $ASPI python3 -u ./payload/tweet.py
   $ASPI python3 ./payload/shutdown.py FINISHED
   python3 .gpioreadall.py
   if [ ! -f .noshutdown ]; then
     shutdown -h now
   else
-	true # rfkill unblock wlan
+    true # rfkill unblock wlan
   fi
 else
   true # rfkill unblock wlan
