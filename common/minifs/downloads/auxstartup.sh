@@ -1,20 +1,32 @@
 set -x
+
 # . .params.sh
 GROUND_IP=192.168.100.101
 
-rfkill list
-ifconfig -a
-route -n
+# sed -i 's/^dtoverlay=vc4-kms-v3d.*/#dtoverlay=vc4-kms-v3d/' /boot/config.txt
+# /usr/bin/tvservice -o
+# rfkill block wifi
 
-# cp rpi-flight-software/common/etc/overhead.jpg photos/photo-100.jpg
+# clear the photo folder
+rm -f photos/photo-*.jpg
 
-# find rpi-flight-software -type f | fgrep -v '/.git/' | xargs -n 10 md5sum 
-# find photos -type f | xargs -n 10 md5sum 
+# 62265 bytes
+# cp rpi-flight-software/common/etc/overhead.jpg photo-0000100.jpg
+
+# 41762 bytes
+# cp rpi-flight-software/common/etc/group.jpg photo-0000101.jpg
+
+# post to the silversat account
+sed -i 's/^TWITTERCRED=.*$/TWITTERCRED="silversat.ssapp"/' /home/pi/.params.sh
+
+# post to the edwardsnj account
+# sed -i 's/^TWITTERCRED=.*$/TWITTERCRED="edwardsnj.ssapp"/' /home/pi/.params.sh
+
+echo "/home/pi/.parms.sh"
+cat /home/pi/.params.sh
+
 ls -l photos
 
 sh ./.minifs/ul.sh ${GROUND_IP} 5001 .startup.log
 sh ./.minifs/ul.sh ${GROUND_IP} 5001 .startup.log.1
 sh ./.minifs/ul.sh ${GROUND_IP} 5001 .startup.log.2
-sh ./.minifs/ul.sh ${GROUND_IP} 5001 .startup.log.3
-sh ./.minifs/ul.sh ${GROUND_IP} 5001 .startup.log.4
-sh ./.minifs/ul.sh ${GROUND_IP} 5001 .startup.log.5
