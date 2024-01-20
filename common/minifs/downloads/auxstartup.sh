@@ -16,6 +16,10 @@ rm -f photos/photo-*.jpg
 # 41762 bytes
 # cp rpi-flight-software/common/etc/group.jpg photo-0000101.jpg
 
+# Get the small photo
+# sh ./.minifs/dl.sh ${GROUND_IP} 5001 anti-static-mat.jpg
+# mv anti-static-mat.jpg rpi-flight-software/common/etc
+
 # 8412 bytes
 # cp rpi-flight-software/common/etc/anti-static-mat.jpg photo-0000102.jpg
 
