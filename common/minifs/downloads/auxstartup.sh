@@ -16,6 +16,9 @@ rm -f photos/photo-*.jpg
 # 41762 bytes
 # cp rpi-flight-software/common/etc/group.jpg photo-0000101.jpg
 
+# 8412 bytes
+# cp rpi-flight-software/common/etc/anti-static-mat.jpg photo-0000102.jpg
+
 # post to the silversat account
 sed -i 's/^TWITTERCRED=.*$/TWITTERCRED="silversat.ssapp"/' /home/pi/.params.sh
 
