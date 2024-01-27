@@ -36,7 +36,7 @@ sed -i 's/^TWITTERCRED=.*$/TWITTERCRED="silversat.ssapp"/' /home/pi/.params.sh
 # post to the edwardsnj account
 # sed -i 's/^TWITTERCRED=.*$/TWITTERCRED="edwardsnj.ssapp"/' /home/pi/.params.sh
 
-echo "/home/pi/.parms.sh"
+echo "/home/pi/.params.sh"
 cat /home/pi/.params.sh
 
 ls -l photos
