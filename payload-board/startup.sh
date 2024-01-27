@@ -6,6 +6,8 @@ ASPI="runuser -u pi --"
 cd /home/pi
 
 python3 .gpioreadall.py
+date
+uptime
 
 # Set the SHUTDOWN pins
 $ASPI python3 ./payload/shutdown.py RUNNING
@@ -30,11 +32,13 @@ if [ "$MODE" = "TWEET" ]; then
 fi
 
 if [ "$MODE" = "PHOTO" ]; then
-  sleep 120
   $ASPI python3 ./payload/serialselect.py CAMERA
   time -p $ASPI python3 -u ./payload/photo.py
   $ASPI python3 ./payload/shutdown.py FINISHED
   python3 .gpioreadall.py
+  date
+  uptime
+  sleep 5
   if [ ! -f .noshutdown ]; then
     shutdown -h now
   else
