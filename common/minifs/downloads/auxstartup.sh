@@ -7,6 +7,14 @@ GROUND_IP=192.168.100.101
 # /usr/bin/tvservice -o
 # rfkill block wifi
 
+# cat <<EOF >>/boot/config.txt
+# dtoverlay=gpio-poweroff,gpiopin=17
+# dtoverlay=gpio-poweroff,gpiopin=27
+# dtoverlay=gpio-poweroff,gpiopin=22
+# EOF
+
+rm -f .noshutdown
+
 # clear the photo folder
 rm -f photos/photo-*.jpg
 
@@ -36,3 +44,4 @@ ls -l photos
 sh ./.minifs/ul.sh ${GROUND_IP} 5001 .startup.log
 sh ./.minifs/ul.sh ${GROUND_IP} 5001 .startup.log.1
 sh ./.minifs/ul.sh ${GROUND_IP} 5001 .startup.log.2
+sh ./.minifs/ul.sh ${GROUND_IP} 5001 .startup.log.3
