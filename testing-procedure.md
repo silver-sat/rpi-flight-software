@@ -28,13 +28,13 @@ In addition to the payload baord, this testing procedure requires an internet co
 
 4. Use the password `silversat` to log into the running raspberry pi.
 
-5. Note that the time will likely be wrong. use `sudo ntpdate -u 0.pool.ntp.org' to set the time. 
+5. Note that the time will likely be wrong. use `sudo ntpdate -u 0.pool.ntp.org` to set the time. 
 
 6. Check the contents of the `.startup.log` file in the home directory of the `pi` user: `tail -f .startup.log`
 
 7. Old startup logs are at `.startup.log.1`, `.startup.log.2`, etc. so you can see what happened during previous payload bootups. The last 10 log files are retained.
 
-8. The raspberry pi will shutdown as soon as the tweet or photo mode program has run. To stop this from happening, kill the .startup.sh process: sudo pkill -9 -f .startup.sh
+8. The raspberry pi will shutdown as soon as the tweet or photo mode program has run. To stop this from happening, kill the .startup.sh process: `sudo pkill -9 -f .startup.sh`
 
 9. Alternatively, create the file `.noshutdown` in `/home/pi` to stop the RPi startup script shuting down after it attempts the photo (or tweet): `touch ~/.noshutdown`
 
