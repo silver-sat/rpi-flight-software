@@ -6,15 +6,15 @@ from pins import SERIALPIN, pinstr
 
 import sys
 
-# Select radio (default): False
-# Select camera: True
+# Select radio (default): True
+# Select camera: False
 
-setvalue = False
+setvalue = True
 if len(sys.argv) >= 2:
     if sys.argv[1] == "RADIO":
-        setvalue = False
-    elif sys.argv[1] == "CAMERA":
         setvalue = True
+    elif sys.argv[1] == "CAMERA":
+        setvalue = False
 
 # Set up pins
 init_pins(outpins=[SERIALPIN])
