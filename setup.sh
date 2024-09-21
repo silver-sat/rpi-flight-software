@@ -13,7 +13,7 @@ export GITURL="https://raw.githubusercontent.com/silver-sat/$GITNAME"
 export RFSROOT="/home/pi/$GITNAME"
 
 # Make sure git is installed
-sudo apt-get update
+sudo apt-get update -y
 sudo apt-get install -y git
 
 # Ensure we are in the pi user's home directory
