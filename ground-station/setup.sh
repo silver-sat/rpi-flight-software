@@ -10,8 +10,9 @@ setparamifnotset GROUND_IP 192.168.100.101
 setparamifnotset GROUND_CALL MYCALL-8
 setparamifnotset SATELLITE_IP 192.168.100.102
 setparamifnotset SATELLITE_CALL MYCALL-9
-setparamifnotset KISS_MTU 200
-setparamifnotset BAUD 19200
+setparamifnotset KISS_MTU 195
+setparamifnotset BAUD 9600
+setparamifnotset TWITTERCRED edwardsnj.ssapp
 
 if [ `fgrep ${SATELLITE_IP} /etc/ntp.conf | wc -l` -eq 0 ]; then
 
