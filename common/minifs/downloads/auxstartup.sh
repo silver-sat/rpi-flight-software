@@ -13,31 +13,31 @@ GROUND_IP=192.168.100.101
 # dtoverlay=gpio-poweroff,gpiopin=22
 # EOF
 
-rm -f .noshutdown
+# rm -f .noshutdown
 
 # clear the photo folder
-rm -f photos/photo-*.jpg
+# rm -f photos/photo-*.jpg
 
 # 62265 bytes
-# cp rpi-flight-software/common/etc/overhead.jpg photo-0000100.jpg
+# runuser -u pi -- cp rpi-flight-software/common/etc/overhead.jpg photo-0000100.jpg
 
 # 41762 bytes
-# cp rpi-flight-software/common/etc/group.jpg photo-0000101.jpg
+# runuser -u pi -- cp rpi-flight-software/common/etc/group.jpg photo-0000101.jpg
 
 # Get the small photo
-# sh ./.minifs/dl.sh ${GROUND_IP} 5001 anti-static-mat.jpg rpi-flight-software/common/etc/anti-static-mat.jpg
+# runuser -u pi -- sh ./.minifs/dl.sh ${GROUND_IP} 5001 anti-static-mat.jpg rpi-flight-software/common/etc/anti-static-mat.jpg
 
 # 8412 bytes
-# cp rpi-flight-software/common/etc/anti-static-mat.jpg photo-0000102.jpg
+# runuser -u pi -- cp rpi-flight-software/common/etc/anti-static-mat.jpg photo-0000102.jpg
 
 # post to the silversat account
-sed -i 's/^TWITTERCRED=.*$/TWITTERCRED="silversat.ssapp"/' /home/pi/.params.sh
+# sed -i 's/^TWITTERCRED=.*$/TWITTERCRED="silversat.ssapp"/' /home/pi/.params.sh
 
 # post to the edwardsnj account
 # sed -i 's/^TWITTERCRED=.*$/TWITTERCRED="edwardsnj.ssapp"/' /home/pi/.params.sh
 
-echo "/home/pi/.params.sh"
-cat /home/pi/.params.sh
+# echo "/home/pi/.params.sh"
+# cat /home/pi/.params.sh
 
 ls -l photos
 
