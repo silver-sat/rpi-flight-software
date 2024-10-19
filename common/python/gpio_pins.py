@@ -28,7 +28,7 @@ def write_pins(pins,values):
         print("GPIO pin %d set to %s"%(p,pinstr(v)),file=sys.stderr)
     return
 
-def read_pins(pins):
+def read_pins(pins, step=1):
     j = test_jumpers(JUMPERS)
     if j == 1:
         print("GPIO JUMPERS 1 (None)",file=sys.stderr)
@@ -39,6 +39,13 @@ def read_pins(pins):
     elif j == 3:
         print("GPIO JUMPERS 3 (True)",file=sys.stderr)
         return  [ True ] * len(pins)
+    elif j == 4: #SSDV
+        if step == 1:
+            print("GPIO JUMPERS 4 (True)",file=sys.stderr)
+            return  [ True ] * len(pins)
+        elif step == 2:
+            print("GPIO JUMPERS 4 (False)",file=sys.stderr)
+            return  [ False ] * len(pins)
     out = []
     for pin in pins:
         if GPIO.input(pin) == GPIO.HIGH:

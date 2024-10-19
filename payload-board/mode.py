@@ -1,18 +1,39 @@
 
 import find_common_modules
 
-from gpio_pins import init_pins, read_pins
-from pins import STATES
+from gpio_pins import init_pins, read_pins, write_pins
+from pins import STATES, SHUTDOWN
 from vote import voting
 
+HIGH = True
+LOW = False
+
+# See shutdown.py for logic
+
 # initialize pins
-init_pins(inpins=STATES)
+init_pins(inpins=STATES,outpins=SHUTDOWN)
 
 # read STATES pins
-pins = read_pins(STATES)
+pins1 = read_pins(STATES,1)
 
-if None not in pins:
-    if voting(pins):
-        print("TWEET")
-    else:
-        print("PHOTO")
+if None in pins:
+    sys.exit(0)
+    
+time.sleep(2)
+
+write_pins(SHUTDOWN, LOW) # False/LOW indicates RUNNING
+
+time.sleep(2)
+
+pins2 = read_pins(STATES,2)
+
+status = (voting(pins1),voting(pins2))
+
+if status == (HIGH,HIGH):
+    print("TWEET")
+elif status == (HIGH,LOW):
+    print("SSDV")    
+elif status == (LOW,HIGH):
+    print("PHOTO?????")
+elif status == (LOW,LOW):
+    print("PHOTO")

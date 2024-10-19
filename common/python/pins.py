@@ -20,12 +20,13 @@ SHUTDOWN = [ DPIN1, DPIN2, DPIN3 ]
 SERIALPIN = 26 # physical pin 37 
   
 # BCM numbers JUMPER pins
+JPIN4 = 0  # physical pin 27
 JPIN3 = 5  # physical pin 29
 JPIN2 = 6  # physical pin 31
 JPIN1 = 13 # physical pin 33
 JPIN0 = 19 # physical pin 35
 
-JUMPERS = [ JPIN0, JPIN1, JPIN2, JPIN3 ]
+JUMPERS = [ JPIN0, JPIN1, JPIN2, JPIN3, JPIN4 ]
 
 def pinstr(v):
     if v == True:
