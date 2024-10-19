@@ -9,7 +9,7 @@ cd /home/pi
 sleep 60 &
 WAITPID=$!
 
-function doshutdown() {
+doshutdown() {
   if [ ! -f .noshutdown ]; then
     wait $WAITPID
     $ASPI python3 ./payload/shutdown.py FINISHED

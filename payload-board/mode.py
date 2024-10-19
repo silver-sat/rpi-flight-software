@@ -1,4 +1,6 @@
 
+import sys, time
+
 import find_common_modules
 
 from gpio_pins import init_pins, read_pins, write_pins
@@ -16,7 +18,7 @@ init_pins(inpins=STATES,outpins=SHUTDOWN)
 # read STATES pins
 pins1 = read_pins(STATES,1)
 
-if None in pins:
+if None in pins1:
     sys.exit(0)
     
 time.sleep(2)
