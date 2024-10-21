@@ -34,8 +34,8 @@ status = (voting(pins1),voting(pins2))
 if status == (HIGH,HIGH):
     print("TWEET")
 elif status == (HIGH,LOW):
-    print("SSDV")    
+    print("?????")    
 elif status == (LOW,HIGH):
-    print("PHOTO?????")
+    print("SSDV")
 elif status == (LOW,LOW):
     print("PHOTO")
