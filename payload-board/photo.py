@@ -23,8 +23,8 @@ from ucam_take_photo import take_photo
 camera = setup_camera()
 
 filename = photo_filename()
-thumbfn = thumb_filename()
-ssdvfn = ssdv_filename()
+thumbfn = thumb_filename(filename)
+ssdvfn = ssdv_filename(filename)
 
 if take_photo(camera, filename):
     make_thumb(2,filename,thumbfn)
