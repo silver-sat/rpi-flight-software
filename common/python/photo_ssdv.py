@@ -1,5 +1,5 @@
 
 import os
 
-def make_ssnv(imgfn,ssdvfn):
+def make_ssdv(imgfn,ssdvfn):
     os.system("sh /home/pi/.ssdv.sh %s %s")
