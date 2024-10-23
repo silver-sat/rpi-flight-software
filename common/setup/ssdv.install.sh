@@ -12,4 +12,4 @@ mv "ssdv-$COMMIT" .ssdvdist
 rm -f ssdv.zip
 ( cd .ssdvdist; make )
 ln -s .common/scripts/ssdv.sh .ssdv.sh
-ls -l .ssdv
+ls -l .ssdv.sh
