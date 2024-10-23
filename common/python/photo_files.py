@@ -56,13 +56,16 @@ def most_recent_photo():
         return f
     return None
                 
-def remove_photo(filename):
-    if os.path.exists(filename):
-        try:
-            os.unlink(filename)
-            print("Photo %s removed."%(os.path.split(filename)[1],),file=sys.stderr)
-        except IOError:
-            print("Photo %s removal failed."%(os.path.split(filename)[1],),file=sys.stderr)
-    else:
-        print("Photo %s not found."%(os.path.split(filename)[1],),file=sys.stderr)
+def remove_photo(photo_filename):
+    thumbfn = thumb_filename(photo_filename)
+    ssdvfn = ssdv_filename(photo_filename)
+    for filename in [ photo_filename, thumbfn, ssdvfn ]:
+        if os.path.exists(filename):
+            try:
+                os.unlink(filename)
+                print("File %s removed."%(os.path.split(filename)[1],),file=sys.stderr)
+            except IOError:
+                print("File %s removal failed."%(os.path.split(filename)[1],),file=sys.stderr)
+        else:
+            print("File %s not found."%(os.path.split(filename)[1],),file=sys.stderr)
     return

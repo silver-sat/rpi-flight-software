@@ -1,7 +1,5 @@
 #!/bin/sh
 
-set -x
-
 . /home/pi/.params.sh
 
 IMGFN="$1"
