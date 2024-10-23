@@ -9,3 +9,4 @@ def make_thumb(scale,imgfn,thumbfn):
     THUMB_SIZE=(w,h)
     image.thumbnail(THUMB_SIZE)
     image.save(thumbfn)
+    print("Thumbnail placed in filename:",thumbfn,file=sys.stderr)
