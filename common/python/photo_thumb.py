@@ -1,4 +1,6 @@
 
+import sys
+
 from PIL import Image
 
 def make_thumb(scale,imgfn,thumbfn):
