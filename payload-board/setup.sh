@@ -2,7 +2,6 @@
 
 set -x
 
-
 . .common/setup/params.sh
 
 # ntpdate is needed in network-startup.sh
@@ -18,7 +17,8 @@ setparamifnotset SATELLITE_IP 192.168.100.102
 setparamifnotset SATELLITE_CALL MYCALL-9
 setparamifnotset KISS_MTU 195
 setparamifnotset BAUD 9600
-setparamifnotset SSDVSIZE 200
+setparamifnotset SSDVSIZE 195
+setparamifnotset SSDVQUAL 4
 setparamifnotset TWITTERCRED edwardsnj.ssapp
 
 # Don't need ax25 if using tncattach
