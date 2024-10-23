@@ -8,8 +8,10 @@ URL="https://codeload.github.com/fsphil/ssdv/zip/$COMMIT"
 cd /home/pi
 wget -q -O ssdv.zip "$URL"
 unzip ssdv.zip
+rm -rf .ssdvdist
 mv "ssdv-$COMMIT" .ssdvdist
 rm -f ssdv.zip
 ( cd .ssdvdist; make )
+rm -f .ssdv.sh
 ln -s .common/scripts/ssdv.sh .ssdv.sh
 ls -l .ssdv.sh
