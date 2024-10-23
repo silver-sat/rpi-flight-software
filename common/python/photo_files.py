@@ -34,11 +34,11 @@ def photo_filename():
     return filename
 
 def thumb_filename(photo_filename):
-    index = photo_sort_key(filename)
+    index = photo_sort_key(photo_filename)
     return "%s/%s%06d%s"%(photo_dir,thumb_prefix,index,thumb_extn)
 
 def ssdv_filename(photo_filename):
-    index = photo_sort_key(filename)
+    index = photo_sort_key(photo_filename)
     return "%s/%s%06d%s"%(photo_dir,ssdv_prefix,index,ssdv_extn)
 
 def photo_sort_key(filename):
