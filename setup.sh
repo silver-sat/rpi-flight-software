@@ -12,12 +12,12 @@ export GITREPO="https://github.com/silver-sat/$GITNAME.git"
 export GITURL="https://raw.githubusercontent.com/silver-sat/$GITNAME"
 export RFSROOT="/home/pi/$GITNAME"
 
-sudo apt-get install -y ntpdate || exit 1
+sudo DEBIAN_FRONTEND="noninteractive" apt-get install -y ntpdate || exit 1
 sudo ntpdate -u pool.ntp.org || exit 1
 
 # Make sure git is installed
-sudo apt-get update -y
-sudo apt-get install -y git
+sudo DEBIAN_FRONTEND="noninteractive" apt-get update -y
+sudo DEBIAN_FRONTEND="noninteractive" apt-get install -y git
 
 # Ensure we are in the pi user's home directory
 cd /home/pi
