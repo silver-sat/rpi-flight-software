@@ -12,6 +12,9 @@ export GITREPO="https://github.com/silver-sat/$GITNAME.git"
 export GITURL="https://raw.githubusercontent.com/silver-sat/$GITNAME"
 export RFSROOT="/home/pi/$GITNAME"
 
+sudo apt-get install -y ntpdate
+sudo ntpdate -u 0.pool.ntp.org || exit 1
+
 # Make sure git is installed
 sudo apt-get update -y
 sudo apt-get install -y git
@@ -28,6 +31,10 @@ fi
 # Clone rpi-flight-software repository (this pulls down all configurations)!
 if [ ! -d $RFSROOT ]; then
   git clone $GITREPO
+  if [ ! -d $RFSROOT ]; then
+    echo "git not installed!" 1>&2
+	exit 1
+  fi
 else
   ( cd $RFSROOT; git pull )
 fi
