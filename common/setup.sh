@@ -20,4 +20,4 @@ sh $COMMON/setup/dhcpcd.append.sh || exit 1
 sh $COMMON/setup/stop.daily.updates.sh || exit 1
 sh $COMMON/setup/decrypt-creds.sh || exit 1
 sh $COMMON/setup/git-config.sh || exit 1
-echo "Done."
+echo "Common setup done."

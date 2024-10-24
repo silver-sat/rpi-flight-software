@@ -5,8 +5,8 @@ set -x
 . .common/setup/params.sh
 
 # ntpdate is needed in network-startup.sh
-sudo apt install -y ntpdate socat
-sudo apt remove -y ntp
+sudo apt-get install -y ntpdate socat
+sudo apt-get remove -y ntp
 sudo systemctl stop systemd-timesyncd.service
 sudo systemctl disable systemd-timesyncd.service
 # sudo systemctl restart dhcpcd.service
@@ -31,7 +31,7 @@ if fgrep -q disable-wifi /boot/config.txt; then
 fi
 
 sudo sed -e '$r /dev/stdin' -i /boot/config.txt <<EOF
-dt-overlay=disable-wifi
+#dt-overlay=disable-wifi
 EOF
 
 rm -f .minifs
