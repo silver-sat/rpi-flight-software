@@ -1,6 +1,6 @@
 #!/bin/sh
 
-echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
+echo 'debconf debconf/frontend select Noninteractive' | sudo debconf-set-selections
 
 
 
