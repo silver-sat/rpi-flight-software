@@ -24,10 +24,10 @@ doshutdown() {
   exit
 }
 
-. /home/pi/.params.sh
 python3 .gpioreadall.py
 date
 uptime
+. /home/pi/.params.sh
 
 # Determine what to do...
 MODE=`$ASPI python3 ./payload/mode.py`
@@ -41,21 +41,17 @@ if [ "$MODE" = "TWEET" ]; then
     doshutdown
   fi
   
-fi
+  time -p $ASPI python3 -u ./payload/tweet.py
 
-if [ "$MODE" = "PHOTO" ]; then
+  doshutdown
+
+elif [ "$MODE" = "PHOTO" ]; then
 
   # Set the serial select to CAMERA
   $ASPI python3 ./payload/serialselect.py CAMERA
   
   time -p $ASPI python3 -u ./payload/photo.py
   
-  doshutdown
-
-elif [ "$MODE" = "TWEET" ]; then
-
-  time -p $ASPI python3 -u ./payload/tweet.py
-
   doshutdown
 
 elif [ "$MODE" = "SSDV" ]; then
