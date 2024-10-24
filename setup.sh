@@ -12,8 +12,8 @@ export GITREPO="https://github.com/silver-sat/$GITNAME.git"
 export GITURL="https://raw.githubusercontent.com/silver-sat/$GITNAME"
 export RFSROOT="/home/pi/$GITNAME"
 
-sudo apt-get install -y ntpdate
-sudo ntpdate -u 0.pool.ntp.org || exit 1
+sudo apt-get install -y ntpdate || exit 1
+sudo ntpdate -u pool.ntp.org || exit 1
 
 # Make sure git is installed
 sudo apt-get update -y
