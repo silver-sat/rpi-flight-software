@@ -31,4 +31,4 @@ if [ -f /home/pi/.startup.sh ]; then
 fi
 exit 0
 EOF
-chmod a+x /etc/rc.local
+sudo chmod a+x /etc/rc.local
