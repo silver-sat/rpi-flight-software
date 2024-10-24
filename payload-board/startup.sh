@@ -24,6 +24,7 @@ doshutdown() {
   exit
 }
 
+. .params.sh
 python3 .gpioreadall.py
 date
 uptime
