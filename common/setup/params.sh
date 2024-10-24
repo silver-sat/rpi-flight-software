@@ -32,6 +32,10 @@ setparam() {
 	readparams
 }
 
+showparam() {
+  grep -v "^$1=" $PARAMS 
+}
+ 
 setparamifnotset() {
   if nothasparam "$1"; then
     setparam "$1" "$2"

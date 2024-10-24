@@ -8,3 +8,4 @@ fi
 . /home/pi/.common/setup/params.sh
 
 setparam "$1" "$2"
+showparam "$1"
