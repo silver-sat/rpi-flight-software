@@ -17,3 +17,6 @@ for enccredfile in $COMMON/python/*.gpg; do
     gpg --no-symkey-cache --passphrase "$PASSWORD" --batch -d "$enccredfile" > "$credfile"
   fi
 done
+
+# tolerate errors in decryption
+exit 0
