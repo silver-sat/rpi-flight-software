@@ -5,8 +5,8 @@ set -x
 . .common/setup/params.sh
 
 # ntpdate is needed in network-startup.sh
-sudo apt-get install -y ntpdate socat
-sudo apt-get remove -y ntp
+sudo apt install -y ntpdate socat
+sudo apt remove -y ntp
 sudo systemctl stop systemd-timesyncd.service
 sudo systemctl disable systemd-timesyncd.service
 # sudo systemctl restart dhcpcd.service

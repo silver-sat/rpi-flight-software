@@ -1,19 +1,13 @@
 #!/bin/sh
 
-sudo apt-get update -y
-sudo apt-get upgrade -y
+echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
 
-sudo apt-get install -y git 
-sudo apt-get install -y ax25-tools 
-sudo apt-get install -y ax25-apps 
-sudo apt-get install -y gpg 
-sudo apt-get install -y raspi-gpio 
-sudo apt-get install -y time 
-sudo apt-get install -y rfkill 
-sudo apt-get install -y python3 
-sudo apt-get install -y python3-pip
+sudo apt update -y
+sudo apt upgrade -y
+sudo apt dist-upgrade -y
+sudo apt autoremove -y
 
-sudo apt -y autoremove
+sudo apt install -y git ax25-tools ax25-apps gpg raspi-gpio time rfkill python3 python3-pip
 
 sudo systemctl stop packagekit
 sudo systemctl disable packagekit
