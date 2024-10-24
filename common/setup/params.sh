@@ -33,7 +33,7 @@ setparam() {
 }
 
 showparam() {
-  grep -v "^$1=" $PARAMS 
+  grep "^$1=" $PARAMS 
 }
  
 setparamifnotset() {
