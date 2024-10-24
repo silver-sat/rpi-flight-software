@@ -24,6 +24,16 @@ setparamifnotset TWITTERCRED edwardsnj.ssapp
 # Don't need ax25 if using tncattach
 # sudo sed -i "s/MYCALL-0/${SATELLITE_CALL}/" /etc/ax25/axports
 
+# Disable WiFi once setup...
+if fgrep -q disable-wifi /boot/config.txt; then
+  # Already there, exit peacefully...
+  exit 0
+fi
+
+sudo sed -e '$r /dev/stdin' -i /boot/config.txt <<EOF
+dt-overlay=disable-wifi
+EOF
+
 rm -f .minifs
 ln -s ".common/minifs" .minifs
 rm -f .logrotate.sh
