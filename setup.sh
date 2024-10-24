@@ -45,6 +45,9 @@ ln -s $COMMON /home/pi/.common
 rm -f .logrotate.sh
 ln -s ".common/scripts/logrotate.sh" .logrotate.sh
 
+rm -f setparam.sh
+ln -s ".common/scripts/setparam.sh" setparam.sh
+
 rm -f /home/pi/payload
 rm -f /home/pi/.startup.sh
 
