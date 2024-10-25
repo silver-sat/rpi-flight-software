@@ -129,3 +129,4 @@ dmypy.json
 .pyre/
 common/python/twittercred.py
 *.xz
+rpi-imager-boot-manip/setup.sh
