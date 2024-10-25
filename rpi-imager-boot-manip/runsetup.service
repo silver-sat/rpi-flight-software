@@ -1,0 +1,13 @@
+[Unit]
+Description=Run SilverSat setup when network is online
+Requires=network-online.target
+After=network-online.target
+
+[Service]
+User=pi
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/boot/runsetup.sh
+
+[Install]
+WantedBy=multi-user.target
