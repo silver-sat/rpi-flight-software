@@ -76,17 +76,6 @@ KBEOF
    dpkg-reconfigure -f noninteractive keyboard-configuration
 fi
 
-cp -f /boot/setup.sh /home/pi
-chown pi.pi /home/pi/setup.sh
-chmod +x /home/pi/setup.sh
-
-cp -f /boot/params.sh /home/pi/.params.sh
-chown pi.pi /home/pi/.params.sh
-
-chmod +x /boot/runsetup.sh
-cp -f /boot/runsetup.service /etc/systemd/system
-/bin/systemctl enable runsetup.service
-
 rm -f /boot/firstrun.sh
 sed -i 's| systemd.run.*||g' /boot/cmdline.txt
 exit 0
