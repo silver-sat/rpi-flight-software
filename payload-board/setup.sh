@@ -19,6 +19,8 @@ setparamifnotset KISS_MTU 195
 setparamifnotset BAUD 9600
 setparamifnotset SSDVSIZE 195
 setparamifnotset SSDVQUAL 4
+setparamifnotset SSDVTIME 300
+setparamifnotset SSDVDELAY 1
 setparamifnotset TWITTERCRED edwardsnj.ssapp
 
 # Don't need ax25 if using tncattach
