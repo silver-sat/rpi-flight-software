@@ -1,20 +1,21 @@
 
-import datetime, os, os.path
+import datetime, os, os.path, shutil
 
 from photo_files import current_photo_count, total_photo_count, photo_sort_key
 
-textstatusfile = "/home/pi/.textstatus"
+textstatusfile = "/home/pi/.textstatus.txt"
 textstatusdefault = "[%(now)s] Twitter text status!"
-photostatusfile = "/home/pi/.photostatus"
+photostatusfile = "/home/pi/.photostatus.txt"
 photostatusdefault = "[%(now)s] Twitter photo status! Photo: %(filename)s, Size: %(size)d"
 
 def timestamp(msg):
     return "[%s] %s"%(datetime.datetime.now().ctime(),msg)
 
-def getdata(photo_filename=None):
+def getdata(photo_filename=None, **kwargs):
     if photo_filename:
         size = os.path.getsize(photo_filename)
         fname = os.path.split(photo_filename)[1]
+        diskusage = shutil.disk_usage(photo_filename)
     else:
         size = -1
         fname = ""
@@ -22,7 +23,10 @@ def getdata(photo_filename=None):
                 filename=fname,size=size,
                 photos_on_disk=current_photo_count(),
                 total_photos=total_photo_count(),
-                current_photo=photo_sort_key(fname))
+                current_photo=photo_sort_key(fname),
+                upload_time=kwargs.get("upload_time",-1),
+                disk_usage=diskusage.get("disk_usage",-1)
+                )
 
 def getfmtstr(filename,fmtstr):
     if os.path.exists(filename):

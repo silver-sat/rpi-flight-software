@@ -18,11 +18,11 @@ from send_tweet import send_text_tweet, send_photo_tweet
 filename = least_recent_photo()
 twitter = get_twitter()
 if not filename:
-    message = make_text_status()
-    if send_text_tweet(twitter,message):
-        print("Success! Text Tweet:",message,file=sys.stderr)
+    message = send_text_tweet(twitter)
+    if message:
+        print("Success! Text Tweet:", message, file=sys.stderr)
 else:
-    message = make_photo_status(filename)
-    if send_photo_tweet(twitter,message, filename):
-        print("Success! Photo Tweet:",message,file=sys.stderr)
+    message = send_photo_tweet(twitter, filename)
+    if message:
+        print("Success! Photo Tweet:", message, file=sys.stderr)
         remove_photo(filename)
