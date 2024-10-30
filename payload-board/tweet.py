@@ -11,11 +11,11 @@ import find_common_modules
 # from direct_tweet import get_twitter
 from proxy_tweet import get_twitter
 
-from photo_files import most_recent_photo, remove_photo
+from photo_files import least_recent_photo, remove_photo
 from tweet_status import make_text_status, make_photo_status
 from send_tweet import send_text_tweet, send_photo_tweet
 
-filename = most_recent_photo()
+filename = least_recent_photo()
 twitter = get_twitter()
 if not filename:
     message = make_text_status()

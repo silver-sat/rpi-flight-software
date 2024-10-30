@@ -5,7 +5,7 @@ photo_dir = '/home/pi/photos'
 photo_prefix = 'photo-'
 photo_extn = '.jpg' # include dot!
 thumb_prefix = 'thumb-'
-thumb_extn = '.jpg' # include dot!
+thumb_extn = '.jpg'
 ssdv_prefix = 'ssdv-'
 ssdv_extn = '.bin'
 
@@ -55,6 +55,25 @@ def most_recent_photo():
     for f in sorted(glob.glob(globstr),key=photo_sort_key):
         return f
     return None
+    
+def least_recent_photo():
+    # so not rely on string sorting...
+    globstr = photo_dir+"/" + photo_prefix + "*" + photo_extn
+    for f in sorted(glob.glob(globstr),key=photo_sort_key,reverse=True):
+        return f
+    return None
+                
+def current_photo_count():
+    globstr = photo_dir+"/" + photo_prefix + "*" + photo_extn
+    return len(glob.glob(globstr))
+    
+def total_photo_count():
+    if os.path.exists(last_photo_index_filename):
+        last_photo_index = int(open(last_photo_index_filename).read())  
+    else:
+        last_photo_index = 0
+    return last_photo_index
+
                 
 def remove_photo(photo_filename):
     thumbfn = thumb_filename(photo_filename)
