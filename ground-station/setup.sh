@@ -11,6 +11,8 @@ setparamifnotset SATELLITE_IP 192.168.100.102
 setparamifnotset KISS_MTU 195
 setparamifnotset BAUD 9600
 setparamifnotset TWITTERCRED edwardsnj.ssapp
+delparam GROUND_CALL
+delparam SATELLITE_CALL
 
 if [ `fgrep ${SATELLITE_IP} /etc/ntp.conf | wc -l` -eq 0 ]; then
 
