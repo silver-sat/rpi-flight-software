@@ -4,16 +4,16 @@ PARAMS=/home/pi/.params.sh
 nothasparam() {
   if [ "$(eval echo -n \$$1)" = "" ]; then
 	  true
-	else
+  else
 	  false
-	fi
+  fi
 }
 
 getpasswd() {
   if nothasparam "$2"; then
-	  stty -echo
+	stty -echo
     read -p "$1" "VAR"
-	  stty echo
+	stty echo
     setparam "$2" "${VAR}"
   fi
 }
@@ -27,9 +27,15 @@ getparam() {
 
 setparam() {
   grep -v "^$1=" $PARAMS > $PARAMS.tmp
-	mv -f $PARAMS.tmp $PARAMS
+  mv -f $PARAMS.tmp $PARAMS
   echo "$1='$2'" >> $PARAMS
-	readparams
+  readparams
+}
+
+delparam() {
+  grep -v "^$1=" $PARAMS > $PARAMS.tmp
+  mv -f $PARAMS.tmp $PARAMS
+  readparams
 }
 
 showparam() {
@@ -39,7 +45,7 @@ showparam() {
 setparamifnotset() {
   if nothasparam "$1"; then
     setparam "$1" "$2"
-	  readparams
+	readparams
   fi
 }
 
