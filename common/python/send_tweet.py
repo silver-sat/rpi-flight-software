@@ -19,7 +19,7 @@ def send_text_tweet(twitter):
         traceback.print_exc()
     return None
     
-def send_photo_tweet(twitter,message,photo_file):
+def send_photo_tweet(twitter,photo_file):
     try:
         if isinstance(photo_file,str):
             photo = open(photo_file, 'rb')
@@ -33,7 +33,7 @@ def send_photo_tweet(twitter,message,photo_file):
             print("Twitter upload_media reponse missing media_id:\n"+json.dumps(response,indent=2),file=sys.stderr)
             return None
         else:
-            message = make_photo_status(photo_file,upload_time)
+            message = make_photo_status(photo_file,upload_time=upload_time)
             repsonse = update_status(twitter, text=message, media=dict(media_ids=[str(response['media_id'])]))
             return message
     except TwitterError:

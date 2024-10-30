@@ -74,7 +74,6 @@ def total_photo_count():
         last_photo_index = 0
     return last_photo_index
 
-                
 def remove_photo(photo_filename):
     thumbfn = thumb_filename(photo_filename)
     ssdvfn = ssdv_filename(photo_filename)
