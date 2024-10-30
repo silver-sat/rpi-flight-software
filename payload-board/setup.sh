@@ -20,6 +20,8 @@ setparamifnotset SSDVQUAL 4
 setparamifnotset SSDVTIME 300
 setparamifnotset SSDVDELAY 1
 setparamifnotset TWITTERCRED edwardsnj.ssapp
+delparam GROUND_CALL
+delparam SATELLITE_CALL
 
 # Don't need ax25 if using tncattach
 # sudo sed -i "s/MYCALL-0/${SATELLITE_CALL}/" /etc/ax25/axports
