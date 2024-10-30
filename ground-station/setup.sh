@@ -7,9 +7,7 @@ set -x
 sudo apt-get install -y ntp stunnel4 socat iptables tcpdump
 
 setparamifnotset GROUND_IP 192.168.100.101
-setparamifnotset GROUND_CALL MYCALL-8
 setparamifnotset SATELLITE_IP 192.168.100.102
-setparamifnotset SATELLITE_CALL MYCALL-9
 setparamifnotset KISS_MTU 195
 setparamifnotset BAUD 9600
 setparamifnotset TWITTERCRED edwardsnj.ssapp

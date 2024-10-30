@@ -24,11 +24,11 @@ iw dev wlan0 set power_save off
 sh .logrotate.sh .tnc0.log
 /home/pi/.tncattach \
   /dev/serial0 \
-	${BAUD} \
+  ${BAUD} \
   -m ${KISS_MTU} \
-	--noipv6 \
+  --noipv6 \
   --noup \
-	-v > .tnc0.log 2>&1 &
+  -v > .tnc0.log 2>&1 &
 sleep 2
 ifconfig tnc0 ${GROUND_IP} pointopoint ${SATELLITE_IP}
 
