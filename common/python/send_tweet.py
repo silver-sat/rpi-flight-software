@@ -27,7 +27,7 @@ def send_photo_tweet(twitter,message,photo_file):
             photo = photo_file
         start = time.time()
         response = twitter.upload_media(media=photo)
-        upload_time = time.time()-start
+        upload_time = int(round(time.time()-start)) #seconds
         photo.close()
         if 'media_id' not in response:
             print("Twitter upload_media reponse missing media_id:\n"+json.dumps(response,indent=2),file=sys.stderr)

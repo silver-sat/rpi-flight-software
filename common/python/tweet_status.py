@@ -12,10 +12,10 @@ def timestamp(msg):
     return "[%s] %s"%(datetime.datetime.now().ctime(),msg)
 
 def getdata(photo_filename=None, **kwargs):
+    diskfree = "%.2f"%(shutil.disk_usage("/home/pi").free/(1024**3),)
     if photo_filename:
         size = os.path.getsize(photo_filename)
         fname = os.path.split(photo_filename)[1]
-        diskusage = shutil.disk_usage(photo_filename)
     else:
         size = -1
         fname = ""
@@ -25,8 +25,7 @@ def getdata(photo_filename=None, **kwargs):
                 total_photos=total_photo_count(),
                 current_photo=photo_sort_key(fname),
                 upload_time=kwargs.get("upload_time",-1),
-                disk_usage=diskusage.get("disk_usage",-1)
-                )
+                disk_free=diskfree)
 
 def getfmtstr(filename,fmtstr):
     if os.path.exists(filename):
