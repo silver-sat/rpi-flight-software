@@ -13,6 +13,7 @@ sudo systemctl disable systemd-timesyncd.service
 
 setparamifnotset GROUND_IP 192.168.100.101
 setparamifnotset SATELLITE_IP 192.168.100.102
+setparamifnotset SATELLITE_CALL KC3TTE
 setparamifnotset KISS_MTU 195
 setparamifnotset BAUD 9600
 setparamifnotset SSDVSIZE 195
@@ -21,7 +22,6 @@ setparamifnotset SSDVTIME 300
 setparamifnotset SSDVDELAY 1
 setparamifnotset TWITTERCRED edwardsnj.ssapp
 delparam GROUND_CALL
-delparam SATELLITE_CALL
 
 # Don't need ax25 if using tncattach
 # sudo sed -i "s/MYCALL-0/${SATELLITE_CALL}/" /etc/ax25/axports
