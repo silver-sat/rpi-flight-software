@@ -37,4 +37,5 @@ sudo sync -f "./$BOOT"
 sudo umount "./$BOOT"
 rmdir "./$BOOT"
 
+rm -f "${FS}.xz"
 ./pishrink.sh -s -v -n -Z "$FS"
