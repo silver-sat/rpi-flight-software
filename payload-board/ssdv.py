@@ -5,6 +5,7 @@ import os
 import find_common_modules
 
 from photo_files import ssdv_filename, most_recent_photo
+from kiss import kiss_encode
 
 params = {}
 for l in open("/home/pi/.params.sh"):
@@ -44,7 +45,7 @@ while True:
         break
 
     part = buffer[i*part_size:(i+1)*part_size]
-    ser.write(part)
+    ser.write(kiss_encode(part))
 
     i = (i+1)%num_parts
     j += 1
