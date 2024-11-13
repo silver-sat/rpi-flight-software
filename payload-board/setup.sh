@@ -13,7 +13,7 @@ sudo systemctl disable systemd-timesyncd.service
 
 setparamifnotset GROUND_IP 192.168.100.101
 setparamifnotset SATELLITE_IP 192.168.100.102
-setparamifnotset SATELLITE_CALL KC3TTE
+setparamifnotset SATELLITE_CALL KC3VVW
 setparamifnotset KISS_MTU 195
 setparamifnotset BAUD 9600
 setparamifnotset SSDVSIZE 195
