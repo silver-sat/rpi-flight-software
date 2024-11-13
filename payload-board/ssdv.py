@@ -18,6 +18,10 @@ sleep_time = float(params['SSDVDELAY'])
 ssdv_time = int(params['SSDVTIME'])
 
 photo_filename = most_recent_photo()
+if not photo_filename:
+    print("No photo available for SSDV",file=sys.stderr)
+    sys.exit(1)
+
 ssdvfn = ssdv_filename(photo_filename)
 
 print("Sending photo file %s via SSDV"%(photo_filename,))
