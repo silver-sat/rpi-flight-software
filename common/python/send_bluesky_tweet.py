@@ -17,7 +17,7 @@ def send_photo_tweet(bluesky,photo_file,message=None):
     try:
         photo = open(photo_file, 'rb')
         start = time.time()
-        image = client.upload_blob(photo)
+        image = bluesky.upload_blob(photo)
         upload_time = int(round(time.time()-start)) #seconds
         photo.close()
         if 'blob' not in response:
