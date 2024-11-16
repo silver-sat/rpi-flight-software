@@ -2,24 +2,46 @@
 import sys
 
 import find_common_modules
+from params import get_params
 
-#
-# Choose the direct or proxy tweet module depending on whether 
-# the ground station rpi is running the ssltunnel daemon to
-# turn HTTP twitter API use into HTTPS.
-#
-# from direct_bluesky import get_twitter
-# from direct_reddit import get_twitter
-# from direct_tweet import get_twitter
-from proxy_tweet import get_twitter
+params = get_params()
+target = params.get('TWEETTARGET','twitter')
+mode = params.get('TWEETMODE','proxy')
+
+import direct_bluesky, direct_reddit, direct_twitter
+import proxy_tweet, minifs_tweet
+
+import send_tweet, send_bluesky_tweet, send_reddit_tweet
+import send_minifs_tweet
+
+assert mode in ("direct","proxy","minifs")
+if mode == "direct":
+    assert target in ("twitter","reddit","bluesky")
+    if target == "twitter":
+        twitter = direct_twitter.get_twitter()
+        send_text_tweet = send_tweet.send_text_tweet
+        send_photo_tweet = send_tweet.send_photo_tweet
+    elif target == "reddit":
+        twitter = direct_reddit.get_twitter()
+        send_text_tweet = send_reddit_tweet.send_text_tweet
+        send_photo_tweet = send_reddit_tweet.send_photo_tweet
+    elif target == "bluesky":
+        twitter = direct_bluesky.get_twitter()
+        send_text_tweet = send_blueskey_tweet.send_text_tweet
+        send_photo_tweet = send_blueskey_tweet.send_photo_tweet
+elif mode == "proxy":
+    assert target in ("twitter",)
+    twitter = proxy_twitter.get_twitter()
+    send_text_tweet = send_tweet.send_text_tweet
+    send_photo_tweet = send_tweet.send_photo_tweet
+elif mode == "minifs":
+    twitter = minifs_tweet.get_twitter()
+    send_text_tweet = send_minifs_tweet.send_text_tweet
+    send_photo_tweet = send_minifs_tweet.send_photo_tweet
 
 from photo_files import least_recent_photo, remove_photo
-# from send_bluesky_tweet import send_text_tweet, send_photo_tweet
-# from send_reddit_tweet import send_text_tweet, send_photo_tweet
-from send_tweet import send_text_tweet, send_photo_tweet
 
 filename = least_recent_photo()
-twitter = get_twitter()
 if not filename:
     message = send_text_tweet(twitter)
     if message:
