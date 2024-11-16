@@ -1,6 +1,6 @@
 
 from blueskycred import *
-from atproto import Client
+from atproto_client.client.client import Client
 
 def get_twitter():
     client = Client()

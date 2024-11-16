@@ -3,7 +3,7 @@ import sys, traceback, json, time
 
 from tweet_status import make_text_status, make_photo_status
 
-from atproto import models
+from atproto_client import models
 
 def send_text_tweet(bluesky,message=None):
     if not message:
