@@ -98,7 +98,7 @@ def tweet():
             continue
        
         message = request.values['msg']
-        if 'photo' in request.files or photo_file != None:
+        if 'photo' in request.files:
             if photo_file == None:
                 f = request.files['photo']
                 if f.filename == "" or secure_filename(f.filename) == "":
