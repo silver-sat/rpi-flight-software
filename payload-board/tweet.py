@@ -8,7 +8,7 @@ params = get_params()
 target = params.get('TWEETTARGET','twitter')
 mode = params.get('TWEETMODE','proxy')
 
-import direct_bluesky, direct_reddit, direct_twitter
+import direct_bluesky, direct_reddit, direct_tweet
 import proxy_tweet, minifs_tweet
 
 import send_tweet, send_bluesky_tweet, send_reddit_tweet
@@ -18,7 +18,7 @@ assert mode in ("direct","proxy","minifs")
 if mode == "direct":
     assert target in ("twitter","reddit","bluesky")
     if target == "twitter":
-        twitter = direct_twitter.get_twitter()
+        twitter = direct_tweet.get_twitter()
         send_text_tweet = send_tweet.send_text_tweet
         send_photo_tweet = send_tweet.send_photo_tweet
     elif target == "reddit":
