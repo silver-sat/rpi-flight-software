@@ -20,8 +20,8 @@ def send_photo_tweet(bluesky,photo_file,message=None):
         image = bluesky.upload_blob(photo)
         upload_time = int(round(time.time()-start)) #seconds
         photo.close()
-        if 'blob' not in image:
-            print("Bluesky upload_blob reponse missing blob:\n"+json.dumps(image,indent=2),file=sys.stderr)
+        if not hasattr(image,'blob'):
+            print("Bluesky upload_blob reponse missing blob:\n"+str(image),file=sys.stderr)
             return None
         if not message:
             message = make_photo_status(photo_file,upload_time=upload_time)
