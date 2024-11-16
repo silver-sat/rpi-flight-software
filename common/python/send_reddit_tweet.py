@@ -11,8 +11,11 @@ def status_split(message):
         return l[0],""
     return l[0],l[1]
 
-def send_text_tweet(reddit):
-    message,rest = status_split(make_text_status())
+def send_text_tweet(reddit,message=None):
+    if not message:
+        message,rest = status_split(make_text_status())
+    else:
+        message,rest = status_split(message)
     try:
         reddit.subreddit(subreddit_name).submit(title=message, selftext=rest)
         return (message+"\n"+rest).strip()
@@ -20,8 +23,9 @@ def send_text_tweet(reddit):
         traceback.print_exc()
     return False
     
-def send_photo_tweet(reddit,photo_file):
-    message = make_photo_status(photo_file)
+def send_photo_tweet(reddit,photo_file,messsage=None):
+    if not message:
+        message = make_photo_status(photo_file)
     # photo_file must be on the file system
     try:
         reddit.subreddit(subreddit_name).submit_image(title=message, image_path=photo_file, without_websockets = True)
