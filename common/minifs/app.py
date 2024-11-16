@@ -78,6 +78,7 @@ import direct_reddit, send_reddit_tweet
 
 @app.route('/tweet', methods = ['GET','POST'])
 def tweet():
+    photo_file = None
     sites = [ s.strip() for s in request.values.get('site','twitter').split(",") ]
     for site in sites:
     
@@ -97,25 +98,29 @@ def tweet():
             continue
        
         message = request.values['msg']
-        if 'photo' in request.files:
-            f = request.files['photo']
-            if f.filename == "" or secure_filename(f.filename) == "":
-                return "Bad filename\n",400
-            sfilename = os.path.split(secure_filename(f.filename))[1]
-            photo_file = os.path.join(upload_photo_folder,sfilename)
-            f.save(photo_file)
+        if 'photo' in request.files or photo_file != None:
+            if photo_file == None:
+                f = request.files['photo']
+                if f.filename == "" or secure_filename(f.filename) == "":
+                    return "Bad filename\n",400
+                sfilename = os.path.split(secure_filename(f.filename))[1]
+                photo_file = os.path.join(upload_photo_folder,sfilename)
+                f.save(photo_file)
 
             if not send_photo_tweet(twitter,photo_file,message):
                 print("something went wrong!")
                 return "Bad tweet error?",400
             print("Tweeted(%s): %s with image %s" % (site,message, f.filename))
-            os.unlink(photo_file)
+            
         else:
             if not send_text_tweet(twitter,message):
                 print("something went wrong!")
                 return "Bad tweet error?",400   
             print("Tweeted(%s): %s without image" % (site,message,))
     
+    if photo_file != None:
+        os.unlink(photo_file)
+        
     return "Successfull tweet", 200
 
 if __name__ == '__main__':
