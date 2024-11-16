@@ -24,8 +24,8 @@ if mode == "direct":
     elif target == "bluesky":
         import direct_bluesky, send_bluesky_tweet
         twitter = direct_bluesky.get_twitter()
-        send_text_tweet = send_blueskey_tweet.send_text_tweet
-        send_photo_tweet = send_blueskey_tweet.send_photo_tweet
+        send_text_tweet = send_bluesky_tweet.send_text_tweet
+        send_photo_tweet = send_bluesky_tweet.send_photo_tweet
 elif mode == "proxy":
     assert target in ("twitter",)
     import proxy_tweet, send_tweet

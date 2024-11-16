@@ -1,6 +1,6 @@
 
 from blueskycred import *
-from atproto import Client, models
+from atproto import Client
 
 def get_twitter():
     client = Client()
