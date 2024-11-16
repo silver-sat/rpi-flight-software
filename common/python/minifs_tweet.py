@@ -1,4 +1,6 @@
 import os
 
+from params import get_param
+
 def get_twitter():
-    return (os.environ['GROUND_IP'],5001) 
+    return (get_param('GROUND_IP'),5001) 
