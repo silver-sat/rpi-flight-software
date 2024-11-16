@@ -109,7 +109,7 @@ def tweet():
                 print("something went wrong!")
                 return "Bad tweet error?",400
             print("Tweeted(%s): %s with image %s" % (site,message, f.filename))
-            os.path.unlink(photo_file)
+            os.unlink(photo_file)
         else:
             if not send_text_tweet(twitter,message):
                 print("something went wrong!")
