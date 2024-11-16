@@ -20,15 +20,14 @@ def send_photo_tweet(bluesky,photo_file,message=None):
         image = bluesky.upload_blob(photo)
         upload_time = int(round(time.time()-start)) #seconds
         photo.close()
-        if 'blob' not in response:
-            print("Bluesky upload_blob reponse missing blob:\n"+json.dumps(response,indent=2),file=sys.stderr)
+        if 'blob' not in image:
+            print("Bluesky upload_blob reponse missing blob:\n"+json.dumps(image,indent=2),file=sys.stderr)
             return None
-        else:
-            if not message:
-                message = make_photo_status(photo_file,upload_time=upload_time)
-            embed = models.AppBskyEmbedImages.Main(images=[ models.AppBskyEmbedImages.Image(alt="",image=image.blob) ])
-            repsonse = bluesky.send_post(message, embed=embed)
-            return message
+        if not message:
+            message = make_photo_status(photo_file,upload_time=upload_time)
+        embed = models.AppBskyEmbedImages.Main(images=[ models.AppBskyEmbedImages.Image(alt="",image=image.blob) ])
+        repsonse = bluesky.send_post(message, embed=embed)
+        return message
     except:
         traceback.print_exc()
     return None
