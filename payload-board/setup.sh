@@ -25,6 +25,7 @@ setparamifnotset REDDITCRED silversatdevs
 setparamifnotset BLUESKYCRED edwardsnj
 setparamifnotset TWEETMODE proxy
 setparamifnotset TWEETTARGET twitter
+setparamifnotset REDDITSUB test
 delparam GROUND_CALL
 
 # Don't need ax25 if using tncattach
