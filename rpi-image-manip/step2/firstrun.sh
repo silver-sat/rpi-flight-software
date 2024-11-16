@@ -78,4 +78,5 @@ fi
 
 rm -f /boot/firstrun.sh
 sed -i 's| systemd.run.*||g' /boot/cmdline.txt
+shutdown -h now
 exit 0

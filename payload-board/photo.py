@@ -23,6 +23,10 @@ from ucam_take_photo import take_photo
 camera = setup_camera()
 
 filename = photo_filename()
+if not filename:
+    print("Can't generate a new photo filename, too many photos",file=sys.stderr)
+    sys.exit(1)
+
 thumbfn = thumb_filename(filename)
 ssdvfn = ssdv_filename(filename)
 

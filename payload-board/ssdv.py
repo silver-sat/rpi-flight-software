@@ -1,10 +1,12 @@
 import serial
 import time
 import os
+import sys
 
 import find_common_modules
 
 from photo_files import ssdv_filename, most_recent_photo
+from kiss import kiss_encode
 
 params = {}
 for l in open("/home/pi/.params.sh"):
@@ -17,6 +19,10 @@ sleep_time = float(params['SSDVDELAY'])
 ssdv_time = int(params['SSDVTIME'])
 
 photo_filename = most_recent_photo()
+if not photo_filename:
+    print("No photo available for SSDV",file=sys.stderr)
+    sys.exit(1)
+
 ssdvfn = ssdv_filename(photo_filename)
 
 print("Sending photo file %s via SSDV"%(photo_filename,))
@@ -44,7 +50,7 @@ while True:
         break
 
     part = buffer[i*part_size:(i+1)*part_size]
-    ser.write(part)
+    ser.write(kiss_encode(part))
 
     i = (i+1)%num_parts
     j += 1

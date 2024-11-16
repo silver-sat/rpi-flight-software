@@ -13,6 +13,9 @@ app = Flask("minifs")
 upload_folder = "uploads/"
 if not os.path.exists(upload_folder):
     os.makedirs(upload_folder)
+upload_photo_folder = "uploads/photos"
+if not os.path.exists(upload_photo_folder):
+    os.makedirs(upload_photo_folder)
 app.config['UPLOAD_FOLDER'] = "uploads"
 app.config['MAX_CONTENT_LENGTH'] = 1 * 1024 * 1024
 
@@ -82,8 +85,11 @@ def tweet():
         f = request.files['photo']
         if f.filename == "" or secure_filename(f.filename) == "":
             return "Bad filename\n",400
+        sfilename = os.path.split(secure_filename(f.filename))[1]
+        photo_file = os.path.join(upload_photo_folder,thefilename)
+        f.save(photo_file)
 
-        if not send_photo_tweet(twitter,message,f.stream):
+        if not send_photo_tweet(twitter,photo_file,message):
             print("something went wrong!")
             return "Bad tweet error?",400
         print("Tweeted: %s with image %s" % (message, f.filename))

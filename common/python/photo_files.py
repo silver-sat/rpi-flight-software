@@ -52,14 +52,14 @@ def photo_sort_key(filename):
 def most_recent_photo():
     # so not rely on string sorting...
     globstr = photo_dir+"/" + photo_prefix + "*" + photo_extn
-    for f in sorted(glob.glob(globstr),key=photo_sort_key):
+    for f in sorted(glob.glob(globstr),key=photo_sort_key,reverse=True):
         return f
     return None
     
 def least_recent_photo():
     # so not rely on string sorting...
     globstr = photo_dir+"/" + photo_prefix + "*" + photo_extn
-    for f in sorted(glob.glob(globstr),key=photo_sort_key,reverse=True):
+    for f in sorted(glob.glob(globstr),key=photo_sort_key):
         return f
     return None
                 

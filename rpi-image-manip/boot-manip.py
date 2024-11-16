@@ -10,20 +10,24 @@ password = sys.argv[4]
 
 if hostname.startswith('satellite'):
     config = 'payload-board'
+    hostbase = 'satellite'
 elif hostname.startswith('ground'):
     config = 'ground-station'
+    hostbase = 'ground'
 else:
     raise ValueError("Unexpected hostname: "+hostname)
 
-shutil.copyfile(os.path.join(scriptdir,'../setup.sh'),
-                os.path.join(scriptdir,'step1','setup.sh'))
+if step == "step1":
+    shutil.copyfile(os.path.join(scriptdir,'../setup.sh'),
+                    os.path.join(scriptdir,'step1','setup.sh'))
 
-allfiles = [ os.path.split(f)[1] for f in glob.glob(step+"/*") ]
+allfiles = list(glob.glob(step+"/*")) + list(glob.glob(step+"-"+hostbase+"/*"))
 
 for file in allfiles:
-    print("Copying",file)
-    local = os.path.join(scriptdir,step,file)
-    shutil.copyfile(local,boot+"/"+file)
+    local = os.path.join(scriptdir,file)
+    bootfile = os.path.split(file)[1]
+    print("Copying",file,"to",boot+"/"+bootfile)
+    shutil.copyfile(local,boot+"/"+bootfile)
 
 def fixlines(filename, **kwargs):
     data = open(filename).read()
@@ -37,5 +41,6 @@ details = dict(XXXXHOSTNAMEXXXX=hostname,
                XXXXCONFIGXXXX=config,
                XXXXPASSWORDXXXX=password)
 for file in allfiles:
-    fixlines(boot+"/"+file,**details)
+    bootfile = os.path.split(file)[1]
+    fixlines(boot+"/"+bootfile,**details)
 

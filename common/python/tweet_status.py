@@ -12,7 +12,7 @@ def timestamp(msg):
     return "[%s] %s"%(datetime.datetime.now().ctime(),msg)
 
 def getdata(photo_filename=None, **kwargs):
-    diskfree = "%.2f"%(shutil.disk_usage("/home/pi").free/(1024**3),)
+    diskfree = "%.2f"%(shutil.disk_usage(os.path.expanduser("~")).free/(1024**3),)
     if photo_filename:
         size = os.path.getsize(photo_filename)
         fname = os.path.split(photo_filename)[1]

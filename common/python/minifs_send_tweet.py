@@ -3,10 +3,14 @@ import urllib.request
 import urllib.parse
 import traceback
 
+from tweet_status import make_text_status, make_photo_status
+
 # from https://pymotw.com/3/urllib.request/
 import multipartform
 
-def send_text_tweet(twitter,message):
+def send_text_tweet(twitter,message=None):
+    if not message:
+        message = make_text_status()
     try:
         url = 'http://%s:%d/tweet'%twitter
         data = urllib.parse.urlencode({'msg': message}).encode()
@@ -17,7 +21,9 @@ def send_text_tweet(twitter,message):
         traceback.print_exc()
     return False
     
-def send_photo_tweet(twitter,message,photo_file):
+def send_photo_tweet(twitter,photo_file,message=None):
+    if not message:
+        message = make_photo_status(photo_file)
     try:
         # use old fashioned post upload format...
         form = multipartform.MultiPartForm()
