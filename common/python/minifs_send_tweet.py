@@ -16,7 +16,7 @@ def send_text_tweet(twitter,message=None):
         data = urllib.parse.urlencode({'msg': message}).encode()
         response = urllib.request.urlopen(url,data=data).read()
         # check response    
-        return True
+        return message
     except:
         traceback.print_exc()
     return False
@@ -38,7 +38,7 @@ def send_photo_tweet(twitter,photo_file,message=None):
         
         response = urllib.request.urlopen(req).read()
         # check response    
-        return True
+        return message
     except:
         traceback.print_exc()
     return False

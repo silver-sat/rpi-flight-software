@@ -86,7 +86,7 @@ def tweet():
         if f.filename == "" or secure_filename(f.filename) == "":
             return "Bad filename\n",400
         sfilename = os.path.split(secure_filename(f.filename))[1]
-        photo_file = os.path.join(upload_photo_folder,thefilename)
+        photo_file = os.path.join(upload_photo_folder,sfilename)
         f.save(photo_file)
 
         if not send_photo_tweet(twitter,photo_file,message):
