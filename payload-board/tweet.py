@@ -44,9 +44,9 @@ filename = least_recent_photo()
 if not filename:
     message = send_text_tweet(twitter)
     if message:
-        print("Success! Text Tweet(%s): %s"%(site, message), file=sys.stderr)
+        print("Success! Text Tweet(%s:%s): %s"%(mode,target,message), file=sys.stderr)
 else:
     message = send_photo_tweet(twitter, filename)
     if message:
-        print("Success! Photo Tweet(%s): %s"%(site, message), file=sys.stderr)
+        print("Success! Photo Tweet(%s:%s): %s"%(mode,target,message), file=sys.stderr)
         remove_photo(filename)
