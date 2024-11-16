@@ -21,6 +21,10 @@ setparamifnotset SSDVQUAL 4
 setparamifnotset SSDVTIME 300
 setparamifnotset SSDVDELAY 1
 setparamifnotset TWITTERCRED edwardsnj.ssapp
+setparamifnotset REDDITCRED silversatdevs
+setparamifnotset BLUESKYCRED edwardsnj
+setparamifnotset TWEETMODE proxy
+setparamifnotset TWEETTARGET twitter
 delparam GROUND_CALL
 
 # Don't need ax25 if using tncattach

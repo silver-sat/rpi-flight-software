@@ -5,13 +5,11 @@ import sys
 
 import find_common_modules
 
+from params import get_params
 from photo_files import ssdv_filename, most_recent_photo
 from kiss import kiss_encode
 
-params = {}
-for l in open("/home/pi/.params.sh"):
-    k,v = map(lambda s: s.strip().strip(" '\""),l.split('='))
-    params[k] = v
+params = get_params()
 
 baud = int(params['BAUD'])
 part_size = int(params['SSDVSIZE'])
