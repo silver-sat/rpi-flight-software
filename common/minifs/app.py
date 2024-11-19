@@ -31,7 +31,7 @@ def upload():
       dtfolder = time.strftime("%Y%m%d-%H%M%S")
       if not os.path.exists(os.path.join("uploads",dtfolder)):
           try:
-              lastfolder = sorted(os.listdir("uploads"))[-1]
+              lastfolder = sorted([ f for f in os.listdir("uploads") if f != "photos" ])[-1]
           except IndexError:
               lastfolder = None
           if lastfolder:
