@@ -13,3 +13,6 @@ def take_photo(camera,filename):
         print("Photo placed in filename:",filename,file=sys.stderr)
         return True
     return False
+
+def file_photo_is_present():
+    return os.path.exists(photo_location)
