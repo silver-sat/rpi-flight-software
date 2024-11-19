@@ -72,9 +72,8 @@ def list():
     return "\n".join(filelist)+'\n'
 
 import find_common_modules
-import direct_tweet, send_tweet
-import direct_bluesky, send_bluesky_tweet
-import direct_reddit, send_reddit_tweet
+
+from tweet_select import tweet_select
 
 @app.route('/tweet', methods = ['GET','POST'])
 def tweet():
@@ -82,21 +81,8 @@ def tweet():
     sites = [ s.strip() for s in request.values.get('site','twitter').split(",") ]
     for site in sites:
     
-        if site == "twitter":
-            twitter = direct_tweet.get_twitter()
-            send_text_tweet = send_tweet.send_text_tweet
-            send_photo_tweet = send_tweet.send_photo_tweet
-        elif site == "reddit":
-            twitter = direct_reddit.get_twitter()
-            send_text_tweet = send_reddit_tweet.send_text_tweet
-            send_photo_tweet = send_reddit_tweet.send_photo_tweet
-        elif site == "bluesky":
-            twitter = direct_bluesky.get_twitter()
-            send_text_tweet = send_bluesky_tweet.send_text_tweet
-            send_photo_tweet = send_bluesky_tweet.send_photo_tweet
-        else:
-            continue
-       
+        twitter, send_text_tweet, send_photo_tweet = tweet_select('direct',site)
+               
         message = request.values['msg']
         if 'photo' in request.files:
             if photo_file == None:
