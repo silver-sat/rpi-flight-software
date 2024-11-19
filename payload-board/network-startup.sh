@@ -61,6 +61,18 @@ if [ "${TWITTERCRED}" != "" ]; then
     ln -s twittercred.${TWITTERCRED}.py twittercred.py )
 fi
 
+if [ "${REDDITCRED}" != "" ]; then
+  ( cd /home/pi/rpi-flight-software/common/python;
+    rm -f redditcred.py; 
+    ln -s redditcred.${REDDITCRED}.py redditcred.py )
+fi
+
+if [ "${BLUESKYCRED}" != "" ]; then
+  ( cd /home/pi/rpi-flight-software/common/python;
+    rm -f blueskycred.py; 
+    ln -s blueskycred.${BLUESKYCRED}.py blueskycred.py )
+fi
+
 rm -f .auxstartup.sh
 sh .minifs/dl.sh ${GROUND_IP} 5001 auxstartup.sh .auxstartup.sh
 if [ -s .auxstartup.sh ]; then

@@ -7,18 +7,12 @@ from photo_files import photo_filename, thumb_filename, ssdv_filename
 from photo_thumb import make_thumb
 from photo_ssdv import make_ssdv
 
-#
-# Choose the camera module for file, ucam_max3100, or ucam_serial
-#
-# from file_camera import setup_camera
-# from ucam_max3100_camera import setup_camera
-from ucam_serial_camera import setup_camera
-
-#
-# Match the take_photo module with the above
-#
-# from file_camera import take_photo
-from ucam_take_photo import take_photo
+from file_camera import file_photo_is_present
+if file_photo_is_present():
+    from file_camera import setup_camera, take_photo
+else:
+    from ucam_serial_camera import setup_camera
+    from ucam_take_photo import take_photo
 
 camera = setup_camera()
 

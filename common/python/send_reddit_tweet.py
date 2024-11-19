@@ -2,8 +2,9 @@
 import sys, traceback, json, time
 
 from tweet_status import make_text_status, make_photo_status
+from params import get_param
 
-subreddit_name = "sandboxtest" #change later
+subreddit_name = get_param("REDDITSUB","test")
 
 def status_split(message):
     l = [ s.strip() for s in message.split('\n',1) ]
@@ -23,7 +24,7 @@ def send_text_tweet(reddit,message=None):
         traceback.print_exc()
     return False
     
-def send_photo_tweet(reddit,photo_file,messsage=None):
+def send_photo_tweet(reddit,photo_file,message=None):
     if not message:
         message = make_photo_status(photo_file)
     # photo_file must be on the file system
