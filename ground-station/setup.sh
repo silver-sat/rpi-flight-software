@@ -36,8 +36,6 @@ rm -f uploads
 ln -s ".minifs/uploads" uploads
 rm -f downloads
 ln -s ".minifs/downloads" downloads
-rm -f .minifs.log
-ln -s ".minifs/app.log" .minifs.log
 rm -f .logrotate.sh
 ln -s ".common/scripts/logrotate.sh" .logrotate.sh
 
