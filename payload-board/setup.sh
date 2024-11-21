@@ -23,9 +23,10 @@ setparamifnotset SSDVDELAY 1
 setparamifnotset TWITTERCRED edwardsnj.ssapp
 setparamifnotset REDDITCRED silversatpayloaddevs
 setparamifnotset BLUESKYCRED edwardsnj
+setparamifnotset REDDITSUB test
 setparamifnotset TWEETMODE proxy
 setparamifnotset TWEETTARGET twitter
-setparamifnotset REDDITSUB test
+setparamifnotset TWEETTEXT IFNOPHOTO
 delparam GROUND_CALL
 
 # Don't need ax25 if using tncattach
