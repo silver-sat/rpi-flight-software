@@ -1,8 +1,8 @@
 
 from blueskycred import *
-from atproto_client.client.client import Client
+from bluesky import BlueSky
 
 def get_twitter():
-    client = Client()
+    client = BlueSky()
     client.login(username, password)
     return client

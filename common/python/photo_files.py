@@ -1,7 +1,7 @@
 
 import os, os.path, sys, time, glob
 
-photo_dir = '/home/pi/photos'
+photo_dir = os.path.join(os.path.expanduser("~"),'photos')
 photo_prefix = 'photo-'
 photo_extn = '.jpg' # include dot!
 thumb_prefix = 'thumb-'

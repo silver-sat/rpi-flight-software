@@ -19,11 +19,17 @@ def tweet_select(mode,target):
             send_text_tweet = send_bluesky_tweet.send_text_tweet
             send_photo_tweet = send_bluesky_tweet.send_photo_tweet
     elif mode == "proxy":
-        assert target in ("twitter",)
-        import proxy_tweet, send_tweet
-        twitter = proxy_tweet.get_twitter()
-        send_text_tweet = send_tweet.send_text_tweet
-        send_photo_tweet = send_tweet.send_photo_tweet
+        assert target in ("twitter","bluesky")
+        if target == "twitter":
+            import proxy_tweet, send_tweet
+            twitter = proxy_tweet.get_twitter()
+            send_text_tweet = send_tweet.send_text_tweet
+            send_photo_tweet = send_tweet.send_photo_tweet
+        elif target == "bluesky":
+            import proxy_bluesky, send_bluesky_tweet
+            twitter = proxy_bluesky.get_twitter()
+            send_text_tweet = send_bluesky_tweet.send_text_tweet
+            send_photo_tweet = send_bluesky_tweet.send_photo_tweet
     elif mode == "minifs":
         import minifs_tweet, send_minifs_tweet
         twitter = minifs_tweet.get_twitter()
