@@ -10,13 +10,14 @@ from params import get_params
 params = get_params()
 mode = params.get('TWEETMODE','proxy')
 target = params.get('TWEETTARGET','twitter')
+text = (params.get('TWEETTEXT','IFNOPHOTO').upper() != 'IFNOPHOTO')
 
 twitter, send_text_tweet, send_photo_tweet = tweet_select(mode, target)
     
 from photo_files import least_recent_photo, remove_photo
 
 filename = least_recent_photo()
-if not filename:
+if not filename or text:
     message = send_text_tweet(twitter)
     if message:
         print("Success! Text Tweet(%s:%s): %s"%(mode,target,message), file=sys.stderr)
