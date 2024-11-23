@@ -7,6 +7,7 @@ boot = sys.argv[1]
 step = sys.argv[2]
 hostname = sys.argv[3]
 password = sys.argv[4]
+release = sys.argv[5]
 
 if hostname.startswith('satellite'):
     config = 'payload-board'
@@ -40,7 +41,8 @@ def fixlines(filename, **kwargs):
 
 details = dict(XXXXHOSTNAMEXXXX=hostname,
                XXXXCONFIGXXXX=config,
-               XXXXPASSWORDXXXX=password)
+               XXXXPASSWORDXXXX=password,
+               XXXXRELEASEXXXX=release)
 for file in allfiles:
     bootfile = os.path.split(file)[1]
     fixlines(boot+"/"+bootfile,**details)

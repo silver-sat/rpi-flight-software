@@ -41,7 +41,7 @@ if [ ! -d /home/pi/rpi-flight-software ]; then
   fi
 
   touch /home/pi/.setup.log
-  nohup /home/pi/setup.sh XXXXCONFIGXXXX < /dev/null >> /home/pi/.setup.log 2>&1
+  nohup /home/pi/setup.sh XXXXCONFIGXXXX XXXXRELEASEXXXX < /dev/null >> /home/pi/.setup.log 2>&1
   if [ -d /home/pi/rpi-flight-software ]; then
     sudo /bin/systemctl disable runsetup.service
     sudo shutdown now
