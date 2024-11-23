@@ -1,7 +1,5 @@
 #!/bin/sh
 
-set -x
-
 #
 # To encrypt a new cred file use the following command:
 #
