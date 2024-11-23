@@ -18,8 +18,9 @@ else:
     raise ValueError("Unexpected hostname: "+hostname)
 
 if step == "step1":
-    shutil.copyfile(os.path.join(scriptdir,'../setup.sh'),
-                    os.path.join(scriptdir,'step1','setup.sh'))
+    for fn in ("setup.sh", "VERSION"):
+        shutil.copyfile(os.path.join(scriptdir,'../'+fn),
+                        os.path.join(scriptdir,'step1',fn))
 
 allfiles = list(glob.glob(step+"/*")) + list(glob.glob(step+"-"+hostbase+"/*"))
 
