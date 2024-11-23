@@ -16,6 +16,7 @@ setparamifnotset BLUESKYCRED edwardsnj
 setparamifnotset REDDITSUB test
 delparam GROUND_CALL
 delparam SATELLITE_CALL
+delparam PASSWORD
 
 if [ `fgrep ${SATELLITE_IP} /etc/ntp.conf | wc -l` -eq 0 ]; then
 
