@@ -10,10 +10,10 @@ setparamifnotset GROUND_IP 192.168.100.101
 setparamifnotset SATELLITE_IP 192.168.100.102
 setparamifnotset KISS_MTU 195
 setparamifnotset BAUD 9600
-setparamifnotset TWITTERCRED edwardsnj.ssapp
-setparamifnotset REDDITCRED silversatpayloaddevs
-setparamifnotset BLUESKYCRED edwardsnj
-setparamifnotset REDDITSUB test
+setparamifnotset TWITTERCRED silversat.ssapp
+setparamifnotset REDDITCRED silversatorg
+setparamifnotset BLUESKYCRED silversatorg
+setparamifnotset REDDITSUB silversatorg
 delparam GROUND_CALL
 delparam SATELLITE_CALL
 delparam PASSWORD

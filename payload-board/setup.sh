@@ -20,10 +20,10 @@ setparamifnotset SSDVSIZE 195
 setparamifnotset SSDVQUAL 4
 setparamifnotset SSDVTIME 300
 setparamifnotset SSDVDELAY 1
-setparamifnotset TWITTERCRED edwardsnj.ssapp
-setparamifnotset REDDITCRED silversatpayloaddevs
-setparamifnotset BLUESKYCRED edwardsnj
-setparamifnotset REDDITSUB test
+setparamifnotset TWITTERCRED silversat.ssapp
+setparamifnotset REDDITCRED silversatorg
+setparamifnotset BLUESKYCRED silversatorg
+setparamifnotset REDDITSUB silversatorg
 setparamifnotset TWEETMODE proxy
 setparamifnotset TWEETTARGET twitter
 setparamifnotset TWEETTEXT IFNOPHOTO
