@@ -28,6 +28,7 @@ setparamifnotset TWEETMODE proxy
 setparamifnotset TWEETTARGET twitter
 setparamifnotset TWEETTEXT IFNOPHOTO
 delparam GROUND_CALL
+delparam PASSWORD
 
 # Don't need ax25 if using tncattach
 # sudo sed -i "s/MYCALL-0/${SATELLITE_CALL}/" /etc/ax25/axports
