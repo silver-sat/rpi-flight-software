@@ -30,6 +30,19 @@ setparamifnotset TWEETTEXT IFNOPHOTO
 delparam GROUND_CALL
 delparam PASSWORD
 
+showparams
+
+mkdir -p .ssh
+cp $COMMON/etc/satellite .ssh/id_ecdsa
+cp $COMMON/etc/ground.pub .ssh/authorized_keys
+chmod -R a+rX .ssh
+chmod 600 .ssh/id_ecdsa
+
+if [ `fgrep ground /etc/hosts | wc -l` -eq 0 ]; then
+  echo "192.168.100.101         ground" | \
+    sudo sed -e '$r /dev/stdin' -i /etc/hosts
+fi
+
 # Don't need ax25 if using tncattach
 # sudo sed -i "s/MYCALL-0/${SATELLITE_CALL}/" /etc/ax25/axports
 

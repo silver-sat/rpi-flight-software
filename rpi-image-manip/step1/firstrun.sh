@@ -14,6 +14,7 @@ chmod +x /home/pi/setup.sh
 
 cp -f /boot/params.sh /home/pi/.params.sh
 chown pi.pi /home/pi/.params.sh
+rm -f /boot/params.sh
 
 chmod +x /boot/runsetup.sh
 cp -f /boot/runsetup.service /etc/systemd/system

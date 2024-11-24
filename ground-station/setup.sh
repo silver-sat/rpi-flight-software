@@ -4,7 +4,7 @@ set -x
 
 . .common/setup/params.sh
 
-sudo apt-get install -y ntp stunnel4 socat iptables tcpdump
+sudo apt-get install -y ntp stunnel4 socat iptables tcpdump dnsmasq
 
 setparamifnotset GROUND_IP 192.168.100.101
 setparamifnotset SATELLITE_IP 192.168.100.102
@@ -17,6 +17,19 @@ setparamifnotset REDDITSUB silversatorg
 delparam GROUND_CALL
 delparam SATELLITE_CALL
 delparam PASSWORD
+
+showparams
+
+mkdir -p .ssh
+cp $COMMON/etc/ground .ssh/id_ecdsa
+cp $COMMON/etc/satellite.pub .ssh/authorized_keys
+chmod -R a+rX .ssh
+chmod 600 .ssh/id_ecdsa
+
+if [ `fgrep satellite /etc/hosts | wc -l` -eq 0 ]; then
+  echo "192.168.100.102		satellite" | \
+    sudo sed -e '$r /dev/stdin' -i /etc/hosts
+fi
 
 if [ `fgrep ${SATELLITE_IP} /etc/ntp.conf | wc -l` -eq 0 ]; then
 

@@ -8,7 +8,7 @@
 
 . $COMMON/setup/params.sh
 
-for enccredfile in $COMMON/python/*.gpg; do
+for enccredfile in $COMMON/*/*.gpg; do
   credfile=`echo "$enccredfile" | sed 's/\.gpg$//'`
   if [ ! -s "$credfile" ]; then
     getpasswd "Encryption password for secret data? " PASSWORD

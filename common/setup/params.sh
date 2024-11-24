@@ -42,18 +42,24 @@ showparam() {
   grep "^$1=" $PARAMS 
 }
  
+showparams() {
+  cat $PARAMS 
+}
+ 
 setparamifnotset() {
   if nothasparam "$1"; then
     setparam "$1" "$2"
-	readparams
+    readparams
   fi
 }
 
 readparams() {
   if [ -f $PARAMS ]; then
+    set +x
     set -a
     . $PARAMS
     set +a
+    set -x
   fi
 }
 
