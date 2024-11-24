@@ -6,12 +6,6 @@
 #    gpg --no-symkey-cache --passphrase "<password>" --batch -c creds.py
 #
 
-setopt="$-"
-echo "$setopt"
-if [ `echo "$setopt" | fgrep x | wc -l` -gt 0 ]; then
-  set +x
-fi
-
 . $COMMON/setup/params.sh
 
 for enccredfile in $COMMON/*/*.gpg; do
@@ -21,10 +15,6 @@ for enccredfile in $COMMON/*/*.gpg; do
     gpg --no-symkey-cache --passphrase "$PASSWORD" --batch -d "$enccredfile" > "$credfile"
   fi
 done
-
-if [ `echo "$setopt" | fgrep x | wc -l` -gt 0 ]; then
-  set -x
-fi
 
 # tolerate errors in decryption
 exit 0

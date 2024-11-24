@@ -18,6 +18,6 @@ sh $COMMON/setup/rc.local.startup-hook.sh || exit 1
 sh $COMMON/setup/axports.append.sh || exit 1
 sh $COMMON/setup/dhcpcd.append.sh || exit 1
 sh $COMMON/setup/stop.daily.updates.sh || exit 1
-sh $COMMON/setup/decrypt-creds.sh || exit 1
+sh $COMMON/setup/decrypt-creds.sh >/dev/null 2>&1 || exit 1
 sh $COMMON/setup/git-config.sh || exit 1
 echo "Common setup done."
