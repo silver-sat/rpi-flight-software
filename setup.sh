@@ -36,6 +36,8 @@ else
   ( cd $RFSROOT; git pull )
 fi
 
+( cd $RFSROOT; git checkout ${2:-main} )
+
 # Execute any common setup steps...
 export COMMON="$RFSROOT/common"
 
