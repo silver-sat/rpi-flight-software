@@ -45,24 +45,6 @@ echo 1 > /proc/sys/net/ipv4/ip_forward
 sh .logrotate.sh .stunnel.log
 stunnel .common/etc/stunnel.conf > .stunnel.log 2>&1 &
 
-if [ "${TWITTERCRED}" != "" ]; then
-  ( cd /home/pi/rpi-flight-software/common/python;
-    rm -f twittercred.py; 
-    ln -s twittercred.${TWITTERCRED}.py twittercred.py )
-fi
-
-if [ "${REDDITCRED}" != "" ]; then
-  ( cd /home/pi/rpi-flight-software/common/python;
-    rm -f redditcred.py; 
-    ln -s redditcred.${REDDITCRED}.py redditcred.py )
-fi
-
-if [ "${BLUESKYCRED}" != "" ]; then
-  ( cd /home/pi/rpi-flight-software/common/python;
-    rm -f blueskycred.py; 
-    ln -s blueskycred.${BLUESKYCRED}.py blueskycred.py )
-fi
-
 sh .logrotate.sh .minifs.log
 ( cd .minifs; \
   runuser -u pi python3 app.py ${GROUND_IP} > /home/pi/.minifs.log 2>&1 ) &
