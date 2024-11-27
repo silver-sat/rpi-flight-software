@@ -20,7 +20,7 @@ setparamifnotset SSDVSIZE 195
 setparamifnotset SSDVQUAL 4
 setparamifnotset SSDVTIME 300
 setparamifnotset SSDVDELAY 1
-setparamifnotset TWITTERCRED silversat.ssapp
+setparamifnotset TWITTERCRED silversat-ssapp
 setparamifnotset REDDITCRED silversatorg
 setparamifnotset BLUESKYCRED silversatorg
 setparamifnotset REDDITSUB silversatorg

@@ -10,7 +10,7 @@ setparamifnotset GROUND_IP 192.168.100.101
 setparamifnotset SATELLITE_IP 192.168.100.102
 setparamifnotset KISS_MTU 195
 setparamifnotset BAUD 9600
-setparamifnotset TWITTERCRED silversat.ssapp
+setparamifnotset TWITTERCRED silversat-ssapp
 setparamifnotset REDDITCRED silversatorg
 setparamifnotset BLUESKYCRED silversatorg
 setparamifnotset REDDITSUB silversatorg

@@ -55,11 +55,9 @@ setparamifnotset() {
 
 readparams() {
   if [ -f $PARAMS ]; then
-    set +x
     set -a
     . $PARAMS
     set +a
-    set -x
   fi
 }
 
