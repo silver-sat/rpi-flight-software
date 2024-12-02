@@ -1,5 +1,5 @@
 
-PARAMS=/home/pi/.params.sh
+PARAMS=${PARAMS:-/home/pi/.params.sh}
 
 nothasparam() {
   if [ "$(eval echo -n \$$1)" = "" ]; then
