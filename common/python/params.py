@@ -1,7 +1,7 @@
 
 import os, os.path
 
-paramsfile = "/home/pi/.params.sh"
+paramsfile = os.environ.get("PARAMS","/home/pi/.params.sh")
 
 def get_params():
     params = {}
@@ -9,14 +9,15 @@ def get_params():
         for l in open(paramsfile):
             k,v = map(lambda s: s.strip().strip(" '\""),l.split('='))
             params[k] = v
+    else:
+        return os.environ
     return params
 
 def get_param(key,default=None):
     return get_params().get(key,default)
     
-def get_creds(key,*values,**kwargs):
+def get_creds(key,**kwargs):
     default = kwargs.get('default')
     cred = get_param(key,default)
     assert cred is not None
-    module = __import__(key.lower()+"-"+cred, globals(), locals(), ['*'], 0)
-    return [ getattr(module,v) for v in values ]
+    return __import__(key.lower()+"-"+cred, globals(), locals(), ['*'], 0)
