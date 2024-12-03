@@ -40,11 +40,11 @@ chmod -R a+rX .ssh
 chmod 600 .ssh/id_ecdsa
 
 if [ `fgrep ground /etc/hosts | wc -l` -eq 0 ]; then
-  echo "192.168.100.101         ground\\n192.168.100.102	satellite" | \
+  echo "${GROUND_IP}	ground\\n${SATELLITE_IP}	satellite" | \
     sudo sed -e '$r /dev/stdin' -i /etc/hosts
 fi
 
-if [ `fgrep "192.168.100.101" /etc/resolv.conf | wc -l` -eq 0 ]; then
+if [ `fgrep "${GROUND_IP}" /etc/resolv.conf | wc -l` -eq 0 ]; then
 
   # try to remove existing lines
   sudo sed -i -e "1d" /etc/resolv.conf
@@ -52,7 +52,7 @@ if [ `fgrep "192.168.100.101" /etc/resolv.conf | wc -l` -eq 0 ]; then
   sudo sed -i -e "1d" /etc/resolv.conf
   
   # add ground as DNS server...
-  echo "192.168.100.101" | \
+  echo "${GROUND_IP}" | \
     sudo sed -e '$r /dev/stdin' -i /etc/resolv.conf
   
 fi

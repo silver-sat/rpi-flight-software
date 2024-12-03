@@ -28,7 +28,7 @@ chmod -R a+rX .ssh
 chmod 600 .ssh/id_ecdsa
 
 if [ `fgrep satellite /etc/hosts | wc -l` -eq 0 ]; then
-  echo "192.168.100.102		satellite\\n192.168.100.101	ground" | \
+  echo "${SATELLITE_IP}		satellite\\n${GROUND_IP}	ground" | \
     sudo sed -e '$r /dev/stdin' -i /etc/hosts
 fi
 
