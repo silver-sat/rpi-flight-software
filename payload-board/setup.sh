@@ -35,12 +35,26 @@ showparams
 mkdir -p .ssh
 cp $COMMON/etc/satellite .ssh/id_ecdsa
 cp $COMMON/etc/ground.pub .ssh/authorized_keys
+cat $COMMON/etc/satellite.pub >> .ssh/authorized_keys
 chmod -R a+rX .ssh
 chmod 600 .ssh/id_ecdsa
 
 if [ `fgrep ground /etc/hosts | wc -l` -eq 0 ]; then
-  echo "192.168.100.101         ground" | \
+  echo "192.168.100.101         ground\\n192.168.100.102	satellite" | \
     sudo sed -e '$r /dev/stdin' -i /etc/hosts
+fi
+
+if [ `fgrep "192.168.100.101" /etc/resolv.conf | wc -l` -eq 0 ]; then
+
+  # try to remove existing lines
+  sudo sed -i -e "1d" /etc/resolv.conf
+  sudo sed -i -e "1d" /etc/resolv.conf
+  sudo sed -i -e "1d" /etc/resolv.conf
+  
+  # add ground as DNS server...
+  echo "192.168.100.101" | \
+    sudo sed -e '$r /dev/stdin' -i /etc/resolv.conf
+  
 fi
 
 # Don't need ax25 if using tncattach
