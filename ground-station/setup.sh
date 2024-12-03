@@ -39,17 +39,17 @@ if [ `fgrep ${SATELLITE_IP} /etc/ntp.conf | wc -l` -eq 0 ]; then
 
 fi
 
-if [ `fgrep "server=8.8.8.8" /etc/dnamasq.conf | wc -l` -eq 0 ]; then
+if [ `fgrep "server=8.8.8.8" /etc/dnsmasq.conf | wc -l` -eq 0 ]; then
 
   # uncomment these lines...
-  sudo sed -e 's/^\#domain-needed/domain-needed/' -i /etc/dnamasq.conf
-  sudo sed -e 's/^\#bogus-priv/bogus-priv/' -i /etc/dnamasq.conf
-  sudo sed -e 's/^\#no-resolv/no-resolv/' -i /etc/dnamasq.conf
+  sudo sed -e 's/^\#domain-needed/domain-needed/' -i /etc/dnsmasq.conf
+  sudo sed -e 's/^\#bogus-priv/bogus-priv/' -i /etc/dnsmasq.conf
+  sudo sed -e 's/^\#no-resolv/no-resolv/' -i /etc/dnsmasq.conf
   
   # make these changes...
-  sudo sed -e 's/^\#server=.*/server=8.8.8.8\\nserver=8.8.4.4/' -i /etc/dnamasq.conf
-  sudo sed -e 's/^\#cache-size=150.*/cache-size=1000/' -i /etc/dnamasq.conf
-  sudo sed -e 's/^\#interface.*/interface=tnc0/' -i /etc/dnamasq.conf
+  sudo sed -e 's/^\#server=.*/server=8.8.8.8\\nserver=8.8.4.4/' -i /etc/dnsmasq.conf
+  sudo sed -e 's/^\#cache-size=150.*/cache-size=1000/' -i /etc/dnsmasq.conf
+  sudo sed -e 's/^\#interface.*/interface=tnc0/' -i /etc/dnsmasq.conf
   sudo systemctl enable dnsmasq
   
 fi
