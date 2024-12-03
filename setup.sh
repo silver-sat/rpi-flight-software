@@ -77,3 +77,9 @@ ln -s /home/pi/payload/startup.sh /home/pi/.startup.sh
 # execute the setup.sh script for the specific configuration
 sh payload/setup.sh
 
+sudo cp $RFSROOT/VERSION /boot
+
+if [ -d "$BASE" ]; then
+  echo "$1" | \
+    sudo sed -e '1,$d' -e '$r /dev/stdin' -i /boot/CONFIG
+fi
