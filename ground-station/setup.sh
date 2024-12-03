@@ -29,7 +29,9 @@ chmod 600 .ssh/id_ecdsa
 
 if [ `fgrep satellite /etc/hosts | wc -l` -eq 0 ]; then
   sudo sed -e '/ground/d' -i /etc/hosts
-  echo "${SATELLITE_IP}		satellite\\\\n${GROUND_IP}	ground" | \
+  echo "${SATELLITE_IP}		satellite" | \
+    sudo sed -e '$r /dev/stdin' -i /etc/hosts
+  echo "${GROUND_IP}	ground" | \
     sudo sed -e '$r /dev/stdin' -i /etc/hosts
 fi
 
