@@ -48,14 +48,9 @@ fi
 
 if [ `fgrep "${GROUND_IP}" /etc/resolv.conf | wc -l` -eq 0 ]; then
 
-  # try to remove existing lines
-  sudo sed -i -e "1d" /etc/resolv.conf
-  sudo sed -i -e "1d" /etc/resolv.conf
-  sudo sed -i -e "1d" /etc/resolv.conf
-  
-  # add ground as DNS server...
-  echo "${GROUND_IP}" | \
-    sudo sed -e '$r /dev/stdin' -i /etc/resolv.conf
+    # add ground as DNS server...
+  echo "nameserver ${GROUND_IP}" | \
+    sudo tee /etc/resolv.conf > /dev/null 
   
 fi
 
