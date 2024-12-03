@@ -59,15 +59,10 @@ if [ `fgrep "server=8.8.8.8" /etc/dnsmasq.conf | wc -l` -eq 0 ]; then
 fi
 
 if [ `fgrep "mshome.net" /etc/resolv.conf | wc -l` -gt 0 ]; then
-
-  # try to remove existing lines
-  sudo sed -i -e "1d" /etc/resolv.conf
-  sudo sed -i -e "1d" /etc/resolv.conf
-  sudo sed -i -e "1d" /etc/resolv.conf
   
   # add ground as DNS server...
   echo "nameserver 127.0.0.1" | \
-    sudo sed -e '$r /dev/stdin' -i /etc/resolv.conf
+    sudo tee /etc/resolv.conf > /dev/null 
   
 fi
 
