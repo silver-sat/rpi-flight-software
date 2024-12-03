@@ -47,8 +47,9 @@ if [ `fgrep "server=8.8.8.8" /etc/dnamasq.conf | wc -l` -eq 0 ]; then
   sudo sed -e 's/^\#no-resolv/no-resolv/' -i /etc/dnamasq.conf
   
   # make these changes...
-  sudo sed -e 's/^\#server=/server=8.8.8.8\\nserver=8.8.4.4/' -i /etc/dnamasq.conf
-  sudo sed -e 's/^#cache-size=150/cache-size=1000/' -i /etc/dnamasq.conf
+  sudo sed -e 's/^\#server=.*/server=8.8.8.8\\nserver=8.8.4.4/' -i /etc/dnamasq.conf
+  sudo sed -e 's/^\#cache-size=150.*/cache-size=1000/' -i /etc/dnamasq.conf
+  sudo sed -e 's/^\#interface.*/interface=tnc0/' -i /etc/dnamasq.conf
   sudo systemctl enable dnsmasq
   
 fi
