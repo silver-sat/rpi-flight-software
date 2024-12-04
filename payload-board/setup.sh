@@ -21,9 +21,9 @@ setparamifnotset SSDVQUAL 4
 setparamifnotset SSDVTIME 300
 setparamifnotset SSDVDELAY 1
 setparamifnotset TWITTERCRED silversat-ssapp
-setparamifnotset REDDITCRED silversatorg
+setparamifnotset REDDITCRED silversatpayloaddevs
 setparamifnotset BLUESKYCRED silversatorg
-setparamifnotset REDDITSUB silversatorg
+setparamifnotset REDDITSUB test
 setparamifnotset TWEETMODE proxy
 setparamifnotset TWEETTARGET twitter
 setparamifnotset TWEETTEXT IFNOPHOTO
