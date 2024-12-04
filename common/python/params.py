@@ -9,11 +9,11 @@ def get_params():
         for l in open(paramsfile):
             k,v = map(lambda s: s.strip().strip(" '\""),l.split('='))
             params[k] = v
-    else:
-        return os.environ
     return params
 
 def get_param(key,default=None):
+    if os.environ.get(key):
+        return os.environ.get(key)
     return get_params().get(key,default)
     
 def get_creds(key,**kwargs):
