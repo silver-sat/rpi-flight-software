@@ -4,8 +4,6 @@ import sys, traceback, json, time
 from tweet_status import make_text_status, make_photo_status
 from params import get_param
 
-subreddit_name = get_param("REDDITSUB","test")
-
 def status_split(message):
     l = [ s.strip() for s in message.split('\n',1) ]
     if len(l) == 1:
@@ -17,6 +15,7 @@ def send_text_tweet(reddit,message=None):
         message,rest = status_split(make_text_status())
     else:
         message,rest = status_split(message)
+    subreddit_name = get_param("REDDITSUB","test")
     try:
         reddit.subreddit(subreddit_name).submit(title=message, selftext=rest)
         return (message+"\n"+rest).strip()
@@ -28,6 +27,7 @@ def send_photo_tweet(reddit,photo_file,message=None):
     if not message:
         message = make_photo_status(photo_file)
     # photo_file must be on the file system
+    subreddit_name = get_param("REDDITSUB","test")
     try:
         reddit.subreddit(subreddit_name).submit_image(title=message, image_path=photo_file, without_websockets = True)
         return message
