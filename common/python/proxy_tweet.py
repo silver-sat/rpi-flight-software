@@ -2,9 +2,8 @@
 from params import get_param, get_creds
 from twitterproxy import Twitter
 
-creds = get_creds("TWITTERCRED")
-
 def get_twitter():
+    creds = get_creds("TWITTERCRED")
     groundip = get_param('GROUND_IP')
     return Twitter(
                creds.consumer_key,
