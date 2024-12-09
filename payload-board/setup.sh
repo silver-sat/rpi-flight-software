@@ -47,6 +47,10 @@ if [ `fgrep ground /etc/hosts | wc -l` -eq 0 ]; then
     sudo sed -e '$r /dev/stdin' -i /etc/hosts
 fi
 
+if [ `grep "^StrictHostKeyChecking" | wc -l` -eq 0 ]; then
+  sudo sed -e 's/^# *StrictHostKeyChecking.*$/StrictHostKeyChecking accept-new/' /etc/ssh/ssh_config
+fi
+
 if [ `fgrep "${GROUND_IP}" /etc/resolv.conf | wc -l` -eq 0 ]; then
 
     # add ground as DNS server...

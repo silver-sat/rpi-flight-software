@@ -35,11 +35,13 @@ if [ `fgrep satellite /etc/hosts | wc -l` -eq 0 ]; then
     sudo sed -e '$r /dev/stdin' -i /etc/hosts
 fi
 
-if [ `fgrep ${SATELLITE_IP} /etc/ntp.conf | wc -l` -eq 0 ]; then
+if [ `grep "^StrictHostKeyChecking" | wc -l` -eq 0 ]; then
+  sudo sed -e 's/^# *StrictHostKeyChecking.*$/StrictHostKeyChecking accept-new/' /etc/ssh/ssh_config
+fi
 
+if [ `fgrep ${SATELLITE_IP} /etc/ntp.conf | wc -l` -eq 0 ]; then
   echo "restrict ${SATELLITE_IP} mask 255.255.255.255" | \
     sudo sed -e '/#restrict 192.168.123.0/r /dev/stdin' -i /etc/ntp.conf
-
 fi
 
 if [ `fgrep "server=8.8.8.8" /etc/dnsmasq.conf | wc -l` -eq 0 ]; then
