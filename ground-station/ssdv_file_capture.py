@@ -65,7 +65,7 @@ def main(args):
                 continue
             if min(packets) > 0:
                 continue
-            if lastpacketnum != -1 and len(packets) < (lastpacketnum + 1):
+            if lastpacketnum == -1 or len(packets) < (lastpacketnum + 1):
                 continue
             break
 
