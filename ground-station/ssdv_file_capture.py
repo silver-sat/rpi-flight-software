@@ -40,7 +40,6 @@ def main(args):
                 break
 
             if packet != bytearray(b''):
-                packet_count += 1
                 imagenum = int.from_bytes(packet[6:7],byteorder='big')
                 packetnum = int.from_bytes(packet[7:9],byteorder='big')
                 lastpacket = 1 if (int.from_bytes(packet[11:12],byteorder='big') & (1<<2)) else 0
@@ -48,17 +47,21 @@ def main(args):
                 packetdata = packet[1:-4]
                 calccrc = (binascii.crc32(packetdata) % (1<<32))
                 packetcrc = (int.from_bytes(packet[-4:],byteorder='big') % (1<<32))
-                print("len=",len(packet),end=" ")
-                print("image=",imagenum,end=" ")
-                print("packet=",packetnum,end=" ")
-                print("lastpacket=",lastpacket,end=" ")
-                print("packetcrc=",hex(packetcrc),end=" ")
-                print("calccrc=",hex(calccrc),end=" ")
-                print("count=",packet_count)
                 if packetnum not in packets and packetlen == 195 and calccrc == packetcrc:
+                    packet_count += 1
+                    print("len=",len(packet),end=" ")
+                    print("image=",imagenum,end=" ")
+                    print("packet=",packetnum,end=" ")
+                    print("lastpacket=",lastpacket,end=" ")
+                    print("packetcrc=",hex(packetcrc),end=" ")
+                    print("calccrc=",hex(calccrc),end=" ")
+                    print("count=",packet_count)
                     packets[packetnum] = copy.copy(packet)
                     if lastpacket:
                         lastpacketnum = packetnum
+                else:
+                    print("Bad packet...")
+                        
                 packet = bytearray(b'') # clear it
 
             if len(packets) == 0:
