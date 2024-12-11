@@ -10,6 +10,7 @@ from collections import defaultdict
 
 def main(args):
     packets = dict()
+    lastpacketnum = -1
     with serial.Serial('/dev/ttyS0', 9600, timeout=10) as ser:
         # print(ser.name)
         packet = bytearray(b'')
@@ -56,13 +57,15 @@ def main(args):
                 print("count=",packet_count)
                 if packetnum not in packets and packetlen == 195 and calccrc == packetcrc:
                     packets[packetnum] = copy.copy(packet)
+                    if lastpacket:
+                        lastpacketnum = packetnum
                 packet = bytearray(b'') # clear it
 
             if len(packets) == 0:
                 continue
             if min(packets) > 0:
                 continue
-            if (max(packets) + 1) > len(packets):
+            if lastpacketnum != -1 and len(packets) < (lastpacketnum + 1):
                 continue
             break
 
