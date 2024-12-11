@@ -42,6 +42,8 @@ def ssdv_filename(photo_filename):
     return "%s/%s%06d%s"%(photo_dir,ssdv_prefix,index,ssdv_extn)
 
 def photo_sort_key(filename):
+    if filename == None:
+        return 0
     # remove path
     fname = os.path.split(filename)[1]
     # remove prefix and extn

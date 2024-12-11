@@ -1,7 +1,8 @@
 
 import datetime, os, os.path, shutil
 
-from photo_files import current_photo_count, total_photo_count, photo_sort_key
+from photo_files import current_photo_count, total_photo_count, 
+                           photo_sort_key, least_recent_photo
 
 textstatusfile = "/home/pi/.textstatus.txt"
 textstatusdefault = "[%(now)s] Twitter text status!"
@@ -20,11 +21,12 @@ def getdata(photo_filename=None, **kwargs):
     else:
         size = -1
         fname = ""
-        current_photo = -1
+        current_photo = photo_sort_key(least_recent_photo())
     return dict(now=datetime.datetime.now().ctime(),
                 filename=fname,size=size,
                 photos_on_disk=current_photo_count(),
                 total_photos=total_photo_count(),
+                sent_photos=(total_photos-photos_on_disk),
                 current_photo = current_photo,
                 upload_time=kwargs.get("upload_time",-1),
                 disk_free=diskfree)
