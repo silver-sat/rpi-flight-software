@@ -47,7 +47,7 @@ def main(args):
                 packetdata = packet[1:-4]
                 calccrc = (binascii.crc32(packetdata) % (1<<32))
                 packetcrc = (int.from_bytes(packet[-4:],byteorder='big') % (1<<32))
-                if packetnum not in packets and packetlen == 195 and calccrc == packetcrc:
+                if packetlen == 195 and calccrc == packetcrc:
                     packet_count += 1
                     print("len=",len(packet),end=" ")
                     print("image=",imagenum,end=" ")
@@ -56,9 +56,10 @@ def main(args):
                     print("packetcrc=",hex(packetcrc),end=" ")
                     print("calccrc=",hex(calccrc),end=" ")
                     print("count=",packet_count)
-                    packets[packetnum] = copy.copy(packet)
-                    if lastpacket:
-                        lastpacketnum = packetnum
+                    if packetnum not in packets:
+                        packets[packetnum] = copy.copy(packet)
+                        if lastpacket:
+                            lastpacketnum = packetnum
                 else:
                     print("Bad packet...")
                         
