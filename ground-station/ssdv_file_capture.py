@@ -2,22 +2,28 @@
 
 import serial
 import argparse
+import random
+import copy
+import binascii
+import zipfile
+from collections import defaultdict
 
 def main(args):
-    with serial.Serial('/dev/ttyS0', 9600) as ser:
-        print(ser.name)
-        packet = []
+    packets = dict()
+    with serial.Serial('/dev/ttyS0', 9600, timeout=10) as ser:
+        # print(ser.name)
+        packet = bytearray(b'')
         packet_count = 0
         while True:
             x = ser.read(1)  # looking for C0
             # print(x)
             if x == b'\xc0':  # start of a packet detected
                 dest = ser.read(1)  # read the destination (temp)
-                if args.verbose:
-                    print("dest = ", dest)
+                # if args.verbose:
+                #     print("dest = ", dest)
                 packet = bytearray(b'')
                 read_byte = None
-                while read_byte != b'\xc0':  # keep reading bytes until next 0xc0 encountered
+                while read_byte not in (b'\xc0',b''):  # keep reading bytes until next 0xc0 encountered
                     read_byte = ser.read(1)  # need to kiss decode, do it on the fly
                     if read_byte == b'\xDB':
                         read_next_byte = ser.read(1)
@@ -29,16 +35,40 @@ def main(args):
                         pass
                     else:
                         packet.extend(read_byte)
+            elif x == b'':
+                break
 
-            if args.verbose:
-                print(packet)
-                print(len(packet))
-            with open(args.output, "ab") as file:  #append to the file
-                file.write(packet)
-            packet_count += 1
-            packet = []  # clear it
-            print(f'count = {packet_count}')
+            if packet != bytearray(b''):
+                packet_count += 1
+                imagenum = int.from_bytes(packet[6:7],byteorder='big')
+                packetnum = int.from_bytes(packet[7:9],byteorder='big')
+                packetlen = len(packet)
+                packetdata = packet[1:-4]
+                calccrc = (binascii.crc32(packetdata) % (1<<32))
+                packetcrc = (int.from_bytes(packet[-4:],byteorder='big') % (1<<32))
+                print("len=",len(packet),end=" ")
+                print("image=",imagenum,end=" ")
+                print("packet=",packetnum,end=" ")
+                print("packetcrc=",hex(packetcrc),end=" ")
+                print("calccrc=",hex(calccrc),end=" ")
+                print("count=",packet_count)
+                if packetnum not in packets and packetlen == 195 and calccrc == packetcrc:
+                    packets[packetnum] = copy.copy(packet)
+                packet = bytearray(b'') # clear it
 
+            if len(packets) == 0:
+                continue
+            if min(packets) > 0:
+                continue
+            if (max(packets) + 1) > len(packets):
+                continue
+            break
+
+    
+    with open(args.output, "wb") as file:
+        for i in range(0,len(packets)):
+           file.write(packets[i])
+    
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(prog="ssdv_file_capture")
     parser.add_argument("-o", "--output", help="the file to write the received data")
