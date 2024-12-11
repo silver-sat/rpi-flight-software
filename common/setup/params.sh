@@ -9,11 +9,12 @@ nothasparam() {
   OLDOPT1=$-
   set +x
   if [ "$(eval echo -n \$$1)" = "" ]; then
-	  true
+	  RETVAL=true
   else
-	  false
+	  RETVAL=false
   fi
   set -$OLDOPT1
+  RETVAL
 }
 
 getpasswd() {

@@ -12,6 +12,7 @@ for enccredfile in $COMMON/*/*.gpg; do
   credfile=`echo "$enccredfile" | sed 's/\.gpg$//'`
   if [ ! -s "$credfile" ]; then
     getpasswd "Encryption password for secret data? " PASSWORD
+	echo "Decrypt $enccredfile"
     gpg --no-symkey-cache --passphrase "$PASSWORD" --batch -d "$enccredfile" > "$credfile"
   fi
 done
