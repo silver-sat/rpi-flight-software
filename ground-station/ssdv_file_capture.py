@@ -43,7 +43,7 @@ def main(args):
                 packet_count += 1
                 imagenum = int.from_bytes(packet[6:7],byteorder='big')
                 packetnum = int.from_bytes(packet[7:9],byteorder='big')
-                lastpacket = (int.from_bytes(packet[11:12],byteorder='big') & (1<<2))
+                lastpacket = 1 if (int.from_bytes(packet[11:12],byteorder='big') & (1<<2)) else 0
                 packetlen = len(packet)
                 packetdata = packet[1:-4]
                 calccrc = (binascii.crc32(packetdata) % (1<<32))
