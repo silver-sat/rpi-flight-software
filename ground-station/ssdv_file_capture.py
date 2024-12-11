@@ -69,15 +69,14 @@ def main(args):
                 continue
             break
 
-    
     with open(args.output, "wb") as file:
-        for i in range(0,len(packets)):
-           file.write(packets[i])
+        for i in sorted(packets):
+            file.write(packets[i])
     
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(prog="ssdv_file_capture")
     parser.add_argument("-o", "--output", help="the file to write the received data")
-    parser.add_argument("-v", "--verbose", action="store_true", help="display packets")
+    # parser.add_argument("-v", "--verbose", action="store_true", help="display packets")
     args = parser.parse_args()
 
     if args.output == None:
