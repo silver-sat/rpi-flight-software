@@ -48,7 +48,7 @@ if [ `fgrep ground /etc/hosts | wc -l` -eq 0 ]; then
 fi
 
 if [ `grep "^StrictHostKeyChecking" | wc -l` -eq 0 ]; then
-  sudo sed -e 's/^# *StrictHostKeyChecking.*$/StrictHostKeyChecking accept-new/' /etc/ssh/ssh_config
+  sudo sed -e 's/^# *StrictHostKeyChecking.*$/StrictHostKeyChecking accept-new/' -i /etc/ssh/ssh_config
 fi
 
 if [ `fgrep "${GROUND_IP}" /etc/resolv.conf | wc -l` -eq 0 ]; then
