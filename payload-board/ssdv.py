@@ -6,7 +6,7 @@ import sys
 import find_common_modules
 
 from params import get_params
-from photo_files import ssdv_filename, most_recent_photo
+from photo_files import ssdv_filename, most_recent_photo, least_recent_photo
 from kiss import kiss_encode
 
 params = get_params()
