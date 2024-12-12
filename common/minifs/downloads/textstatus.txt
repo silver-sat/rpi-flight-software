@@ -1,0 +1,1 @@
+[%(now)s] Twitter text status! %(photos_on_disk)s %(sent_photos)s %(total_photos)s %(disk_free)s
