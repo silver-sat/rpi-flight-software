@@ -23,7 +23,8 @@ def getdata(photo_filename=None, **kwargs):
         fname = ""
         current_photo = photo_sort_key(least_recent_photo())
     return dict(now=datetime.datetime.now().ctime(),
-                filename=fname,size=size,
+                filename=fname,
+                size=size,
                 photos_on_disk=current_photo_count(),
                 total_photos=total_photo_count(),
                 sent_photos=(total_photos-photos_on_disk),
