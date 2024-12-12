@@ -80,6 +80,5 @@ sh payload/setup.sh
 sudo cp $RFSROOT/VERSION /boot
 
 if [ -d "$BASE" ]; then
-  echo "$1" | \
-    sudo sed -e '1,$d' -e '$r /dev/stdin' -i /boot/CONFIG
+  echo "$1" | sudo tee /boot/CONFIG > /dev/null
 fi
