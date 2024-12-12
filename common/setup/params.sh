@@ -14,7 +14,7 @@ nothasparam() {
 	  RETVAL=false
   fi
   set -$OLDOPT1
-  RETVAL
+  $RETVAL
 }
 
 getpasswd() {

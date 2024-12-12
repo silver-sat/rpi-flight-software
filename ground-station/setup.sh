@@ -35,7 +35,7 @@ if [ `fgrep satellite /etc/hosts | wc -l` -eq 0 ]; then
     sudo sed -e '$r /dev/stdin' -i /etc/hosts
 fi
 
-if [ `grep "^StrictHostKeyChecking" | wc -l` -eq 0 ]; then
+if [ `grep "^StrictHostKeyChecking" /etc/ssh/ssh_config | wc -l` -eq 0 ]; then
   sudo sed -e 's/^# *StrictHostKeyChecking.*$/StrictHostKeyChecking accept-new/' -i /etc/ssh/ssh_config
 fi
 
