@@ -8,8 +8,8 @@ cd /home/pi
 # Turn of HDMI... requires DRM VC4 V3D driver not be enabled...
 /usr/bin/tvservice -o
 
-# Guarantee we are in user-space for at least 60 seconds
-sleep 60 &
+# Guarantee we are in user-space for at least 30 seconds
+sleep 30 &
 WAITPID=$!
 
 doshutdown() {
