@@ -4,9 +4,15 @@ import datetime, os, os.path, shutil
 from photo_files import current_photo_count, total_photo_count, photo_sort_key, least_recent_photo
 
 textstatusfile = "/home/pi/.textstatus.txt"
-textstatusdefault = "[%(now)s] Twitter text status!"
+textstatusdefault = '''Live tweeting from space, the SilverSat CubeSat is online! 
+Designed and built by kids in Silver Spring, Maryland. 
+The SilverSat CubeSat has tweeted %(sent_photos)s picture(s) of earth 🌎 from space 🌌. 
+#silversatcubesat #silverspringmd #cubesat #nasa'''
+
 photostatusfile = "/home/pi/.photostatus.txt"
-photostatusdefault = "[%(now)s] Twitter photo status! Photo: %(filename)s, Size: %(size)d"
+photostatusdefault = '''Check out this cool new image of earth 🌎 from space 🌌! 
+This picture of earth comes from a satellite designed and built by kids in Silver Spring, Maryland! 
+#silversatcubesat #silverspringmd #cubesat #nasa'''
 
 def timestamp(msg):
     return "[%s] %s"%(datetime.datetime.now().ctime(),msg)
