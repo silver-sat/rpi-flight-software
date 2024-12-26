@@ -48,6 +48,18 @@ rm -f .noshutdown
 # rm -f /home/pi/.photostatus.txt
 # runuser -u pi -- sh ./.minifs/dl.sh ${GROUND_IP} 5001 photostatus.txt /home/pi/.photostatus.txt
 
+###
+### apply a patch...
+###
+# PATCH=v1.7.0-v1.7.1.patch
+# runuser -u pi -- scp pi@ground:downloads/$PATCH /home/pi/$PATCH
+# ( cd rpi-flight-software; runuser -u pi -- patch -f -p1 < /home/pi/$PATCH )
+# rm -f /home/pi/$PATCH
+#
+# Check file...
+# grep '^textstatusdefault' rpi-flight-software/common/python/tweet_status.py
+# grep '^photostatusdefault' rpi-flight-software/common/python/tweet_status.py
+
 ls -l photos
 
 sh ./.minifs/ul.sh ${GROUND_IP} 5001 .startup.log
