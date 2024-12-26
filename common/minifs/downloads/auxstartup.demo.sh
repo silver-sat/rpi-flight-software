@@ -40,7 +40,7 @@ rm -f .noshutdown
 ###
 # rm -f /home/pi/.textstatus.txt
 # runuser -u pi -- sh ./.minifs/dl.sh ${GROUND_IP} 5001 textstatus.txt /home/pi/.textstatus.txt
-# runuser -u pi -- scp pi@ground:downoads/textstatus.txt /home/pi/.textstatus.txt
+# runuser -u pi -- scp pi@ground:downloads/textstatus.txt /home/pi/.textstatus.txt
 
 ###
 ### set photo tweet...
