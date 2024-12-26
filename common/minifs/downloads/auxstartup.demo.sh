@@ -29,8 +29,11 @@ rm -f .noshutdown
 ###
 ### set tweetcreds
 ###
+# runuser -u pi -- ./setparam.sh TWITTERCRED silversat-ssapp
 # runuser -u pi -- ./setparam.sh TWITTERCRED edwardsnj-ssapp
+# runuser -u pi -- ./setparam.sh BLUESKYCRED silversatorg
 # runuser -u pi -- ./setparam.sh BLUESKYCRED edwardsnj
+# runuser -u pi -- ./setparam.sh TWEETTARGET twitter
 # runuser -u pi -- ./setparam.sh TWEETTARGET bluesky
 # runuser -u pi -- ./setparam.sh TWEETTEXT IFNOPHOTO
 # runuser -u pi -- ./setparam.sh TWEETTEXT ALWAYS
