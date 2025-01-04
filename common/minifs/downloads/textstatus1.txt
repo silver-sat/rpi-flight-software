@@ -1,0 +1,4 @@
+TEST ONLY! Live tweeting from space, the SilverSat CubeSat is online! 
+Designed and built by kids in Silver Spring, Maryland. 
+The SilverSat CubeSat has tweeted %(sent_photos)s picture(s) of earth 🌎 from space 🌌. 
+#silversatcubesat #silverspringmd #cubesat #nasa
