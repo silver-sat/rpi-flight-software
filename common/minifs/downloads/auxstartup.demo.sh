@@ -19,6 +19,13 @@ rm -f .noshutdown
 # rm -f photos/last_photo_index.txt
 
 ###
+### remove all but the last photo taken
+###
+# rm -f `ls photos/photo-*.jpg | head -n -1`
+# rm -f `ls photos/thumb-*.jpg | head -n -1`
+# rm -f `ls photos/ssdv-*.bin | head -n -1`
+
+###
 ### Copy photo to file photo filename - 62265 bytes\
 ###
 # rm -f .photo.jpg
