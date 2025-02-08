@@ -42,6 +42,9 @@ rm -f .noshutdown
 # runuser -u pi -- ./setparam.sh BLUESKYCRED edwardsnj
 # runuser -u pi -- ./setparam.sh TWEETTARGET twitter
 # runuser -u pi -- ./setparam.sh TWEETTARGET bluesky
+# runuser -u pi -- ./setparam.sh TWEETMODE direct
+# runuser -u pi -- ./setparam.sh TWEETMODE proxy
+# runuser -u pi -- ./setparam.sh TWEETMODE minifs
 # runuser -u pi -- ./setparam.sh TWEETTEXT IFNOPHOTO
 # runuser -u pi -- ./setparam.sh TWEETTEXT ALWAYS
 
