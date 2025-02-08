@@ -6,9 +6,9 @@ cd /home/pi
 ls -l photos
 for f in .params.sh photos/last_photo_index.txt .textstatus.txt .photostatus.txt .photo.jpg; do
   case $f in 
-    *.txt) echo $f && ls -l $f && cat $f ;;
-    *.sh)  echo $f && ls -l $f && cat $f ;;
-    *.jpg) echo $f && ls -l $f ;;
+    *.txt) ls -l $f && cat $f ;;
+    *.sh)  ls -l $f && cat $f ;;
+    *.jpg) ls -l $f && md5sum $f ;;
   esac
 done
 ls -ld .*.log*
