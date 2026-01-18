@@ -5,6 +5,13 @@ import os, os.path, sys, glob, time, datetime
 from hashlib import md5
 from flask import Flask, request, send_file
 from werkzeug.utils import secure_filename
+from waitress import serve
+import socket
+import requests
+import logging
+
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 # initialising the flask app
 app = Flask("minifs")
@@ -71,46 +78,63 @@ def list():
     filelist.sort()
     return "\n".join(filelist)+'\n'
 
-import find_common_modules
 
-from tweet_select import tweet_select
+import http.client
 
-@app.route('/tweet', methods = ['GET','POST'])
-def tweet():
-    photo_file = None
-    sites = [ s.strip() for s in request.values.get('site','twitter').split(",") ]
-    for site in sites:
-    
-        twitter, send_text_tweet, send_photo_tweet = tweet_select('direct',site)
-               
-        message = request.values['msg']
-        if 'photo' in request.files:
-            if photo_file == None:
-                f = request.files['photo']
-                if f.filename == "" or secure_filename(f.filename) == "":
-                    return "Bad filename\n",400
-                sfilename = os.path.split(secure_filename(f.filename))[1]
-                photo_file = os.path.join(upload_photo_folder,sfilename)
-                f.save(photo_file)
+HOP_BY_HOP_HEADERS = {
+    'connection',
+    'keep-alive',
+    'proxy-authenticate',
+    'proxy-authorization',
+    'te',
+    'trailers',
+    'transfer-encoding',
+    'upgrade',
+    'expect'
+}
 
-            if not send_photo_tweet(twitter,photo_file,message):
-                print("something went wrong!")
-                return "Bad tweet error?",400
-            print("Tweeted(%s): %s with image %s" % (site,message, f.filename))
-            
-        else:
-            if not send_text_tweet(twitter,message):
-                print("something went wrong!")
-                return "Bad tweet error?",400   
-            print("Tweeted(%s): %s without image" % (site,message,))
-    
-    if photo_file != None:
-        os.unlink(photo_file)
-        
-    return "Successfull tweet", 200
+@app.route('/<path:path>', methods=['POST'])
+def tweet_proxy(path):
+    try:
+        conn = http.client.HTTPConnection("127.0.0.1", 8485)
+        conn.putrequest("POST", f"/{path}", skip_host=True)
+
+        # Rebuild headers, filtering out hop-by-hop and setting Host
+        for key, value in request.headers.items():
+            if key.lower() not in HOP_BY_HOP_HEADERS and key.lower() != 'host':
+                conn.putheader(key, value)
+        conn.putheader("Host", "upload.twitter.com")         # Adds correct Host manually
+        conn.endheaders()
+
+        # Send raw body
+        body = request.get_data()
+        logging.info(f"Sending to: /{path}") 
+        for k, v in request.headers.items(): 
+           logger.info(f"Header: {k}: {v}")
+        logging.info(f"Body length: {len(body)}")
+        conn.send(body)
+
+        # Get response
+        resp = conn.getresponse()
+        data = resp.read()
+        headers = [(k, v) for (k, v) in resp.getheaders() if k.lower() not in HOP_BY_HOP_HEADERS]
+        return (data, resp.status, headers)
+
+    except Exception as e:
+        return f"Proxy error: {e}", 500
+
 
 if __name__ == '__main__':
    # app.run(host='127.0.0.1',port=5001) # running the flask app
-   app.run(host=sys.argv[1],port=5001) # running the flask app
+   # app.run(host=sys.argv[1],port=5001) # running the flask app
+   orig_socket = socket.socket 
+   def patched_socket(*args, **kwargs): 
+      s = orig_socket(*args, **kwargs) 
+      s.setsockopt(socket.SOL_SOCKET, socket.SO_RCVBUF, 512) 
+      return s 
+   socket.socket = patched_socket 
+   # added to handle two app.py instances
+   port = int(sys.argv[2]) if len(sys.argv) > 2 else 5001
+   serve(app, host=sys.argv[1], port=port) 
+   # serve(app, host=sys.argv[1], port=5001)
 
- 

@@ -45,9 +45,16 @@ echo 1 > /proc/sys/net/ipv4/ip_forward
 sh .logrotate.sh .stunnel.log
 stunnel .common/etc/stunnel.conf > .stunnel.log 2>&1 &
 
-sh .logrotate.sh .minifs.log
+# Start app.py for logs/telemetry on port 5001
+sh .logrotate.sh .minifs5001.log
 ( cd .minifs; \
-  runuser -u pi python3 app.py ${GROUND_IP} > /home/pi/.minifs.log 2>&1 ) &
+  runuser -u pi -- python3 app.py ${GROUND_IP} 5001 > /home/pi/.minifs5001.log 2>&1 ) &
+
+# Start app.py for tweets on port 8484
+sh .logrotate.sh .minifs8484.log
+( cd .minifs; \
+  runuser -u pi -- python3 app.py ${GROUND_IP} 8484 > /home/pi/.minifs8484.log 2>&1 ) &
+
 
 sh .logrotate.sh .tcpdump.log
 tcpdump -i tnc0 -l > .tcpdump.log 2>&1 &
